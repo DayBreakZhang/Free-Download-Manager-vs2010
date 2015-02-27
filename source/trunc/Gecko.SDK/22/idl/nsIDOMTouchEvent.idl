@@ -1,0 +1,99 @@
+/* vim: set shiftwidth=2 tabstop=8 autoindent cindent expandtab: */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsIDOMUIEvent.idl"
+%{C++
+#include "nsWeakPtr.h"
+#include "nsPoint.h"
+%}
+interface nsIVariant;
+
+/**
+ * @see http://dvcs.w3.org/hg/webevents/raw-file/tip/touchevents.html
+ */
+
+[scriptable, builtinclass, uuid(98bc0f7d-5bff-4387-9c42-58af54b48dd5)]
+interface nsIDOMTouch : nsISupports {
+  readonly attribute long              identifier;
+  readonly attribute nsIDOMEventTarget target;
+  readonly attribute long              pageX;
+  readonly attribute long              pageY;
+  readonly attribute long              screenX;
+  readonly attribute long              screenY;
+  readonly attribute long              clientX;
+  readonly attribute long              clientY;
+  readonly attribute long              radiusX;
+  readonly attribute long              radiusY;
+  readonly attribute float             rotationAngle;
+  readonly attribute float             force;
+  %{C++
+    nsCOMPtr<nsIDOMEventTarget> mTarget;
+    nsIDOMEventTarget *GetTarget() { return mTarget; }
+    void SetTarget(nsIDOMEventTarget *target) { mTarget = target; }
+    nsIntPoint mRefPoint;
+    bool mChanged;
+    uint32_t mMessage;
+  %}
+};
+
+[scriptable, uuid(60706eb7-d50d-4379-b01c-e78e6af84213)]
+interface nsIDOMTouchList : nsISupports {
+  readonly attribute unsigned long length;
+  nsIDOMTouch item(in unsigned long index);
+  nsIDOMTouch identifiedTouch(in long identifier);
+};
+
+[scriptable, builtinclass, uuid(9a043d55-f59e-4790-8fc7-1fab1c727732)]
+interface nsIDOMTouchEvent : nsIDOMUIEvent {
+  readonly attribute nsIDOMTouchList touches;
+  readonly attribute nsIDOMTouchList targetTouches;
+  readonly attribute nsIDOMTouchList changedTouches;
+  readonly attribute boolean         altKey;
+  readonly attribute boolean         metaKey;
+  readonly attribute boolean         ctrlKey;
+  readonly attribute boolean         shiftKey;
+  void initTouchEvent(in DOMString type,
+                      in boolean canBubble,
+                      in boolean cancelable,
+                      in nsIDOMWindow view,
+                      in long detail,
+                      in boolean ctrlKey,
+                      in boolean altKey,
+                      in boolean shiftKey,
+                      in boolean metaKey,
+                      in nsIDOMTouchList touches,
+                      in nsIDOMTouchList targetTouches,
+                      in nsIDOMTouchList changedTouches);
+};
+
+[scriptable, uuid(6d5484f7-92ac-45f8-9388-39b5bad055ce)]
+interface nsITouchEventReceiver : nsISupports {
+  [implicit_jscontext] attribute jsval           ontouchstart;
+  [implicit_jscontext] attribute jsval           ontouchend;
+  [implicit_jscontext] attribute jsval           ontouchmove;
+  [implicit_jscontext] attribute jsval           ontouchenter;
+  [implicit_jscontext] attribute jsval           ontouchleave;
+  [implicit_jscontext] attribute jsval           ontouchcancel;
+};
+
+[scriptable, uuid(974cff68-6f0b-4520-8523-fa68b2754656)]
+interface nsIDOMDocumentTouch : nsITouchEventReceiver {
+  nsIDOMTouch createTouch([optional] in nsIDOMWindow view,
+                          [optional] in nsIDOMEventTarget target,
+                          [optional] in long identifier,
+                          [optional] in long pageX,
+                          [optional] in long pageY,
+                          [optional] in long screenX,
+                          [optional] in long screenY,
+                          [optional] in long clientX,
+                          [optional] in long clientY,
+                          [optional] in long radiusX,
+                          [optional] in long radiusY,
+                          [optional] in float rotationAngle,
+                          [optional] in float force);
+  
+
+  nsIDOMTouchList createTouchList([optional] in nsIVariant aPoints);
+};

@@ -1,0 +1,82 @@
+/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "domstubs.idl"
+
+interface nsIInputStream;
+interface nsIOutputStream;
+interface nsIScriptGlobalObject;
+
+[ptr] native JSValPtr(jsval);
+[ptr] native JSContext(JSContext);
+
+/**
+ * Encode and decode JSON text.
+ */
+[scriptable, uuid(43845d58-1054-47fb-8be3-970b3f7bd7ea)]
+interface nsIJSON : nsISupports
+{
+  /**
+   * New users should use JSON.stringify!
+   * The encode() method is only present for backward compatibility.
+   * encode() is not a conforming JSON stringify implementation!
+   */
+  [deprecated,implicit_jscontext,optional_argc]
+  AString encode([optional] in jsval value);
+
+  /**
+   * New users should use JSON.stringify.
+   * You may also want to have a look at nsIConverterOutputStream.
+   *
+   * The encodeToStream() method is only present for backward compatibility.
+   * encodeToStream() is not a conforming JSON stringify implementation!
+   */
+  [deprecated,implicit_jscontext,optional_argc]
+  void encodeToStream(in nsIOutputStream stream,
+                      in string charset,
+                      in boolean writeBOM,
+                      [optional] in jsval value);
+
+  /**
+   * New users should use JSON.parse!
+   * The decode() method is only present for backward compatibility.
+   */
+  [deprecated,implicit_jscontext]
+  jsval decode(in AString str);
+
+  [implicit_jscontext]
+  jsval decodeFromStream(in nsIInputStream stream,
+                         in long contentLength);
+
+  [noscript] AString  encodeFromJSVal(in JSValPtr value, in JSContext cx);
+
+  // Make sure you GCroot the result of this function before using it.
+  [noscript] jsval    decodeToJSVal(in AString str, in JSContext cx);
+
+
+  /*
+   * Decode a JSON string, but also accept some strings in non-JSON format, as
+   * the decoding methods here did previously before tightening.
+   *
+   * This method is provided only as a temporary transition path for users of
+   * the old code who depended on the ability to decode leniently; new users
+   * should use JSON.parse.
+   *
+   * This method must only be called from script.
+   *
+   * @param str the string to parse
+   */
+  [implicit_jscontext]
+  jsval legacyDecode(in AString str);
+
+  /* Identical to legacyDecode, but decode the contents of stream. */
+  [implicit_jscontext]
+  jsval legacyDecodeFromStream(in nsIInputStream stream,
+                               in long contentLength);
+
+  /* Identical to legacyDecode, but decode into a jsval. */
+  // Make sure you GCroot the result of this function before using it.
+  [noscript] jsval    legacyDecodeToJSVal(in AString str, in JSContext cx);
+};

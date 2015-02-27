@@ -1,0 +1,89 @@
+/* -*- Mode: IDL; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsIDOMHTMLElement.idl"
+
+%{C++
+// for jsval
+#include "jsapi.h"
+%}
+
+/**
+ * The nsIDOMHTMLCanvasElement interface is the interface to a HTML
+ * <canvas> element.
+ *
+ * For more information on this interface, please see
+ * http://www.whatwg.org/specs/web-apps/current-work/#graphics
+ *
+ * @status UNDER_DEVELOPMENT
+ */
+
+interface nsIDOMBlob;
+interface nsIDOMFile;
+interface nsIVariant;
+interface nsIInputStreamCallback;
+
+[scriptable, builtinclass, uuid(8d5fb8a0-7782-11e1-b0c4-0800200c9a67)]
+interface nsIDOMMozCanvasPrintState : nsISupports
+{
+  // A canvas rendering context.
+  readonly attribute nsISupports context;
+
+  // To be called when rendering to the context is done.
+  void done();
+};
+
+[scriptable, function, uuid(8d5fb8a0-7782-11e1-b0c4-0800200c9a66)]
+interface nsIPrintCallback : nsISupports
+{
+  void render(in nsIDOMMozCanvasPrintState ctx);
+};
+
+[scriptable, function, uuid(6e9ffb59-2067-4aef-a51c-65e65a3e0d81)]
+interface nsIFileCallback : nsISupports {
+  void receive(in nsIDOMBlob file);
+};
+
+[scriptable, uuid(1cfacc53-ab73-4ceb-9f5f-22387dcd1aae)]
+interface nsIDOMHTMLCanvasElement : nsIDOMHTMLElement
+{
+  attribute unsigned long width;
+  attribute unsigned long height;
+  attribute boolean mozOpaque;
+
+  nsISupports getContext(in DOMString contextId,
+                         [optional] in jsval contextOptions);
+
+
+  // Valid calls are:
+  //  toDataURL();              -- defaults to image/png
+  //  toDataURL(type);          -- uses given type
+  //  toDataURL(type, params);  -- uses given type, and any valid parameters
+  [optional_argc] DOMString toDataURL([optional] in DOMString type,
+                                      [optional] in nsIVariant params);
+
+  // Valid calls are
+  // mozGetAsFile(name);              -- defaults to image/png
+  // mozGetAsFile(name, type);        -- uses given type
+  [optional_argc] nsIDOMFile mozGetAsFile(in DOMString name,
+                                          [optional] in DOMString type);
+
+  [optional_argc] void toBlob(in nsIFileCallback callback,
+                              [optional] in DOMString type,
+                              [optional] in nsIVariant params);
+
+  // A Mozilla-only extension to get a canvas context backed by double-buffered
+  // shared memory. Only privileged callers can call this.
+  nsISupports MozGetIPCContext(in DOMString contextId);
+
+  // A Mozilla-only extension that returns the canvas' image data as a data
+  // stream in the desired image format.
+  void mozFetchAsStream(in nsIInputStreamCallback callback,
+                                        [optional] in DOMString type);
+
+  // A Mozilla-only callback that is called during the printing process.
+  attribute nsIPrintCallback mozPrintCallback;
+};
+

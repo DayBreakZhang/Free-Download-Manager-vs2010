@@ -1,0 +1,22 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+/**
+ * This is intended as a base interface; implementations may want to
+ * provide an object that can be qi'ed to provide more specific
+ * message information.
+ */
+[scriptable, uuid(41bd8784-1dd2-11b2-9553-8606958fffe1)]
+interface nsIConsoleMessage : nsISupports
+{
+    [binaryname(MessageMoz)] readonly attribute wstring message;
+};
+
+%{ C++
+#define NS_CONSOLEMESSAGE_CID \
+{ 0x56c9d666, 0x1dd2, 0x11b2, { 0xb4, 0x3c, 0xa8, 0x4b, 0xf3, 0xb3, 0xec, 0xbb }}
+%}

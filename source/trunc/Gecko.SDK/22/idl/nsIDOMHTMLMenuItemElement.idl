@@ -1,0 +1,18 @@
+/* -*- Mode: IDL; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsIDOMHTMLCommandElement.idl"
+
+/**
+ * The nsIDOMHTMLMenuItemElement interface is the interface to a HTML
+ * <menuitem> element.
+ *
+ * @status UNDER_DEVELOPMENT
+ */
+
+[scriptable, uuid(79a4ca67-bca8-4044-bc69-629e8961137a)]
+interface nsIDOMHTMLMenuItemElement : nsIDOMHTMLCommandElement
+{
+};

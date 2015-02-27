@@ -1,0 +1,25 @@
+/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+interface nsIDOMWindow;
+interface nsIDOMElement;
+interface nsIDocShell;
+
+[scriptable, uuid(e97e5688-add2-4a1d-acae-396d7702e382)]
+interface nsISecureBrowserUI : nsISupports
+{
+    void init(in nsIDOMWindow window);
+    void setDocShell(in nsIDocShell docShell);
+
+    readonly attribute unsigned long state;
+    readonly attribute AString tooltipText;
+};
+
+%{C++
+#define NS_SECURE_BROWSER_UI_CONTRACTID "@mozilla.org/secure_browser_ui;1"
+%}

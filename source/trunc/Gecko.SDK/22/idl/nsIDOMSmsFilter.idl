@@ -1,0 +1,29 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+[scriptable, builtinclass, uuid(ce055c33-553d-4b0e-9bd8-91d93a057c90)]
+interface nsIDOMMozSmsFilter : nsISupports
+{
+  // A date that can return null.
+  [implicit_jscontext]
+  attribute jsval startDate;
+
+  // A date that can return null.
+  [implicit_jscontext]
+  attribute jsval endDate;
+
+  // An array of DOMString that can return null.
+  [implicit_jscontext]
+  attribute jsval numbers;
+
+  // A DOMString that can return and be set to "sent", "received" or null.
+  [Null(Empty)]
+  attribute DOMString delivery;
+
+  // A read flag that can be a boolean or undefined.
+  [implicit_jscontext]
+  attribute jsval read;
+};

@@ -1,0 +1,32 @@
+/* -*- Mode: IDL; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+interface nsIDOMStorage;
+interface nsIPrincipal;
+
+[scriptable, uuid(b16b207c-d883-43f5-a27e-548e7f2f5c20)]
+interface nsIDOMStorageManager : nsISupports
+{
+  /**
+   * Return the amount of disk space used by a domain.  Usage is checked
+   * against the domain of the page that set the key (the owner domain), not
+   * the domain of the storage object.
+   *
+   * @param aOwnerDomain The domain to check.
+   * @returns the space usage of the domain, in bytes.
+   */
+  long getUsage(in AString aOwnerDomain);
+
+  /**
+   * Returns instance of localStorage object for aURI's origin.
+   * This method ensures there is always only a single instance
+   * for a single origin.
+   */
+  nsIDOMStorage getLocalStorageForPrincipal(in nsIPrincipal aPrincipal,
+                                            in DOMString aDocumentURI,
+                                            [optional] in bool aPrivate);
+};

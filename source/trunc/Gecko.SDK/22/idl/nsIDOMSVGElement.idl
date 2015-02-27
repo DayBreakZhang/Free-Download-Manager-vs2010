@@ -1,0 +1,26 @@
+/* -*- Mode: IDL; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsIDOMElement.idl"
+
+interface nsIDOMSVGAnimatedString;
+interface nsIDOMCSSStyleDeclaration;
+interface nsIDOMCSSValue;
+
+
+[scriptable, uuid(b0d2bcfa-9aac-4c23-9a8b-b88f7c4b93a5)]
+interface nsIDOMSVGElement : nsIDOMElement
+{
+  attribute DOMString id;
+            // raises DOMException on setting
+  readonly attribute nsIDOMSVGElement    ownerSVGElement;
+  readonly attribute nsIDOMSVGElement    viewportElement;
+
+  readonly attribute nsIDOMSVGAnimatedString   className;
+  readonly attribute nsIDOMCSSStyleDeclaration style;
+
+  // Not implemented
+  // nsIDOMCSSValue getPresentationAttribute(in DOMString name);
+};

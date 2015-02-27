@@ -1,0 +1,15 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "domstubs.idl"
+interface nsIDOMDeviceStorage;
+
+/**
+ * Property that extends the navigator object.
+ */
+[scriptable, uuid(da1fbf6e-259c-40bc-ba8c-4ae81748dca3)]
+interface nsIDOMNavigatorDeviceStorage : nsISupports
+{
+  nsIDOMDeviceStorage getDeviceStorage(in DOMString type);
+};

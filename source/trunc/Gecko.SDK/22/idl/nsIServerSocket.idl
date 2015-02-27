@@ -1,0 +1,141 @@
+/* vim:set ts=4 sw=4 et cindent: */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+interface nsIServerSocketListener;
+interface nsISocketTransport;
+
+native PRNetAddr(union PRNetAddr);
+[ptr] native PRNetAddrPtr(union PRNetAddr);
+
+/**
+ * nsIServerSocket
+ *
+ * An interface to a server socket that can accept incoming connections.
+ */
+[scriptable, uuid(a5b64be0-d563-46bb-ae95-132e46fcd42f)]
+interface nsIServerSocket : nsISupports
+{
+    /**
+     * init
+     *
+     * This method initializes a server socket.
+     *
+     * @param aPort
+     *        The port of the server socket.  Pass -1 to indicate no preference,
+     *        and a port will be selected automatically.
+     * @param aLoopbackOnly
+     *        If true, the server socket will only respond to connections on the
+     *        local loopback interface.  Otherwise, it will accept connections
+     *        from any interface.  To specify a particular network interface,
+     *        use initWithAddress.
+     * @param aBackLog
+     *        The maximum length the queue of pending connections may grow to.
+     *        This parameter may be silently limited by the operating system.
+     *        Pass -1 to use the default value.
+     */
+    void init(in long aPort, in boolean aLoopbackOnly, in long aBackLog);
+
+    /**
+     * initWithAddress
+     *
+     * This method initializes a server socket, and binds it to a particular
+     * local address (and hence a particular local network interface).
+     *
+     * @param aAddr
+     *        The address to which this server socket should be bound.
+     * @param aBackLog
+     *        The maximum length the queue of pending connections may grow to.
+     *        This parameter may be silently limited by the operating system.
+     *        Pass -1 to use the default value.
+     */
+    [noscript] void initWithAddress([const] in PRNetAddrPtr aAddr, in long aBackLog);
+
+    /**
+     * close
+     *
+     * This method closes a server socket.  This does not affect already
+     * connected client sockets (i.e., the nsISocketTransport instances
+     * created from this server socket).  This will cause the onStopListening
+     * event to asynchronously fire with a status of NS_BINDING_ABORTED.
+     */
+    void close();
+
+    /**
+     * asyncListen
+     *
+     * This method puts the server socket in the listening state.  It will
+     * asynchronously listen for and accept client connections.  The listener
+     * will be notified once for each client connection that is accepted.  The
+     * listener's onSocketAccepted method will be called on the same thread
+     * that called asyncListen (the calling thread must have a nsIEventTarget).
+     *
+     * The listener will be passed a reference to an already connected socket
+     * transport (nsISocketTransport).  See below for more details.
+     *
+     * @param aListener
+     *        The listener to be notified when client connections are accepted.
+     */
+    void asyncListen(in nsIServerSocketListener aListener);
+
+    /**
+     * Returns the port of this server socket.
+     */
+    readonly attribute long port;
+
+    /**
+     * Returns the address to which this server socket is bound.  Since a
+     * server socket may be bound to multiple network devices, this address
+     * may not necessarily be specific to a single network device.  In the
+     * case of an IP socket, the IP address field would be zerod out to
+     * indicate a server socket bound to all network devices.  Therefore,
+     * this method cannot be used to determine the IP address of the local
+     * system.  See nsIDNSService::myHostName if this is what you need.
+     */
+    [noscript] PRNetAddr getAddress();
+};
+
+/**
+ * nsIServerSocketListener
+ *
+ * This interface is notified whenever a server socket accepts a new connection.
+ * The transport is in the connected state, and read/write streams can be opened
+ * using the normal nsITransport API.  The address of the client can be found by
+ * calling the nsISocketTransport::GetAddress method or by inspecting
+ * nsISocketTransport::GetHost, which returns a string representation of the
+ * client's IP address (NOTE: this may be an IPv4 or IPv6 string literal).
+ */
+[scriptable, uuid(836d98ec-fee2-4bde-b609-abd5e966eabd)]
+interface nsIServerSocketListener : nsISupports
+{
+    /**
+     * onSocketAccepted
+     *
+     * This method is called when a client connection is accepted.
+     *
+     * @param aServ
+     *        The server socket.
+     * @param aTransport
+     *        The connected socket transport.
+     */
+    void onSocketAccepted(in nsIServerSocket aServ,
+                          in nsISocketTransport aTransport);
+
+    /**
+     * onStopListening
+     *
+     * This method is called when the listening socket stops for some reason.
+     * The server socket is effectively dead after this notification.
+     *
+     * @param aServ
+     *        The server socket.
+     * @param aStatus
+     *        The reason why the server socket stopped listening.  If the
+     *        server socket was manually closed, then this value will be
+     *        NS_BINDING_ABORTED.
+     */
+    void onStopListening(in nsIServerSocket aServ, in nsresult aStatus);
+};

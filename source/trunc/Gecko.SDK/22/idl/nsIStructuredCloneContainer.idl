@@ -1,0 +1,70 @@
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ * vim: set ts=8 sw=2 et tw=80:
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+interface nsIVariant;
+interface nsIDocument;
+
+%{C++
+struct JSContext;
+%}
+
+/**
+ * This interface acts as a container for an object serialized using the
+ * structured clone algorithm.
+ *
+ * You can copy an object into an nsIStructuredCloneContainer using
+ * initFromVariant or initFromBase64.  It's an error to initialize an
+ * nsIStructuredCloneContainer more than once.
+ *
+ * Once you've initialized the container, you can get a copy of the object it
+ * stores by calling deserializeToVariant.  You can also get a base-64-encoded
+ * string containing a copy of the container's serialized data, using
+ * getDataAsBase64.
+ */
+[scriptable, uuid(400a282d-7157-4ed0-85b4-8bdc2fa634cd)]
+interface nsIStructuredCloneContainer : nsISupports
+{
+  /**
+   * Initialize this structured clone container so it contains a clone of the
+   * given variant. aData must be backed by a jsval.
+   */
+  [implicit_jscontext]
+  void initFromVariant(in nsIVariant aData);
+
+  /**
+   * Initialize this structured clone container from a base-64-encoded byte
+   * stream, stored in aData.  aFormatVersion should be the version of the
+   * structured clone algorithm which was used to generate aData.
+   */
+  [implicit_jscontext]
+  void initFromBase64(in AString aData,in unsigned long aFormatVersion);
+
+  /**
+   * Deserialize the object this conatiner holds, returning it wrapped as
+   * an nsIVariant.
+   */
+  [implicit_jscontext]
+  nsIVariant deserializeToVariant();
+
+  /**
+   * Get this structured clone container's data as a base-64-encoded string.
+   */
+  AString getDataAsBase64();
+
+  /**
+   * Get the size in bytes of this container's serialized data.
+   */
+  readonly attribute unsigned long long serializedNBytes;
+
+  /**
+   * Get the version of the structured clone algorithm which was used to
+   * generate this container's serialized buffer.
+   */
+  readonly attribute unsigned long formatVersion;
+};

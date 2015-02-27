@@ -1,0 +1,36 @@
+/* -*- Mode: IDL; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+#include "nsIPrintSettings.idl"
+
+interface nsIDOMWindow;
+interface nsIWebProgressListener;
+
+%{ C++
+#include <stdio.h>
+%}
+
+[ptr] native FILE(FILE);
+
+/**
+ * The nsIDocShellFile    
+ */
+
+[scriptable, uuid(1b373597-6132-49f7-940e-6ff62fca5d35)]
+interface nsIContentViewerFile : nsISupports
+{
+  readonly attribute boolean printable;
+
+  [noscript] void print(in boolean aSilent,
+                        in FILE    aDebugFile, 
+                        in nsIPrintSettings aPrintSettings);
+
+  [noscript] void printWithParent(in nsIDOMWindow aParentWin,
+                                  in nsIPrintSettings aThePrintSettings,
+                                  in nsIWebProgressListener aWPListener);
+
+};

@@ -1,0 +1,25 @@
+/* -*- Mode: IDL; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+interface nsIVariant;
+interface nsIArray;
+
+[scriptable, uuid(51aebd45-b979-4ec6-9d11-3a3fd3d5d59e)]
+interface nsIDOMModalContentWindow : nsISupports
+{
+  /**
+   * Readonly attribute containing an array of arguments that was
+   * passed to the code that opened this modal content window.
+   */
+  readonly attribute nsIArray            dialogArguments;
+
+  /**
+   * The return value that will be returned to the function that
+   * opened the modal content window.
+   */
+  attribute nsIVariant                   returnValue;
+};

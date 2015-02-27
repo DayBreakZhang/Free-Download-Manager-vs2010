@@ -1,0 +1,22 @@
+/* -*- Mode: IDL; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+interface nsIDOMMimeType;
+
+[scriptable, uuid(b8bf0a06-e395-4f44-af39-a51d3e7ef4b9)]
+interface nsIPluginTag : nsISupports
+{
+  readonly attribute AUTF8String description;
+  readonly attribute AUTF8String filename;
+  readonly attribute AUTF8String fullpath;
+  readonly attribute AUTF8String version;
+  readonly attribute AUTF8String name;
+           attribute boolean  disabled;
+           attribute boolean  blocklisted;
+           attribute boolean  clicktoplay;
+  void getMimeTypes([optional] out unsigned long aCount,
+                    [retval, array, size_is(aCount)] out nsIDOMMimeType aResults);
+};

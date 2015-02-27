@@ -1,0 +1,48 @@
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim: set ts=2 et sw=2 tw=80: */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+interface nsIDOMEventListener;
+interface nsIIDBObjectStore;
+interface nsIIDBRequest;
+interface nsIIDBDatabase;
+interface nsIDOMDOMStringList;
+interface nsIDOMDOMError;
+
+/**
+ * IDBDTransaction interface.  See
+ * http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html#idl-def-IDBTransaction
+ * for more information.
+ */
+[scriptable, builtinclass, uuid(3197172b-2f56-4837-9427-5e5d4b20a363)]
+interface nsIIDBTransaction : nsISupports
+{
+  readonly attribute nsIIDBDatabase db;
+
+  // "readonly", "readwrite" or "versionchange"
+  readonly attribute DOMString mode;
+
+  readonly attribute nsIDOMDOMError error;
+
+  readonly attribute nsIDOMDOMStringList objectStoreNames;
+
+  nsIIDBObjectStore
+  objectStore([Null(Stringify)] in DOMString name);
+
+  // Don't commit the transaction.
+  void abort();
+
+  [implicit_jscontext] attribute jsval onerror;
+
+  // Event listener that fires when the transaction is completed
+  // successfully. Receives an Event.
+  [implicit_jscontext] attribute jsval oncomplete;
+
+  // Event listener that fires when the transaction is aborted.
+  // Receives an Event.
+  [implicit_jscontext] attribute jsval onabort;
+};

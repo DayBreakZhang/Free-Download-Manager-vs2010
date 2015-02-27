@@ -1,0 +1,65 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+#include "nsIVariant.idl"
+#include "nsIDOMMediaStream.idl"
+
+[scriptable, builtinclass, uuid(6de854f9-acf8-4383-b464-4803631ef309)]
+interface nsIMediaDevice : nsISupports
+{
+  readonly attribute DOMString type;
+  readonly attribute DOMString name;
+  readonly attribute DOMString id;
+};
+
+[scriptable, function, uuid(24544878-d35e-4962-8c5f-fb84e97bdfee)]
+interface nsIGetUserMediaDevicesSuccessCallback : nsISupports
+{
+  void onSuccess(in nsIVariant devices);
+};
+
+[scriptable, function, uuid(f2a144fc-3534-4761-8c5d-989ae720f89a)]
+interface nsIDOMGetUserMediaSuccessCallback : nsISupports
+{
+  /*
+   * value must be a nsIDOMBlob if picture is true and a
+   * nsIDOMLocalMediaStream if either audio or video are true.
+   */
+  void onSuccess(in nsISupports value);
+};
+
+[scriptable, function, uuid(2614bbcf-85cc-43e5-8740-964f52bdc7ca)]
+interface nsIDOMGetUserMediaErrorCallback : nsISupports
+{
+  void onError(in DOMString error);
+};
+
+[scriptable, uuid(f34a3616-395a-43cd-b275-bf81750ac8b9)]
+interface nsIMediaStreamOptions : nsISupports
+{
+  readonly attribute boolean fake;
+  readonly attribute boolean audio;
+  readonly attribute boolean video;
+  readonly attribute boolean picture;
+  readonly attribute DOMString camera;
+  readonly attribute nsIMediaDevice audioDevice;
+  readonly attribute nsIMediaDevice videoDevice;
+};
+
+[scriptable, uuid(381e0071-0be5-4f6b-ae21-8e3407a37faa)]
+interface nsIDOMNavigatorUserMedia : nsISupports
+{
+  void mozGetUserMedia(in nsIMediaStreamOptions params,
+    in nsIDOMGetUserMediaSuccessCallback onsuccess,
+    in nsIDOMGetUserMediaErrorCallback onerror);
+};
+
+[scriptable, uuid(20e9c794-fdfe-43f4-a81b-ebd9069e0af1)]
+interface nsINavigatorUserMedia : nsISupports
+{
+  void mozGetUserMediaDevices(
+    in nsIGetUserMediaDevicesSuccessCallback onsuccess,
+    in nsIDOMGetUserMediaErrorCallback onerror);
+};

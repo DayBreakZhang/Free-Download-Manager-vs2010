@@ -1,0 +1,65 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "domstubs.idl"
+
+interface mozIDOMApplication;
+interface mozIApplication;
+
+%{C++
+#define APPS_SERVICE_CID { 0x05072afa, 0x92fe, 0x45bf, { 0xae, 0x22, 0x39, 0xb6, 0x9c, 0x11, 0x70, 0x58 } }
+#define APPS_SERVICE_CONTRACTID "@mozilla.org/AppsService;1"
+%}
+
+/*
+ * This service allows accessing some DOMApplicationRegistry methods from
+ * non-javascript code.
+ */
+[scriptable, uuid(4ac27836-4d79-4d35-b105-d6fb7f4f8e41)]
+interface nsIAppsService : nsISupports
+{
+  mozIDOMApplication getAppByManifestURL(in DOMString manifestURL);
+
+  /**
+   * Returns the |localId| of the app associated with the |manifestURL| passed
+   * in parameter.
+   * Returns nsIScriptSecurityManager::NO_APP_ID if |manifestURL| isn't a valid
+   * installed manifest URL.
+   */
+  unsigned long getAppLocalIdByManifestURL(in DOMString manifestURL);
+
+  /**
+   * Returns the application associated to this localId.
+   */
+  mozIDOMApplication getAppByLocalId(in unsigned long localId);
+
+  /**
+   * Returns the manifest URL associated to this localId.
+   */
+  DOMString getManifestURLByLocalId(in unsigned long localId);
+
+  /**
+   * Returns the app that is related to the message.
+   * This is a helper to not have to worry about what is the actual structure
+   * of the message when listening to one.
+   */
+  mozIApplication getAppFromObserverMessage(in DOMString message);
+
+  /**
+   * Returns the CSP associated to this localId.
+   */
+  DOMString getCSPByLocalId(in unsigned long localId);
+
+  /**
+   * Returns the basepath for core apps
+   */
+  DOMString getCoreAppsBasePath();
+
+  /**
+   * Returns the basepath for regular packaged apps
+   */
+  DOMString getWebAppsBasePath();
+
+  jsval getAppInfo(in DOMString appId);
+};

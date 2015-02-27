@@ -1,0 +1,34 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "nsISupports.idl"
+
+/**
+ * Utilities for integrating the JSInspector object into an XPCOM
+ * application.
+ */
+[scriptable, uuid(dbf84113-506a-4fd3-9183-a0348c6fa9cc)]
+interface nsIJSInspector : nsISupports
+{
+  /**
+   * Process the thread's event queue until exit.
+   *
+   * @return depth Returns the number of times the event loop
+   *         has been nested using this API.
+   */
+  unsigned long enterNestedEventLoop();
+
+  /**
+   * Exits the current nested event loop.
+   *
+   * @return depth The number of nested event loops left after
+   *         exiting the event loop.
+   *
+   * @throws NS_ERROR_FAILURE if there are no nested event loops
+   *         running.
+   */
+  unsigned long exitNestedEventLoop();
+
+  readonly attribute unsigned long eventLoopNestLevel;
+};

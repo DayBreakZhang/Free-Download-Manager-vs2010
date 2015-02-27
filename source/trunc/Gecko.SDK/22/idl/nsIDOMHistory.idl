@@ -1,0 +1,37 @@
+/* -*- Mode: IDL; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+#include "domstubs.idl"
+
+%{ C++
+struct JSContext;
+%}
+
+interface nsIVariant;
+
+[scriptable, uuid(d5a3006b-dd6b-4ba3-81be-6559f8889e60)]
+interface nsIDOMHistory : nsISupports
+{
+  readonly attribute long             length;
+  readonly attribute DOMString        current;
+  readonly attribute DOMString        previous;
+  readonly attribute DOMString        next;
+
+  void                       back();
+  void                       forward();
+
+  void                       go([optional] in long aDelta);
+  DOMString                  item(in unsigned long index);
+  [implicit_jscontext]
+  void                       pushState(in nsIVariant aData,
+                                       in DOMString aTitle,
+                                       [optional] in DOMString aURL);
+  [implicit_jscontext]
+  void                       replaceState(in nsIVariant aData,
+                                          in DOMString aTitle,
+                                          [optional] in DOMString aURL);
+
+  readonly attribute nsIVariant state;
+};
