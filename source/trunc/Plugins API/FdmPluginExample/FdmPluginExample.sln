@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FdmPluginExample", "FdmPluginExample.vcxproj", "{9E039D3C-C400-5278-D601-14C802366C90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Template|Win32 = Template|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E039D3C-C400-5278-D601-14C802366C90}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9E039D3C-C400-5278-D601-14C802366C90}.Debug|Win32.Build.0 = Debug|Win32
+		{9E039D3C-C400-5278-D601-14C802366C90}.Release|Win32.ActiveCfg = Release|Win32
+		{9E039D3C-C400-5278-D601-14C802366C90}.Release|Win32.Build.0 = Release|Win32
+		{9E039D3C-C400-5278-D601-14C802366C90}.Template|Win32.ActiveCfg = Template|Win32
+		{9E039D3C-C400-5278-D601-14C802366C90}.Template|Win32.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

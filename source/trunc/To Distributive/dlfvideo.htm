@@ -1,0 +1,73 @@
+<script language="VBScript">
+
+function vbType(t)
+vbType = TypeName(t)
+end function
+
+Sub AddLink(Url)
+On Error Resume Next
+set obj = CreateObject ("FDMFlashVideoDownloads.FDMFlashVideoDownloads")
+if err<>0 then
+Alert("Free Download Manager not properly installed! Please reinstall Free Download Manager")
+else
+obj.CreateFromUrl Url
+end if
+end sub
+
+</script>
+
+<script type="text/javascript">
+function OnContextMenu(){
+var srcEvent = external.menuArguments.event;
+var EventElement;
+var isIE10 = false;
+/*@cc_on
+isIE10 = (/^10/.test(@_jscript_version));
+@*/
+if (isIE10)
+    EventElement = srcEvent.srcElement;
+else
+    EventElement = external.menuArguments.document.elementFromPoint(srcEvent.clientX, srcEvent.clientY);
+//alert(srcEvent.type);
+//alert(vbType(EventElement));
+if (srcEvent.type == 'MenuExtAnchor'){
+var srcAnchor = EventElement;
+while(vbType(srcAnchor)!='HTMLAnchorElement'){
+var srcAnchor=srcAnchor.parentElement;
+}
+AddLink(srcAnchor.href);
+}else if(srcEvent.type=='MenuExtImage'){
+if(vbType(EventElement)=='HTMLAreaElement'){
+AddLink(EventElement.href);
+}
+else{
+var srcImage = EventElement;
+var srcAnchor = srcImage.parentElement;
+while(vbType(srcAnchor)!='HTMLAnchorElement'){
+var srcAnchor=srcAnchor.parentElement
+if(srcAnchor==null || vbType(srcAnchor)=='Nothing'){
+AddLink(srcImage.href);
+return;
+}
+}
+AddLink(srcAnchor.href);
+}
+}else if(srcEvent.type == 'MenuExtUnknown'){
+var srcAnchor = EventElement;
+while(vbType(srcAnchor)!='HTMLAnchorElement'){
+//alert(srcAnchor);
+srcAnchor = srcAnchor.parentElement;
+if(srcAnchor==null || vbType(srcAnchor)=="Nothing"){
+AddLink(external.menuArguments.document.URL);
+return;
+}
+}
+
+AddLink(srcAnchor.href);
+}else if(1 == 1){
+alert('Unknown Event Source "‘ + srcEvent.type + ‘"\r\nPlease send description of error to website adminstrator.');
+}
+}
+
+OnContextMenu();
+</script>

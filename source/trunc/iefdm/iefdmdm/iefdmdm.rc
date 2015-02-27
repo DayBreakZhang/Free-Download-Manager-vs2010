@@ -1,0 +1,255 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian (Russia) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DLGDOWNLOADINGOPTIONS DIALOG 0, 0, 269, 145
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "FDM and Internet Explorer"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Use browser download helper",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,7,32,255,12
+    CONTROL         "Use browser native downloader",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,7,74,255,11
+    DEFPUSHBUTTON   "OK",1,160,124,50,14
+    PUSHBUTTON      "Cancel",2,212,124,50,14
+    LTEXT           "Recommended to avoid possible problems in downloading from servers that restricts maximum number of downloads per one IP address",IDC_STATIC,16,48,246,22
+    LTEXT           "These settings determines the method your Internet Explorer browser will download files",IDC_STATIC,7,7,255,20
+    LTEXT           "Use of this settings may lead sometimes to neccesity to temporarily disable browser monitoring in FDM, or add problem sites to skip list (see Monitoring settings in FDM)",IDC_STATIC,16,90,246,28
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DLGDOWNLOADINGOPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 262
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+2                       RT_MANIFEST             "res\\XPStyle.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_IEWGDM              REGISTRY                "IEWGDM.rgs"
+#endif    // Russian (Russia) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DOWNLOADING DIALOG 0, 0, 276, 167
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Close this dialog box when download completes",IDC_CLOSEWHENCOMPLETES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,105,262,9
+    PUSHBUTTON      "Open",IDC_OPEN,107,132,50,14,WS_DISABLED
+    PUSHBUTTON      "Open Folder",IDC_OPENFOLDER,163,132,50,14,WS_DISABLED
+    PUSHBUTTON      "Cancel",2,219,132,50,14
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",WS_BORDER,7,45,262,11
+    LTEXT           "Transfer rate:",IDC_STATIC,7,88,86,10
+    LTEXT           ".",IDC__SPEED,105,88,164,10
+    LTEXT           "Estimated time left:",IDC__TIMELEFT0,7,63,86,9
+    LTEXT           "Download to:",IDC_STATIC,7,75,86,9
+    LTEXT           ".",IDC__TIMELEFT,105,63,164,9
+    LTEXT           ".",IDC__DLTO,105,75,164,9
+    CONTROL         "Animate1",IDC_ANIMATE1,"SysAnimate32",ACS_TRANSPARENT | WS_TABSTOP,7,7,262,33
+    ICON            IDI_FDM,IDC__FDM,7,129,21,20
+    ICON            "",IDC__DONE_ICON,7,6,21,20,NOT WS_VISIBLE
+    LTEXT           "Download Complete",IDC__DONE_MSG,52,17,203,9,NOT WS_VISIBLE
+    LTEXT           "Please do not close browser until the download will be completed",IDC_STATIC,7,152,262,8
+    CONTROL         "",IDC__OPTIONS,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,36,133,40,12
+    PUSHBUTTON      "options",IDC_OPTIONS,41,133,14,12,NOT WS_VISIBLE
+END
+
+IDD_RUN_OR_SAVE DIALOG 0, 0, 263, 150
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "File Download - Security Warning"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    PUSHBUTTON      "Run",IDC_RUN,92,73,50,14
+    PUSHBUTTON      "Save",IDC_SAVE,149,73,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,206,73,50,14
+    LTEXT           "Do you want to run or save this file?",IDC_STATIC,7,7,249,10
+    ICON            "",IDC__FILEICON,7,28,20,20
+    RTEXT           "Name:",IDC_STATIC,45,28,35,10
+    LTEXT           "-",IDC__NAME,92,28,160,10
+    RTEXT           "Type:",IDC_STATIC,45,41,35,10
+    LTEXT           "-",IDC__TYPE,92,41,160,10
+    RTEXT           "From:",IDC_STATIC,45,55,35,10
+    LTEXT           "-",IDC__FROM,92,55,160,10
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,103,249,1
+    LTEXT           "While files from the Internet can be useful, this file type can potentially harm your computer. If you do not trust the source, do not run or save this software.",IDC_STATIC,40,113,216,25
+    ICON            "",IDC__WARNING,7,114,20,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DOWNLOADING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 269
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 160
+    END
+
+    IDD_RUN_OR_SAVE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 256
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 143
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_FDM                 ICON                    "fdm.ico"
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "1 TYPELIB ""iefdmdm.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1280,0,0,0
+ PRODUCTVERSION 0,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_PROJNAME            "iefdmmdm"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "iefdmdm.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

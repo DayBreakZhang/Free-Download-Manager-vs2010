@@ -1,0 +1,63 @@
+// iefdm.idl : IDL source for iefdm.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (iefdm.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "Urlmon.idl";
+#include "exdispid.h";
+	[
+		object,
+		uuid(DBDC6466-1232-4511-B1A5-0ABC79EB8291),
+		dual,
+		helpstring("IWgBHO Interface"),
+		pointer_default(unique)
+	]
+	interface IWgBHO : IDispatch
+	{
+		[id(DISPID_BEFORENAVIGATE2), helpstring("method BeforeNavigate2")] HRESULT BeforeNavigate2(IDispatch*, VARIANT* url, VARIANT* flags, VARIANT* tfn, VARIANT* pd, VARIANT* headers, VARIANT_BOOL* bCancel);
+	};
+
+	/*[
+		object,
+		uuid(E3FD6C2F-B8E9-4D73-9A1B-BB8A116980D1),
+	
+		helpstring("IIEWGMonitor Interface"),
+		pointer_default(unique)
+	]
+	interface IIEWGMonitor : IUnknown
+	{
+	};*/
+
+[
+	uuid(591915B9-6A9B-415A-B38F-D23F6AF0B497),
+	version(1.0),
+	helpstring("iefdm 1.0 Type Library")
+]
+library IEFDMLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(1985F8EF-B021-4A44-9BE1-343D0B4E0911),
+		helpstring("IEWGMonitor Class")
+	]
+	coclass IEWGMonitor
+	{
+		//[default] interface IIEWGMonitor;
+		[default] interface IUnknown;
+		interface IInternetProtocolRoot;
+		interface IInternetProtocol;
+	};
+	[
+		uuid(67E9834D-B226-49E6-B6F6-85AA64E14BA3),
+		helpstring("WgBHO Class")
+	]
+	coclass WgBHO
+	{
+		[default] interface IWgBHO;
+	};
+};

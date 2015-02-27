@@ -1,0 +1,57 @@
+HKCU
+{
+	Software
+	{
+		Microsoft
+		{
+			'Internet Explorer'
+			{
+				val DownloadUI = s '{57BDEE5A-1E29-4CFD-AEE7-EF32118EB6D6}'
+		 	}
+
+			Windows
+			{
+				CurrentVersion
+				{
+					Ext
+					{
+						Settings
+						{
+							ForceRemove {57BDEE5A-1E29-4CFD-AEE7-EF32118EB6D6}
+							{
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+HKCR
+{
+	IeFdmdm.IEWGDM.1 = s 'IEWGDM Class'
+	{
+		CLSID = s '{57BDEE5A-1E29-4CFD-AEE7-EF32118EB6D6}'
+	}
+	IeFdmdm.IEWGDM = s 'IEWGDM Class'
+	{
+		CLSID = s '{57BDEE5A-1E29-4CFD-AEE7-EF32118EB6D6}'
+		CurVer = s 'IeFdmdm.IEWGDM.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {57BDEE5A-1E29-4CFD-AEE7-EF32118EB6D6} = s 'IEWGDM Class'
+		{
+			ProgID = s 'IeFdmdm.IEWGDM.1'
+			VersionIndependentProgID = s 'IeFdmdm.IEWGDM'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{752D3C5E-1EF8-4FA9-AC6E-B5E095A4D4AF}'
+		}
+	}
+}
+

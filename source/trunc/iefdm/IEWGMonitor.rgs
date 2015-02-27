@@ -1,0 +1,25 @@
+HKCR
+{
+	IeFdm.IEWGMonitor.1 = s 'IEWGMonitor Class'
+	{
+		CLSID = s '{1985F8EF-B021-4A44-9BE1-343D0B4E0911}'
+	}
+	IeFdm.IEWGMonitor = s 'IEWGMonitor Class'
+	{
+		CLSID = s '{1985F8EF-B021-4A44-9BE1-343D0B4E0911}'
+		CurVer = s 'IeFdm.IEWGMonitor.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {1985F8EF-B021-4A44-9BE1-343D0B4E0911} = s 'IEWGMonitor Class'
+		{
+			ProgID = s 'IeFdm.IEWGMonitor.1'
+			VersionIndependentProgID = s 'IeFdm.IEWGMonitor'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{591915B9-6A9B-415A-B38F-D23F6AF0B497}'
+		}
+	}
+}

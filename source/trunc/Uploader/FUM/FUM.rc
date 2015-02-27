@@ -1,0 +1,404 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Нейтральный resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1251)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TOOL_DLD_16         BITMAP                  "res\\tool_dld_16.bmp"
+IDB_TOOL_DLD_16_D       BITMAP                  "res\\tool_dld_16_d.bmp"
+IDB_DOWNLOADSTASKS      BITMAP                  "res\\downloadstasks.bmp"
+IDB_DOWNLOADSTASKS_SEL  BITMAP                  "res\\dldtasks_sel.bmp"
+IDB_LOGSTATES           BITMAP                  "res\\logstat.bmp"
+IDB_TOOLBAR             BITMAP                  "res\\toolbar.bmp"
+IDB_TOOLBAR_D           BITMAP                  "res\\toolbar_d.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_LNGSTRINGS
+//
+
+IDR_ENG_LNGSTRINGS      RT_LNGSTRINGS           "..\\..\\language\\eng.lng"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OPTS_PROXY DIALOG 0, 0, 258, 151
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Get proxy settings",IDC__GETFROM,7,3,244,47
+    CONTROL         "From Microsoft Internet Explorer",IDC_GETFROMIE,"Button",BS_AUTORADIOBUTTON,16,14,228,9
+    CONTROL         "Specify manually",IDC_MANUALLY,"Button",BS_AUTORADIOBUTTON,16,24,223,9
+    CONTROL         "Don't use any proxy",IDC_DONTUSEPROXY,"Button",BS_AUTORADIOBUTTON,16,34,223,9
+    GROUPBOX        "HTTP proxy settings",IDC__SETTINGS,7,54,244,90
+    LTEXT           "Address:",IDC__ADDRESS,16,66,118,9
+    EDITTEXT        IDC_PROXYNAME,16,77,168,12,ES_AUTOHSCROLL
+    LTEXT           "Port:",IDC__PORT,192,66,26,9
+    EDITTEXT        IDC_PORT,192,77,26,13,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "Need user name and password",IDC_AUTHORIZATION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,95,208,9
+    LTEXT           "User:",IDC__USER,28,110,70,8
+    LTEXT           "Password:",IDC__PASSWORD,28,126,71,8
+    EDITTEXT        IDC_USER,104,108,80,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWORD,104,125,80,12,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+IDD_UPDATE DIALOG 0, 0, 207, 42
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,150,21,50,14
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",WS_BORDER,7,7,193,11
+END
+
+IDD_OPTS_GENERAL DIALOG 0, 0, 258, 151
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Load on startup",IDC_AUTOSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,16,229,8
+    CONTROL         "Start minimized",IDC_STARTMINIMIZED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,29,230,9
+    CONTROL         "Minimize to tray",IDC_MINTOTRAY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,63,229,8
+    CONTROL         "Close button acts as minimize",IDC_CLOSEASMINIMIZE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,76,229,9
+    GROUPBOX        "System",IDC__SYSTEM,7,50,244,42
+    GROUPBOX        "Startup",IDC__STARTUP,7,3,244,41
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_OPTS_PROXY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+    END
+
+    IDD_UPDATE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 200
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 35
+    END
+
+    IDD_OPTS_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 144
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_HAND_               CURSOR                  "res\\hand.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_TRAY MENU
+BEGIN
+    POPUP "-"
+    BEGIN
+        MENUITEM "show main window",            ID_SHOWMAINWINDOW
+        MENUITEM SEPARATOR
+        MENUITEM "create new upload",           ID_CREATENEWUPLOAD
+        MENUITEM SEPARATOR
+        MENUITEM "about",                       ID_APP_ABOUT
+        MENUITEM "exit",                        ID_APP_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "X",            ID_APP_EXIT,            VIRTKEY, ALT, NOINVERT
+END
+
+#endif    // Нейтральный resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Русский (Россия) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_FUM                 REGISTRY                "FUM.rgs"
+IDR_FUMUPLOADER         REGISTRY                "FUMUploader.rgs"
+IDR_FUMUPLOADPACKAGE    REGISTRY                "FUMUploadPackage.rgs"
+IDR_FUMAPPLICATION      REGISTRY                "FUMApplication.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 107,0,960,0
+ PRODUCTVERSION 107,0,960,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+END
+
+#endif    // Русский (Россия) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Английский (США) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG 0, 0, 282, 118
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About Free Upload Manager"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,213,7,61,15
+    ICON            IDR_MAINFRAME,IDC_STATIC,9,7,21,20
+    LTEXT           "Free Upload Manager",IDC__NAME,37,7,153,8
+    LTEXT           "Copyright (c)",IDC_STATIC,37,31,40,9
+    LTEXT           "Version",IDC__VER,37,18,153,9
+    LTEXT           "FreeDownloadManager.ORG",IDC__FIRM,79,31,92,9,SS_NOTIFY
+    LTEXT           ", 2007",IDC_STATIC,175,31,21,8
+    LTEXT           "-",IDC__WARN,9,80,266,31
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,73,265,1
+    LTEXT           "Click here to contact us",IDC__SUPPORT,37,45,180,8,SS_NOTIFY
+    LTEXT           "Click here to download the latest version",IDC__DOWNLOAD,37,59,150,8,SS_NOTIFY
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 275
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 111
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+        MENUITEM SEPARATOR
+        POPUP "List of uploads"
+        BEGIN
+            MENUITEM "URL",                         ID_VIEW_LU_1
+            MENUITEM "Name",                        ID_VIEW_LU_2
+            MENUITEM "Size",                        ID_VIEW_LU_3
+            MENUITEM "Uploaded",                    ID_VIEW_LU_4
+            MENUITEM "Time remaining",              ID_VIEW_LU_5
+            MENUITEM "Speed",                       ID_VIEW_LU_6
+            MENUITEM "Added",                       ID_VIEW_LU_7
+        END
+        POPUP "Log"
+        BEGIN
+            MENUITEM "Time",                        ID_VIEW_LUL_1
+            MENUITEM "Date",                        ID_VIEW_LUL_2
+            MENUITEM "Information",                 ID_VIEW_LUL_3
+        END
+        MENUITEM SEPARATOR
+        POPUP "Language"
+        BEGIN
+            MENUITEM "(empty)",                     ID_LNGMENU_START
+        END
+    END
+    POPUP "Uploads"
+    BEGIN
+        MENUITEM SEPARATOR
+    END
+    POPUP "Tools"
+    BEGIN
+        MENUITEM "General settings",            ID_TOOLS_GENERALSETTINGS
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "Help",                        ID_HELP
+        MENUITEM SEPARATOR
+        MENUITEM "FUM Homepage",                ID_HOMEPAGE
+        MENUITEM SEPARATOR
+        MENUITEM "Tell a friend",               ID_RECOMMEND
+        MENUITEM "Send e-mail to support",      ID_SUPPORT
+        MENUITEM SEPARATOR
+        MENUITEM "&About FUM...",               ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\FUM.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "Free Upload Manager"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "Free Upload Manager"
+END
+
+#endif    // Английский (США) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

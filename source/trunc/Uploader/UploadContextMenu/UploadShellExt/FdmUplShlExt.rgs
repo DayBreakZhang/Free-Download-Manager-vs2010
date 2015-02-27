@@ -1,0 +1,64 @@
+HKCR
+{
+	UploadShellExt.FdmUplShlExt.1 = s 'FdmUplShlExt Class'
+	{
+		CLSID = s '{F49C55B9-D417-45A1-A6E7-D6E057946280}'
+	}
+	UploadShellExt.FdmUplShlExt = s 'FdmUplShlExt Class'
+	{
+		CLSID = s '{F49C55B9-D417-45A1-A6E7-D6E057946280}'
+		CurVer = s 'UploadShellExt.FdmUplShlExt.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F49C55B9-D417-45A1-A6E7-D6E057946280} = s 'FdmUplShlExt Class'
+		{
+			ProgID = s 'UploadShellExt.FdmUplShlExt.1'
+			VersionIndependentProgID = s 'UploadShellExt.FdmUplShlExt'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{A0E139BE-C48A-4028-A814-2652035A732A}'
+		}
+	}
+
+	NoRemove AllFileSystemObjects
+	{
+		NoRemove ShellEx
+		{
+			NoRemove ContextMenuHandlers
+			{
+				ForceRemove FdmUplShlExt
+				{
+					'' = s '{F49C55B9-D417-45A1-A6E7-D6E057946280}'
+				}
+			}
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove Software
+	{
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove 'Shell Extensions'
+					{
+						NoRemove Approved
+						{
+							val {F49C55B9-D417-45A1-A6E7-D6E057946280} = s 'FdmUplShlExt'
+						}
+					}
+				}
+			}
+		}
+	}
+}
+

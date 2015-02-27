@@ -1,0 +1,78 @@
+// UploadShellExt.idl : IDL source for UploadShellExt.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (UploadShellExt.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(5FC2E7A4-2324-4D35-83B4-B7A93A5D7056),
+		dual,
+		helpstring("IFdmUplShlExt Interface"),
+		pointer_default(unique)
+	]
+	interface IFdmUplShlExt : IDispatch
+	{
+	};
+	[
+		object,
+		uuid(5DCFA753-37FC-4EF7-8578-0706E58CB7B1),
+		dual,
+		helpstring("IFdmUplSendToShlExt Interface"),
+		pointer_default(unique)
+	]
+	interface IFdmUplSendToShlExt : IDispatch
+	{
+	};
+	[
+		object,
+		uuid(FD5847BA-895F-4B07-9850-CED00297F6B6),
+		dual,
+		helpstring("IFdmUplShellExts Interface"),
+		pointer_default(unique)
+	]
+	interface IFdmUplShellExts : IDispatch
+	{
+		[propget, id(1), helpstring("property ShowInExplorerContextMenu")] HRESULT ShowInExplorerContextMenu([out, retval] BOOL *pVal);
+		[propput, id(1), helpstring("property ShowInExplorerContextMenu")] HRESULT ShowInExplorerContextMenu([in] BOOL newVal);
+		[propget, id(2), helpstring("property ShowInSendToContextMenu")] HRESULT ShowInSendToContextMenu([out, retval] BOOL *pVal);
+		[propput, id(2), helpstring("property ShowInSendToContextMenu")] HRESULT ShowInSendToContextMenu([in] BOOL newVal);
+	};
+
+[
+	uuid(A0E139BE-C48A-4028-A814-2652035A732A),
+	version(1.0),
+	helpstring("UploadShellExt 1.0 Type Library")
+]
+library UPLOADSHELLEXTLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(F49C55B9-D417-45A1-A6E7-D6E057946280),
+		helpstring("FdmUplShlExt Class")
+	]
+	coclass FdmUplShlExt
+	{
+		[default] interface IFdmUplShlExt;
+	};
+	[
+		uuid(8D97E4FE-18C2-48D4-85E7-31D29576F735),
+		helpstring("FdmUplSendToShlExt Class")
+	]
+	coclass FdmUplSendToShlExt
+	{
+		[default] interface IFdmUplSendToShlExt;
+	};
+	[
+		uuid(AF39CEB8-76E0-4177-BD37-54A87F426224),
+		helpstring("FdmUplShellExts Class")
+	]
+	coclass FdmUplShellExts
+	{
+		[default] interface IFdmUplShellExts;
+	};
+};

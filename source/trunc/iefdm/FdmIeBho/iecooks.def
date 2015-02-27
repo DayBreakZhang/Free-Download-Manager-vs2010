@@ -1,0 +1,10 @@
+; iecooks.def : Declares the module parameters.
+
+LIBRARY      "iefdm2.DLL"
+
+EXPORTS
+	DllCanUnloadNow     PRIVATE
+	DllGetClassObject   PRIVATE
+	DllRegisterServer   PRIVATE
+	DllUnregisterServer	PRIVATE
+	fdmbho_getTabUrl

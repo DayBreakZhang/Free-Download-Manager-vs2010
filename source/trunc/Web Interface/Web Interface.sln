@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Web Interface", "Web Interface.vcxproj", "{5A8D83A9-D5C4-9EC1-9608-BCC5B417C3EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Template|Win32 = Template|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A8D83A9-D5C4-9EC1-9608-BCC5B417C3EF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5A8D83A9-D5C4-9EC1-9608-BCC5B417C3EF}.Debug|Win32.Build.0 = Debug|Win32
+		{5A8D83A9-D5C4-9EC1-9608-BCC5B417C3EF}.Release|Win32.ActiveCfg = Release|Win32
+		{5A8D83A9-D5C4-9EC1-9608-BCC5B417C3EF}.Release|Win32.Build.0 = Release|Win32
+		{5A8D83A9-D5C4-9EC1-9608-BCC5B417C3EF}.Template|Win32.ActiveCfg = Template|Win32
+		{5A8D83A9-D5C4-9EC1-9608-BCC5B417C3EF}.Template|Win32.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

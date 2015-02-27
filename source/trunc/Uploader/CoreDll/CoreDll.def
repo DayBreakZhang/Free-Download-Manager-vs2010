@@ -1,0 +1,11 @@
+; CoreDll.def : Declares the module parameters for the DLL.
+
+LIBRARY      "fumcore"
+
+EXPORTS
+    ; Explicit exports can go here
+	_SetDllCaller				@1	
+	_CreateUploadsWindow		@2
+	_ShowIntegrationSettings	@3
+	_EnableIntegration			@4
+	_GetVersion					@5

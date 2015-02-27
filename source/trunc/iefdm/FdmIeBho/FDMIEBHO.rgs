@@ -1,0 +1,77 @@
+HKCR
+{
+	FdmIeBho.FDMIEBHO.1 = s 'Free Download Manager'
+	{
+		CLSID = s '{CC59E0F9-7E43-44FA-9FAA-8377850BF205}'
+	}
+	FdmIeBho.FDMIEBHO = s 'Free Download Manager'
+	{
+		CLSID = s '{CC59E0F9-7E43-44FA-9FAA-8377850BF205}'
+		CurVer = s 'FdmIeBho.FDMIEBHO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {CC59E0F9-7E43-44FA-9FAA-8377850BF205} = s 'Free Download Manager'
+		{
+			ProgID = s 'FdmIeBho.FDMIEBHO.1'
+			VersionIndependentProgID = s 'FdmIeBho.FDMIEBHO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{351A47E5-B59E-4CF2-B81A-B651D75FE944}'
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove Software
+	{
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove Explorer
+					{
+						NoRemove 'Browser Helper Objects'
+						{
+							ForceRemove {CC59E0F9-7E43-44FA-9FAA-8377850BF205}
+							{
+								val NoExplorer = d '1'
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+HKCU
+{
+	Software
+	{
+		Microsoft
+		{
+			Windows
+			{
+				CurrentVersion
+				{
+					Ext
+					{
+						Settings
+						{
+							ForceRemove {CC59E0F9-7E43-44FA-9FAA-8377850BF205}
+							{
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

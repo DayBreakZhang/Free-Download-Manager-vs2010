@@ -1,0 +1,4 @@
+EXPORTS
+
+_IsProcessElevated			@1
+_RunNonElevatedProcess		@2

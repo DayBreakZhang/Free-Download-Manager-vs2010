@@ -1,0 +1,268 @@
+// fdm.idl : IDL source for FDM.exe
+//
+// This file will be processed by the MIDL tool to
+// produce the type library (FDM.tlb) and marshalling code.
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(454A4044-16EC-4D64-9069-C5B8832B7B55),
+		dual,
+		helpstring("IWGUrlReceiver Interface"),
+		pointer_default(unique)
+	]
+	interface IWGUrlReceiver : IDispatch
+	{
+		[propget, id(1), helpstring("property Url")] HRESULT Url([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property Url")] HRESULT Url([in] BSTR newVal);
+		[id(2), helpstring("method ShowAddDownloadDialog")] HRESULT ShowAddDownloadDialog();
+		[id(3), helpstring("method ShowAddPageDownloadDialog")] HRESULT ShowAddPageDownloadDialog();
+		[propget, id(4), helpstring("property Comment")] HRESULT Comment([out, retval] BSTR *pVal);
+		[propput, id(4), helpstring("property Comment")] HRESULT Comment([in] BSTR newVal);
+		[propget, id(5), helpstring("property Referer")] HRESULT Referer([out, retval] BSTR *pVal);
+		[propput, id(5), helpstring("property Referer")] HRESULT Referer([in] BSTR newVal);
+		[id(6), helpstring("method AddDownload")] HRESULT AddDownload();
+		[propget, id(7), helpstring("property CheckExtension")] HRESULT CheckExtension([out, retval] BOOL *pVal);
+		[propput, id(7), helpstring("property CheckExtension")] HRESULT CheckExtension([in] BOOL newVal);
+		[propget, id(8), helpstring("property IgnoreSize")] HRESULT IgnoreSize([out, retval] BOOL *pVal);
+		[propput, id(8), helpstring("property IgnoreSize")] HRESULT IgnoreSize([in] BOOL newVal);
+		[propget, id(9), helpstring("property UseSkipExtsList")] HRESULT UseSkipExtsList([out, retval] BOOL *pVal);
+		[propput, id(9), helpstring("property UseSkipExtsList")] HRESULT UseSkipExtsList([in] BOOL newVal);
+		[propget, id(10), helpstring("property UIState")] HRESULT UIState([out, retval] BSTR *pVal);
+		[propget, id(11), helpstring("property ForceSilent")] HRESULT ForceSilent([out, retval] BOOL *pVal);
+		[propput, id(11), helpstring("property ForceSilent")] HRESULT ForceSilent([in] BOOL newVal);
+		[propget, id(12), helpstring("property Cookies")] HRESULT Cookies([out, retval] BSTR *pVal);
+		[propput, id(12), helpstring("property Cookies")] HRESULT Cookies([in] BSTR newVal);
+		[propget, id(13), helpstring("property PostData")] HRESULT PostData([out, retval] BSTR *pVal);
+		[propput, id(13), helpstring("property PostData")] HRESULT PostData([in] BSTR newVal);
+		[propget, id(14), helpstring("property ForceSilentEx")] HRESULT ForceSilentEx([out, retval] BOOL *pVal);
+		[propput, id(14), helpstring("property ForceSilentEx")] HRESULT ForceSilentEx([in] BOOL newVal);
+		[propget, id(15), helpstring("property ForceDownloadAutoStart")] HRESULT ForceDownloadAutoStart([out, retval] BOOL *pVal);
+		[propput, id(15), helpstring("property ForceDownloadAutoStart")] HRESULT ForceDownloadAutoStart([in] BOOL newVal);
+		[propget, id(16), helpstring("property DisableMaliciousChecking")] HRESULT DisableMaliciousChecking([out, retval] BOOL *pVal);
+		[propput, id(16), helpstring("property DisableMaliciousChecking")] HRESULT DisableMaliciousChecking([in] BOOL newVal);
+		[propget, id(17), helpstring("property DisableURLExistsCheck")] HRESULT DisableURLExistsCheck([out, retval] BOOL *pVal);
+		[propput, id(17), helpstring("property DisableURLExistsCheck")] HRESULT DisableURLExistsCheck([in] BOOL newVal);
+		[propget, id(18), helpstring("property FileName")] HRESULT FileName([out, retval] BSTR *pVal);
+		[propput, id(18), helpstring("property FileName")] HRESULT FileName([in] BSTR newVal);
+		[propget, id(19), helpstring("property FlashVideoDownload")] HRESULT FlashVideoDownload([out, retval] BOOL *pVal);
+		[propput, id(19), helpstring("property FlashVideoDownload")] HRESULT FlashVideoDownload([in] BOOL newVal);
+		[propget, id(20), helpstring("property FileSize")] HRESULT FileSize([out, retval] BSTR *pVal);
+		[propput, id(20), helpstring("property FileSize")] HRESULT FileSize([in] BSTR newVal);
+		[propget, id(21)] HRESULT OriginalURL([out, retval] BSTR* pVal);
+		[propput, id(21)] HRESULT OriginalURL([in] BSTR newVal);
+		[propget, id(22)] HRESULT UserAgent([out, retval] BSTR* pVal);
+		[propput, id(22)] HRESULT UserAgent([in] BSTR newVal);
+	};
+	[
+		object,
+		uuid(42E8D680-A18B-4CAA-ACE0-18EA05E4A056),
+		dual,
+		helpstring("IWGUrlListReceiver Interface"),
+		pointer_default(unique)
+	]
+	interface IWGUrlListReceiver : IDispatch
+	{
+		[propget, id(1), helpstring("property Url")] HRESULT Url([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property Url")] HRESULT Url([in] BSTR newVal);
+		[propget, id(2), helpstring("property Comment")] HRESULT Comment([out, retval] BSTR *pVal);
+		[propput, id(2), helpstring("property Comment")] HRESULT Comment([in] BSTR newVal);
+		[propget, id(3), helpstring("property Referer")] HRESULT Referer([out, retval] BSTR *pVal);
+		[propput, id(3), helpstring("property Referer")] HRESULT Referer([in] BSTR newVal);
+		[id(4), helpstring("method AddUrlToList")] HRESULT AddUrlToList();
+		[id(5), helpstring("method ShowAddUrlListDialog")] HRESULT ShowAddUrlListDialog();
+		[id(6), helpstring("method GetUrlListFromDocumentSelection")] HRESULT GetUrlListFromDocumentSelection([in] IDispatch *pDispatch);
+		[propget, id(7), helpstring("property Cookies")] HRESULT Cookies([out, retval] BSTR *pVal);
+		[propput, id(7), helpstring("property Cookies")] HRESULT Cookies([in] BSTR newVal);
+	};
+	[
+		object,
+		uuid(E66B63B0-49F8-47E3-A9BA-799287B59E87),
+		dual,
+		helpstring("IFdmFlvDownload Interface"),
+		pointer_default(unique)
+	]
+	interface IFdmFlvDownload : IDispatch
+	{
+		[propget, id(1), helpstring("property Url")] HRESULT Url([out, retval] IWGUrlReceiver* *pVal);
+		[propput, id(1), helpstring("property Url")] HRESULT Url([in] IWGUrlReceiver* newVal);
+	};
+	[
+		object,
+		uuid(F8FA5B48-B7A2-4BC6-8389-9587643A4660),
+		dual,
+		helpstring("IFDM Interface"),
+		pointer_default(unique)
+	]
+	interface IFDM : IDispatch
+	{
+		[id(1), helpstring("method Shutdown")] HRESULT Shutdown([in] BOOL bAskUser);
+	};
+	[
+		object,
+		uuid(8F2B3016-17D4-447A-B207-FFA8957A834A),
+		dual,
+		helpstring("IFDMDownload Interface"),
+		pointer_default(unique)
+	]
+	interface IFDMDownload : IDispatch
+	{
+		[propget, id(1), helpstring("property Url")] HRESULT Url([out, retval] BSTR *pVal);
+		[propput, id(1), helpstring("property Url")] HRESULT Url([in] BSTR newVal);
+		[propget, id(2), helpstring("property DownloadText")] HRESULT DownloadText([in] long nTextIndex, [out, retval] BSTR *pVal);
+	};
+	[
+		object,
+		uuid(1B26E4A2-7F09-4365-9AB8-13E6891E42CB),
+		dual,
+		helpstring("IFDMDownloadsStat Interface"),
+		pointer_default(unique)
+	]
+	interface IFDMDownloadsStat : IDispatch
+	{
+		[propget, id(1), helpstring("property DownloadCount")] HRESULT DownloadCount([out, retval] long *pVal);
+		[propget, id(2), helpstring("property Download")] HRESULT Download([in] long nIndex, [out, retval] IFDMDownload* *pVal);
+		[id(3), helpstring("method BuildListOfDownloads")] HRESULT BuildListOfDownloads([in] BOOL bIncludeCompleted, [in] BOOL bIncludeRunning);
+	};
+	[
+		object,
+		uuid(21402197-BB5B-476C-AA1D-3FFED8ED813A),
+		dual,
+		helpstring("IFdmTorrentFilesRcvr Interface"),
+		pointer_default(unique)
+	]
+	interface IFdmTorrentFilesRcvr : IDispatch
+	{
+		[id(1), helpstring("method CreateBtDownload")] HRESULT CreateBtDownload([in] BSTR bstrFile);
+		[propget, id(2), helpstring("property ForceSilent")] HRESULT ForceSilent([out, retval] BOOL *pVal);
+		[propput, id(2), helpstring("property ForceSilent")] HRESULT ForceSilent([in] BOOL newVal);
+	};
+	[
+		object,
+		uuid(0DC81A74-1FBD-4EF6-82B2-DE3FA05E8233),
+		dual,
+		helpstring("IFDMFlashVideoDownloads Interface"),
+		pointer_default(unique)
+	]
+	interface IFDMFlashVideoDownloads : IDispatch
+	{
+		[id(1), helpstring("method ProcessIeDocument")] HRESULT ProcessIeDocument([in] IDispatch *pDispatch);
+		[id(2), helpstring("method ProcessHtml")] HRESULT ProcessHtml([in] BSTR bstrHost, [in] BSTR bstrHtml);
+		[id(3), helpstring("method CreateFromUrl")] HRESULT CreateFromUrl([in] BSTR bstrUrl);
+		[id(4), helpstring("method ShowAddDownloadDialog")] HRESULT ShowAddDownloadDialog([in] BSTR bstrSrcWebPageUrl, [in] IFdmFlvDownload *pDld);
+		[id(5), helpstring("method ShowAddDownloadsDialog")] HRESULT ShowAddDownloadsDialog([in] BSTR bstrSrcWebPageUrl, [in] SAFEARRAY(IDispatch*) pDownloads);
+	};
+	[
+		object,
+		uuid(4FEB1BAD-35AD-4a08-B6EC-E6D832F1ED4D),
+		dual,
+		pointer_default(unique)
+	]
+	interface IFdmUiWindow : IDispatch
+	{
+		[propget, id(1)] HRESULT Handle([out, retval] ULONG* pVal);
+		[id(2)] HRESULT WaitForWindowCreation(LONG uTimeoutMilliseconds);
+	};
+[
+	uuid(DA122254-5927-44C6-8E37-459473384004),
+	version(1.0),
+	helpstring("FDM 1.0 Type Library")
+]
+library FdmLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	importlib("./uploader/fum/fuminterfaces.tlb");
+	
+	[
+		uuid(959BA0A4-0893-48B4-8B02-BA0DA0A401FE),
+		helpstring("WGUrlReceiver Class")
+	]
+	coclass WGUrlReceiver
+	{
+		[default] interface IWGUrlReceiver;
+	};
+	[
+		uuid(83E6F60E-7147-4475-9DF6-5F1E237FE2CE),
+		helpstring("WGUrlListReceiver Class")
+	]
+	coclass WGUrlListReceiver
+	{
+		[default] interface IWGUrlListReceiver;
+	};
+	[
+		uuid(42130E6A-0045-4208-A252-71CA12C8FE99),
+		helpstring("FdmFlvDownload Class")
+	]
+	coclass FdmFlvDownload
+	{
+		[default] interface IFdmFlvDownload;
+	};
+	[
+		uuid(01483019-D8C9-47D8-8E93-AF032EBFADA6),
+		helpstring("FDM Class")
+	]
+	coclass FDM
+	{
+		[default] interface IFDM;
+	};
+	[
+		uuid(F01F76EC-3376-4E62-B201-8074C8239376),
+		helpstring("FDMDownloadsStat Class")
+	]
+	coclass FDMDownloadsStat
+	{
+		[default] interface IFDMDownloadsStat;
+	};
+	[
+		uuid(DEBBD32E-1D08-4F6A-8A26-E1B3D768A1E5),
+		helpstring("FDMDownload Class")
+	]
+	coclass FDMDownload
+	{
+		[default] interface IFDMDownload;
+	};
+	[
+		uuid(4D6295C9-2765-49B0-A45B-4136B610954C),
+		helpstring("FDMUploader Class")
+	]
+	coclass FDMUploader
+	{
+		[default] interface IUploader;
+	};
+	[
+		uuid(56101D38-6A8B-49D6-8C9D-939595AB2D19),
+		helpstring("FDMUploadPackage Class")
+	]
+	coclass FDMUploadPackage
+	{
+		[default] interface IUploadPackage;
+	};
+	[
+		uuid(19CAD08F-0413-47F8-B1D9-5D66826E1E39),
+		helpstring("FdmTorrentFilesRcvr Class")
+	]
+	coclass FdmTorrentFilesRcvr
+	{
+		[default] interface IFdmTorrentFilesRcvr;
+	};
+	[
+		uuid(D8E9E2ED-846D-4711-A9B8-A29312157DB4),
+		helpstring("FDMFlashVideoDownloads Class")
+	]
+	coclass FDMFlashVideoDownloads
+	{
+		[default] interface IFDMFlashVideoDownloads;
+	};
+	[
+		uuid(5A810830-B199-4a4c-89CB-928D960A5C04),
+		helpstring("FdmUiWindow Class")
+	]
+	coclass FdmUiWindow
+	{
+		[default] interface IFdmUiWindow;
+	};
+};
+
+	

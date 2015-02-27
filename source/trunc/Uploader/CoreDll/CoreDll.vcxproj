@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>../../include.add;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;_WINDLL;_USRDLL;NOCRYPT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\CoreDll.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\CoreDll.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0419</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\CoreDll.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkDLL>true</LinkDLL>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>..\..\bin\Release\Fum\fumcore.dll</OutputFile>
+      <ImportLibrary>.\Release\fumcore.lib</ImportLibrary>
+      <AdditionalLibraryDirectories>../../lib.add;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>inetfile.lib;..\..\InetFile\curl_lib\release\curl_lib.lib;wininet.lib;Ws2_32.lib;winmm.lib;alsfolderbrowser.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>.\CoreDll.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>.\Release\Fum\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../../include.add;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;_WINDLL;_USRDLL;NOCRYPT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Debug\CoreDll.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\Debug/</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\CoreDll.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0419</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\CoreDll.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkDLL>true</LinkDLL>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>..\..\bin\Debug\Fum\fumcore.dll</OutputFile>
+      <ImportLibrary>.\Debug\fumcore.lib</ImportLibrary>
+      <AdditionalLibraryDirectories>../../lib.add;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>..\..\InetFile\debug\inetfile.lib;..\..\InetFile\curl_lib\debug\curl_lib.lib;wininet.lib;Ws2_32.lib;winmm.lib;alsfolderbrowser.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>.\CoreDll.def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>..\..\bin\Debug\Fum\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CoreDll.cpp" />
+    <ClCompile Include="Dlg_AskCaptcha.cpp" />
+    <ClCompile Include="DlgCreateUpload.cpp" />
+    <ClCompile Include="DlgUploadDone.cpp" />
+    <ClCompile Include="DlgUploading.cpp" />
+    <ClCompile Include="dll.cpp" />
+    <ClCompile Include="fsDialogsMgr.cpp" />
+    <ClCompile Include="fsEventsMgr.cpp" />
+    <ClCompile Include="fsInternetUploader.cpp" />
+    <ClCompile Include="fsMutex.cpp" />
+    <ClCompile Include="fsODMenu.cpp" />
+    <ClCompile Include="fsSpeedMeter.cpp" />
+    <ClCompile Include="fsTicksMgr.cpp" />
+    <ClCompile Include="fsUploadMgr.cpp" />
+    <ClCompile Include="fsUploadsMgr.cpp" />
+    <ClCompile Include="grutil.cpp" />
+    <ClCompile Include="ioapi.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="ListCtrlEx.cpp" />
+    <ClCompile Include="misc.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="Upload_GeneralPage.cpp" />
+    <ClCompile Include="UploaderProps_Integration.cpp" />
+    <ClCompile Include="UploaderPropsSheet.cpp" />
+    <ClCompile Include="UploadProperties.cpp" />
+    <ClCompile Include="UploadPropertiesSheet.cpp" />
+    <ClCompile Include="Uploads_Log.cpp" />
+    <ClCompile Include="Uploads_Tasks.cpp" />
+    <ClCompile Include="UploadsWnd.cpp" />
+    <ClCompile Include="UrlWnd.cpp" />
+    <ClCompile Include="vmsAnimatedGIF.cpp" />
+    <ClCompile Include="vmsAppSettings.cpp" />
+    <ClCompile Include="vmsCRC32.cpp" />
+    <ClCompile Include="vmsImage.cpp" />
+    <ClCompile Include="vmsImage_CtxFree.cpp" />
+    <ClCompile Include="vmsInternetSession.cpp" />
+    <ClCompile Include="vmsMfcLngHelper.cpp" />
+    <ClCompile Include="vmsObject.cpp" />
+    <ClCompile Include="vmsSharedData.cpp" />
+    <ClCompile Include="vmsUploadPackageImpl.cpp" />
+    <ClCompile Include="WndLog.cpp" />
+    <ClCompile Include="WndSplitter.cpp" />
+    <ClCompile Include="zip.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CoreDll.def" />
+    <CustomBuild Include="res\CoreDll.rc2">
+      <FileType>RC</FileType>
+    </CustomBuild>
+    <CustomBuild Include="files.bmp" />
+    <CustomBuild Include="res\files.bmp" />
+    <CustomBuild Include="res\hand.cur" />
+    <CustomBuild Include="res\main.ico" />
+    <CustomBuild Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CoreDll.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CoreDll.h" />
+    <ClInclude Include="Dlg_AskCaptcha.h" />
+    <ClInclude Include="DlgCreateUpload.h" />
+    <ClInclude Include="DlgUploadDone.h" />
+    <ClInclude Include="DlgUploading.h" />
+    <ClInclude Include="dll.h" />
+    <ClInclude Include="fsDialogsMgr.h" />
+    <ClInclude Include="fsEventsMgr.h" />
+    <ClInclude Include="fsInternetUploader.h" />
+    <ClInclude Include="fsMutex.h" />
+    <ClInclude Include="fsODMenu.h" />
+    <ClInclude Include="fsSpeedMeter.h" />
+    <ClInclude Include="fsTicksMgr.h" />
+    <ClInclude Include="fsUpload.h" />
+    <ClInclude Include="fsUploadMgr.h" />
+    <ClInclude Include="fsUploadsMgr.h" />
+    <ClInclude Include="list.h" />
+    <ClInclude Include="ListCtrlEx.h" />
+    <ClInclude Include="misc.h" />
+    <ClInclude Include="plugincmds.h" />
+    <ClInclude Include="plugins.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="Upload_GeneralPage.h" />
+    <ClInclude Include="UploaderProps_Integration.h" />
+    <ClInclude Include="UploaderPropsSheet.h" />
+    <ClInclude Include="UploadProperties.h" />
+    <ClInclude Include="UploadPropertiesSheet.h" />
+    <ClInclude Include="Uploads_Log.h" />
+    <ClInclude Include="Uploads_Tasks.h" />
+    <ClInclude Include="UploadsWnd.h" />
+    <ClInclude Include="vmsAppSettings.h" />
+    <ClInclude Include="vmsDllCaller.h" />
+    <ClInclude Include="vmsMfcLngHelper.h" />
+    <ClInclude Include="vmsObject.h" />
+    <ClInclude Include="vmsObjectSmartPtr.h" />
+    <ClInclude Include="vmsSharedData.h" />
+    <ClInclude Include="vmsUploadPackageImpl.h" />
+    <ClInclude Include="vmsUploadsWnd.h" />
+    <ClInclude Include="WndLog.h" />
+    <ClInclude Include="WndSplitter.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,66 @@
+// iecooks.idl : IDL source for iecooks.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (iecooks.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+#include "exdispid.h"
+	[
+		object,
+		uuid(40D3F599-74F0-44D3-B059-76C0F12C0D6E),
+		dual,
+		helpstring("IFDMIEBHO Interface"),
+		pointer_default(unique)
+	]
+	interface IFDMIEBHO : IDispatch
+	{
+		[id(DISPID_PROGRESSCHANGE), helpstring("method ProgressChange")] HRESULT ProgressChange(long Progress, long ProgressMax);
+		[id(DISPID_BEFORENAVIGATE2), helpstring("method BeforeNavigate2")] HRESULT BeforeNavigate2(IDispatch*, VARIANT* url, VARIANT* flags, VARIANT* tfn, VARIANT* pd, VARIANT* headers, VARIANT_BOOL* bCancel);
+		[id(DISPID_DOWNLOADBEGIN), helpstring("method DownloadBegin")] HRESULT DownloadBegin();
+		[id(DISPID_DOWNLOADCOMPLETE), helpstring("method DownloadComplete")] HRESULT DownloadComplete();
+		[id(DISPID_DOCUMENTCOMPLETE), helpstring("method DocumentComplete")] HRESULT DocumentComplete([in] IDispatch *pDisp, [in] VARIANT *URL);
+		[id(283/*DISPID_WINDOWSTATECHANGED*/), helpstring("method WindowStateChanged")] HRESULT WindowStateChanged(DWORD dwFlags, DWORD dwValidFlagsMask);
+		[id(DISPID_NAVIGATECOMPLETE2), helpstring("method NavigateComplete2")] HRESULT NavigateComplete2([in] IDispatch *pDisp, [in] VARIANT *URL);
+		[id(DISPID_STATUSTEXTCHANGE), helpstring("method StatusTextChange")] HRESULT StatusTextChange([in] BSTR bstrText);
+	};
+	[
+		object,
+		uuid(64844F4D-492F-429E-881C-D7F106259738),
+		dual,
+		helpstring("IFDMIEStat Interface"),
+		pointer_default(unique)
+	]
+	interface IFDMIEStat : IDispatch
+	{
+		[propget, id(1), helpstring("property DownloadCount")] HRESULT DownloadCount([out, retval] long *pVal);
+	};
+
+[
+	uuid(351A47E5-B59E-4CF2-B81A-B651D75FE944),
+	version(1.0),
+	helpstring("FdmIeBho 1.0 Type Library")
+]
+library IEFDMBHOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(CC59E0F9-7E43-44FA-9FAA-8377850BF205),
+		helpstring("FDMIEBHO Class")
+	]
+	coclass FDMIEBHO
+	{
+		[default] interface IFDMIEBHO;
+	};
+	[
+		uuid(D4D6EAB8-009E-4EED-814E-4891D7E1741B),
+		helpstring("FDMIEStat Class")
+	]
+	coclass FDMIEStat
+	{
+		[default] interface IFDMIEStat;
+	};
+};

@@ -1,0 +1,421 @@
+# Microsoft Developer Studio Generated Dependency File, included by InetFile.mak
+
+.\fsFtpConnection.cpp : \
+	"..\include.add\fsstring.h"\
+	".\common.h"\
+	".\fsFtpConnection.h"\
+	".\fsinet.h"\
+	".\fsInternetSession.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsFtpFile.cpp : \
+	"..\include.add\fsstring.h"\
+	".\common.h"\
+	".\fsFtpConnection.h"\
+	".\fsFtpFile.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsFtpFiles.cpp : \
+	"..\fsmutex.h"\
+	"..\include.add\fsstring.h"\
+	"..\list.h"\
+	".\fsFtpConnection.h"\
+	".\fsFtpFiles.h"\
+	".\fsinet.h"\
+	".\fsInternetFiles.h"\
+	".\fsInternetSession.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\fsURL.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsHTMLParser.cpp : \
+	"..\fsmutex.h"\
+	"..\include.add\fsstring.h"\
+	"..\list.h"\
+	".\fsHTMLParser.h"\
+	".\strparsing.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsHttpConnection.cpp : \
+	"..\include.add\fsstring.h"\
+	".\fsHttpConnection.h"\
+	".\fsinet.h"\
+	".\fsInternetSession.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsHttpFile.cpp : \
+	"..\include.add\fsstring.h"\
+	".\common.h"\
+	".\fsHttpFile.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsInternetSession.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\fsURL.h"\
+	".\strparsing.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsHttpFiles.cpp : \
+	"..\fsmutex.h"\
+	"..\include.add\fsstring.h"\
+	"..\list.h"\
+	".\common.h"\
+	".\fsHTMLParser.h"\
+	".\fsHttpConnection.h"\
+	".\fsHttpFile.h"\
+	".\fsHttpFiles.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsInternetFiles.h"\
+	".\fsInternetSession.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\fsURL.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsinet.cpp : \
+	"..\include.add\array.h"\
+	"..\include.add\fsstring.h"\
+	".\fsFtpConnection.h"\
+	".\fsFtpFile.h"\
+	".\fsHttpConnection.h"\
+	".\fsHttpFile.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsInternetFile2.h"\
+	".\fsInternetSession.h"\
+	".\fsInternetURLFile.h"\
+	".\fsLocalFile.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\fsURL.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsInternetFile.cpp : \
+	"..\include.add\fsstring.h"\
+	".\common.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsInternetFile2.cpp : \
+	"..\include.add\array.h"\
+	"..\include.add\curl\curl.h"\
+	"..\include.add\curl\curlver.h"\
+	"..\include.add\curl\easy.h"\
+	"..\include.add\curl\multi.h"\
+	"..\include.add\fsstring.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsInternetFile2.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsInternetFiles.cpp : \
+	"..\fsmutex.h"\
+	"..\include.add\fsstring.h"\
+	"..\list.h"\
+	".\common.h"\
+	".\fsinet.h"\
+	".\fsInternetFiles.h"\
+	".\fsInternetSession.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsInternetSession.cpp : \
+	"..\include.add\fsstring.h"\
+	".\fsinet.h"\
+	".\fsInternetSession.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsInternetURLFile.cpp : \
+	"..\include.add\array.h"\
+	"..\include.add\fsstring.h"\
+	".\base64.c"\
+	".\base64.h"\
+	".\fsFtpConnection.h"\
+	".\fsFtpFile.h"\
+	".\fsHttpConnection.h"\
+	".\fsHttpFile.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsInternetFile2.h"\
+	".\fsInternetSession.h"\
+	".\fsInternetURLFile.h"\
+	".\fsLocalFile.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\fsURL.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\shtypes.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsInternetURLFileDownloader.cpp : \
+	"..\include.add\array.h"\
+	"..\include.add\fsstring.h"\
+	".\common.h"\
+	".\fsFtpConnection.h"\
+	".\fsFtpFile.h"\
+	".\fsHttpConnection.h"\
+	".\fsHttpFile.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsInternetFile2.h"\
+	".\fsInternetSession.h"\
+	".\fsInternetURLFile.h"\
+	".\fsInternetURLFileDownloader.h"\
+	".\fsLocalFile.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\fsURL.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsInternetURLFiles.cpp : \
+	"..\fsmutex.h"\
+	"..\include.add\fsstring.h"\
+	"..\list.h"\
+	".\fsFtpConnection.h"\
+	".\fsFtpFiles.h"\
+	".\fsHttpConnection.h"\
+	".\fsHttpFile.h"\
+	".\fsHttpFiles.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsInternetFiles.h"\
+	".\fsInternetSession.h"\
+	".\fsInternetURLFiles.h"\
+	".\fsInternetURLServer.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\fsURL.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsInternetURLServer.cpp : \
+	"..\include.add\fsstring.h"\
+	".\fsFtpConnection.h"\
+	".\fsHttpConnection.h"\
+	".\fsinet.h"\
+	".\fsInternetURLServer.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\fsURL.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsLocalFile.cpp : \
+	"..\include.add\fsstring.h"\
+	".\fsinet.h"\
+	".\fsInternetFile.h"\
+	".\fsInternetSession.h"\
+	".\fsLocalFile.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\fsURL.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsServerConnection.cpp : \
+	"..\include.add\fsstring.h"\
+	".\common.h"\
+	".\fsinet.h"\
+	".\fsInternetSession.h"\
+	".\fsServerConnection.h"\
+	".\fsSpeaking.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsSpeaking.cpp : \
+	".\common.h"\
+	".\fsinet.h"\
+	".\fsSpeaking.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\fsURL.cpp : \
+	"..\include.add\fsstring.h"\
+	".\common.h"\
+	".\fsinet.h"\
+	".\fsURL.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\strparsing.cpp : \
+	".\common.h"\
+	".\fsinet.h"\
+	".\system.h"\
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	
+
+.\system.cpp : \
+	"e:\program files\microsoft sdk\include\basetsd.h"\
+	"e:\program files\microsoft sdk\include\guiddef.h"\
+	"e:\program files\microsoft sdk\include\propidl.h"\
+	"e:\program files\microsoft sdk\include\reason.h"\
+	"e:\program files\microsoft sdk\include\stralign.h"\
+	"e:\program files\microsoft sdk\include\tvout.h"\
+	"e:\program files\microsoft sdk\include\winefs.h"\
+	

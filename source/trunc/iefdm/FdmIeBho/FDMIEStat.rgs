@@ -1,0 +1,26 @@
+HKCR
+{
+	FdmIeBho.FDMIEStat.1 = s 'FDMIEStat Class'
+	{
+		CLSID = s '{D4D6EAB8-009E-4EED-814E-4891D7E1741B}'
+	}
+	FdmIeBho.FDMIEStat = s 'FDMIEStat Class'
+	{
+		CLSID = s '{D4D6EAB8-009E-4EED-814E-4891D7E1741B}'
+		CurVer = s 'FdmIeBho.FDMIEStat.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D4D6EAB8-009E-4EED-814E-4891D7E1741B} = s 'FDMIEStat Class'
+		{
+			ProgID = s 'FdmIeBho.FDMIEStat.1'
+			VersionIndependentProgID = s 'FdmIeBho.FDMIEStat'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{351A47E5-B59E-4CF2-B81A-B651D75FE944}'
+		}
+	}
+}

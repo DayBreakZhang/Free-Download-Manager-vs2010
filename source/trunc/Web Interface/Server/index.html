@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>FDM remote control server</title>
+<style type="text/css">
+<!--
+.style1 {font-size: small}
+.style4 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: x-small; }
+.style5 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.style6 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+-->
+</style></head>
+
+<body>
+<p class="style6">Active downloads.</p>
+<p><span class="style5">%ActiveDownloads%</span></p>
+<hr width="100%" size="2" />
+<form id="form1" name="form1" method="get" action="adddownload.req">
+  <label><span class="style6">Create a new download.</span><br />
+  <br />
+  <span class="style5">URL of the download:</span> 
+  <input name="URL" type="text" id="URL" value="http://" />
+  </label>
+  <input type="submit" value="Submit" />
+</form>
+<hr width="100%" size="2" />
+<p class="style5"><a href="compdlds.req">View the list of completed downloads</a></p>
+<hr width="100%" size="2" />
+<div align="right"><span class="style1"><span class="style4">Free Download Manager remote control server.</span><br />
+    <span class="style4">Version %ver%.</span>  </span></div>
+<h6 align="right">&nbsp;</h6>
+</body>
+</html>

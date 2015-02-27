@@ -1,0 +1,1 @@
+See ffmpeg/snapshot_version.

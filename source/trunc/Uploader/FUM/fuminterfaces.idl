@@ -1,0 +1,43 @@
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(D044B89E-9A8A-4711-A075-8FB43E2B4135),
+	version(1.0),
+	helpstring("Fum Interfaces 1.0 Type Library")
+]
+library FumInterfacesLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+        [
+	object,
+	uuid(D650F6EB-68C1-4ac9-A6F5-8BF7D469815A),
+	dual,
+	helpstring("IFUMUploadPackage Interface"),
+	pointer_default(unique)
+]
+interface IUploadPackage : IDispatch
+{
+	[id(1), helpstring("method Add")] HRESULT Add([in] BSTR bstrPathName);
+	[propget, id(2), helpstring("property Name")] HRESULT Name([out, retval] BSTR *pVal);
+	[propput, id(2), helpstring("property Name")] HRESULT Name([in] BSTR newVal);
+	[id(3), helpstring("method GetFileCount")] HRESULT GetFileCount([out] long* pCount);
+	[id(4), helpstring("method GetFilePath")] HRESULT GetFilePath([in] long nIndex, [out] BSTR* pbstrPathName);
+};
+[
+	object,
+	uuid(17462C30-17BA-4e40-B722-6E803A0618BB),
+	dual,
+	helpstring("IFUMUploader Interface"),
+	pointer_default(unique)
+]
+interface IUploader : IDispatch
+{
+	[id(1), helpstring("method CreateUpload")] HRESULT CreateUpload([in] IUploadPackage *pPkg, [in] BOOL bDialogReq, [in, out] long* pUplId);
+	[id(2), helpstring("method GetUploadTargetUrl")] HRESULT GetUploadTargetUrl([in] long lId, [out] BSTR* pbstrUrl);
+	[id(3), helpstring("method GetUploadPackageName")] HRESULT GetUploadPackageName([in] long lId, [out, retval] BSTR* pbstrName);
+};
+
+};

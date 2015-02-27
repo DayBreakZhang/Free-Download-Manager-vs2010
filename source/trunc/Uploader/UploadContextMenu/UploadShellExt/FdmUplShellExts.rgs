@@ -1,0 +1,26 @@
+HKCR
+{
+	UploadShellExt.FdmUplShellExts.1 = s 'FdmUplShellExts Class'
+	{
+		CLSID = s '{AF39CEB8-76E0-4177-BD37-54A87F426224}'
+	}
+	UploadShellExt.FdmUplShellExts = s 'FdmUplShellExts Class'
+	{
+		CLSID = s '{AF39CEB8-76E0-4177-BD37-54A87F426224}'
+		CurVer = s 'UploadShellExt.FdmUplShellExts.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {AF39CEB8-76E0-4177-BD37-54A87F426224} = s 'FdmUplShellExts Class'
+		{
+			ProgID = s 'UploadShellExt.FdmUplShellExts.1'
+			VersionIndependentProgID = s 'UploadShellExt.FdmUplShellExts'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{A0E139BE-C48A-4028-A814-2652035A732A}'
+		}
+	}
+}

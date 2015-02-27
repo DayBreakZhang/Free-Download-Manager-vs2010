@@ -1,0 +1,14 @@
+<!--
+Script for downloading selected links in IE window
+Copyright (c) 2004-2007, FreeDownloadManager.ORG.
+-->
+<script language="VBScript">
+	On Error Resume Next
+	set obj = CreateObject ("WG.WGUrlListReceiver" )
+	if err<>0 then
+		Alert("Free Download Manager not properly installed! Please reinstall Free Download Manager")
+	else
+		obj.GetUrlListFromDocumentSelection external.menuArguments.document
+		obj.ShowAddUrlListDialog
+        end if
+</script>

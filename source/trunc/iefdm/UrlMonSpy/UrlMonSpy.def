@@ -1,0 +1,4 @@
+LIBRARY fdmumsp
+
+EXPORTS
+	fdmumspy_findRequest

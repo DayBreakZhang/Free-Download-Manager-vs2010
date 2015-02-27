@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UploadShellExt", "UploadShellExt.vcxproj", "{F68412BF-C5C6-BDD5-B7D4-F7E82F4B1D15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Template|Win32 = Template|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F68412BF-C5C6-BDD5-B7D4-F7E82F4B1D15}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F68412BF-C5C6-BDD5-B7D4-F7E82F4B1D15}.Debug|Win32.Build.0 = Debug|Win32
+		{F68412BF-C5C6-BDD5-B7D4-F7E82F4B1D15}.Release|Win32.ActiveCfg = Release|Win32
+		{F68412BF-C5C6-BDD5-B7D4-F7E82F4B1D15}.Release|Win32.Build.0 = Release|Win32
+		{F68412BF-C5C6-BDD5-B7D4-F7E82F4B1D15}.Template|Win32.ActiveCfg = Template|Win32
+		{F68412BF-C5C6-BDD5-B7D4-F7E82F4B1D15}.Template|Win32.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

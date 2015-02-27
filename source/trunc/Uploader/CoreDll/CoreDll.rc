@@ -1,0 +1,404 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "cmds.h"
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Нейтральный resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1251)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_LOG MENU
+BEGIN
+    POPUP "-"
+    BEGIN
+        MENUITEM "Clear",                       ID_CLEAR
+        MENUITEM "Copy to clipboard",           ID_COPY_TO_CB
+        MENUITEM SEPARATOR
+        MENUITEM "Auto scroll",                 ID_AUTOSCROLL
+    END
+END
+
+IDM_UPLOADS MENU
+BEGIN
+    POPUP "-"
+    BEGIN
+        MENUITEM "Uploads file(s)",             ID_UPL_CREATENEW
+        MENUITEM SEPARATOR
+        MENUITEM "start",                       ID_UPL_START
+        MENUITEM "stop",                        ID_UPL_STOP
+        MENUITEM SEPARATOR
+        MENUITEM "Delete",                      ID_UPL_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "open in browser",             ID_UPL_OPENINBROWSER
+        MENUITEM "Copy URL to clipboard",       ID_UPL_COPYURL
+        MENUITEM "Properties",                  ID_UPL_PROPERTIES
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_UPLOADING DIALOG 0, 0, 260, 129
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_URL,7,17,198,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Copy",IDC_COPY,208,17,45,13
+    PUSHBUTTON      "Pause",IDC_PAUSE,99,108,50,14
+    PUSHBUTTON      "Abort",IDC_ABORT,151,108,50,14
+    DEFPUSHBUTTON   "Hide",IDCANCEL,203,108,50,14
+    LTEXT           "URL:",IDC_STATIC,7,7,58,9
+    LTEXT           "Uploaded:",IDC__UPLOADED_,7,68,79,9
+    CONTROL         "Progress1",IDC_PROGRESS,"msctls_progress32",WS_BORDER,7,49,246,13
+    LTEXT           "-",IDC__UPLOADED,91,68,146,10
+    LTEXT           "Total size:",IDC__TOTALSIZE_,7,35,79,9
+    LTEXT           "-",IDC__TOTALSIZE,91,35,146,10
+    LTEXT           "Speed:",IDC__SPEED_,7,80,79,9
+    LTEXT           "-",IDC__SPEED,91,80,146,10
+    LTEXT           "Time left:",IDC__TIMELEFT_,7,92,79,9
+    LTEXT           "-",IDC__TIMELEFT,91,92,146,10
+END
+
+IDD_CREATE_UPLOAD DIALOGEX 0, 0, 294, 255
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_FILES,"SysListView32",LVS_REPORT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,7,16,280,41
+    EDITTEXT        IDC_PKGNAME,7,71,161,13,ES_AUTOHSCROLL | WS_DISABLED
+    COMBOBOX        IDC_COMPRESS,180,71,107,64,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Set password for this download",IDC_SETPWD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,87,168,9,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_PWD,69,99,82,12,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_PWD_R,69,114,82,12,ES_PASSWORD | ES_AUTOHSCROLL
+    COMBOBOX        IDC_DAYSTOKEEP,180,98,107,64,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_NUMBEROFDLDS,180,124,107,64,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add link to these files in our catalogue",IDC_PLACETOCAT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,171,9
+    CONTROL         "Include advanced information (all fields are optional)",IDC_ADVANCEDINFO,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,280,8
+    EDITTEXT        IDC_DESC,14,166,138,39,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
+    EDITTEXT        IDC_TAGS,14,218,138,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SNDRNAME,157,166,130,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SNDREMAIL,157,192,130,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RCVREMAIL,157,218,130,12,ES_AUTOHSCROLL
+    CONTROL         "I agree to",IDC_AGREE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,236,44,8
+    DEFPUSHBUTTON   "OK",IDOK,170,235,57,14
+    PUSHBUTTON      "Cancel",IDCANCEL,230,235,57,14
+    CONTROL         "",IDC__TB_FILES,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,92,1,195,10
+    LTEXT           "Package name:",IDC__PKGNAME,7,60,172,8
+    LTEXT           "Files to upload:",IDC__FILESTOUPLOAD,7,4,79,10
+    LTEXT           "Keep these files:",IDC__KEEPTHESEFILES,180,87,107,10
+    LTEXT           "Supposed number of downloads:",IDC__SUPPOSEDNUMBEROFDLDS,180,113,107,9
+    LTEXT           "Password:",IDC__PWD,15,100,51,9
+    LTEXT           "Retype:",IDC__PWD_R,15,115,51,9
+    LTEXT           "Description:",IDC__DESC,14,155,134,9
+    LTEXT           "Tags:",IDC__TAGS,14,207,125,9
+    LTEXT           "Your name:",IDC__SNDRNAME,157,155,123,9
+    LTEXT           "Your email:",IDC__SNDREMAIL,157,181,123,9
+    LTEXT           "Receiver's email:",IDC__RCVREMAIL,157,207,123,9
+    LTEXT           "Compress:",IDC__COMPRESS,180,60,104,8
+    LTEXT           "terms",IDC__TERMS,55,236,111,10,SS_NOTIFY
+END
+
+IDD_UPLOAD_GENERAL DIALOGEX 0, 0, 294, 257
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_FILES,"SysListView32",LVS_REPORT | LVS_NOCOLUMNHEADER | WS_DISABLED | WS_BORDER | WS_TABSTOP,7,18,280,41
+    EDITTEXT        IDC_PKGNAME,7,74,161,13,ES_AUTOHSCROLL | ES_READONLY
+    COMBOBOX        IDC_COMPRESS,180,74,107,64,CBS_DROPDOWNLIST | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Set password for this download",IDC_SETPWD,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,7,92,168,9,WS_EX_TRANSPARENT
+    EDITTEXT        IDC_PWD,69,109,82,12,ES_PASSWORD | ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_PWD_R,69,124,82,12,ES_PASSWORD | ES_AUTOHSCROLL | ES_READONLY
+    COMBOBOX        IDC_DAYSTOKEEP,180,103,107,64,CBS_DROPDOWNLIST | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_NUMBEROFDLDS,180,130,107,64,CBS_DROPDOWNLIST | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Add link to these files in our catalogue",IDC_PLACETOCAT,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,7,145,280,9
+    CONTROL         "Include advanced information (all fields are optional)",IDC_ADVANCEDINFO,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,7,159,280,8
+    EDITTEXT        IDC_DESC,14,183,138,39,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | WS_VSCROLL
+    EDITTEXT        IDC_TAGS,14,237,138,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_SNDRNAME,157,183,130,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_SNDREMAIL,157,209,130,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_RCVREMAIL,157,237,130,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Package name:",IDC__PKGNAME,7,63,172,10
+    LTEXT           "Files to upload:",IDC__FILESTOUPLOAD,7,7,79,10
+    LTEXT           "Keep these files:",IDC__KEEPTHESEFILES,180,92,107,11
+    LTEXT           "Supposed number of downloads:",IDC__SUPPOSEDNUMBEROFDLDS,180,119,107,9
+    LTEXT           "Password:",IDC__PWD,15,110,51,9
+    LTEXT           "Retype:",IDC__PWD_R,15,125,51,9
+    LTEXT           "Description:",IDC__DESC,14,172,134,9
+    LTEXT           "Tags:",IDC__TAGS,14,226,125,9
+    LTEXT           "Your name:",IDC__SNDRNAME,157,172,123,9
+    LTEXT           "Your email:",IDC__SNDREMAIL,157,198,123,9
+    LTEXT           "Receiver's email:",IDC__RCVREMAIL,157,226,123,9
+    LTEXT           "Compress:",IDC__COMPRESS,180,63,104,11
+END
+
+IDD_ASK_CAPTCHA DIALOG 0, 0, 187, 90
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_VALUE,7,52,173,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,130,69,50,14
+    LTEXT           "Upload requires activation. Enter activation code.",IDC__MSG,97,7,83,36
+    CONTROL         "",IDC__IMG,"Static",SS_GRAYFRAME | NOT WS_VISIBLE,7,7,84,38
+END
+
+IDD_UPLOAD_DONE DIALOG 0, 0, 229, 97
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_URL,7,37,215,12,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Don't show again",IDC_DONTSHOWAGAIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,59,215,9
+    PUSHBUTTON      "open",IDC_OPEN,7,76,68,14
+    PUSHBUTTON      "Copy",IDC_COPY,79,76,88,14
+    DEFPUSHBUTTON   "OK",IDCANCEL,171,76,50,14
+    LTEXT           "Static\n1\n2",IDC__MSG,7,7,215,25
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_UPLOADING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 253
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 122
+    END
+
+    IDD_CREATE_UPLOAD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 287
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 248
+    END
+
+    IDD_UPLOAD_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 287
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 250
+    END
+
+    IDD_ASK_CAPTCHA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_UPLOAD_DONE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 222
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 90
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_FILES               BITMAP                  "res\\files.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAIN                ICON                    "res\\main.ico"
+#endif    // Нейтральный resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Русский (Россия) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_UPLDR_INTEGRATION DIALOG 0, 0, 222, 106
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "-"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Explorer's context menu",IDC_CM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,16,193,10
+    CONTROL         "Explorer's ""Send To..."" menu",IDC_STM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,29,192,10
+    CONTROL         "Internet Explorer",IDC_IE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,42,192,10
+    CONTROL         "Outlook Express",IDC_OE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,55,185,10
+    GROUPBOX        "Integrate uploader to:",IDC__S0,7,3,208,96
+    CONTROL         "ask upload",IDC_OE_ASKUPLOAD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,68,183,10
+    LTEXT           "Minimum size of file to upload:",IDC_OE__MINSIZE,24,81,137,9
+    EDITTEXT        IDC_OE_MINSIZE,163,79,25,12,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "KB",IDC__KB,192,81,17,9
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_UPLDR_INTEGRATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 215
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""cmds.h""\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\CoreDll.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_HAND_               CURSOR                  "res\\hand.cur"
+#endif    // Русский (Россия) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Английский (США) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 731,0,960,0
+ PRODUCTVERSION 731,0,960,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+END
+
+#endif    // Английский (США) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\CoreDll.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

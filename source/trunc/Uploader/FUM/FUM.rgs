@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{EF9226D1-F0FA-46CC-8108-D124021EC150} = s 'FUM'
+		'FUM.EXE'
+		{
+			val AppID = s {EF9226D1-F0FA-46CC-8108-D124021EC150}
+		}
+	}
+}

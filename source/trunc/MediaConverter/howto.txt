@@ -1,0 +1,10 @@
+Compiling ffmpeg for Windows (using MinGW+MSys):
+http://ffmpeg.arrozcru.org/wiki/index.php?title=MSVC
+
+1. Compile ffmpeg statically with mp3lame support
+2. Compile ffmpegdll.c. It should be located in the same folder where ffmpeg.c is located.
+Use these commands:
+  $ gcc -c -std=c99 -I../build/ -I../ ../ffmpegdll.c
+  $ windres ../ffmpegdll.rc ffmpegdllrc.o
+  $ gcc -shared -g -Wall -o ffmpegdll.dll ffmpegdll.o ffmpegdllrc.o cmdutils.o -L./libswscale -lswscale -L./libavdevice -lavdevice -L./libavformat -lavformat -L./libavcodec -lavcodec -L./libavutil -lavutil -lws2_32 -lpsapi -lavicap32 -lmp3lame
+  $ strip -s ffmpegdll.dll

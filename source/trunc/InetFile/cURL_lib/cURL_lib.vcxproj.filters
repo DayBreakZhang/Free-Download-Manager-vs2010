@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{e4f980c1-0178-4342-aaae-eecf32072976}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{b1fee4ad-07af-4bc9-8fad-7e182128a0d4}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base64.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="connect.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="content_encoding.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cookie.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="curl_addrinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dict.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="easy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="escape.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="file.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="formdata.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ftp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getenv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gtls.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hostares.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hostasyn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hostip.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hostip4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hostip6.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hostsyn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hostthre.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http_chunks.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http_digest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http_negotiate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http_ntlm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="if2ip.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="inet_ntop.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="inet_pton.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="krb4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ldap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="llist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="memdebug.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mprintf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="multi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="netrc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parsedate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="progress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rawstr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="security.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="select.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sendf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="share.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="socks.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="speedcheck.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="splay.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sslgen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ssluse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strequal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strerror.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strtok.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strtoofft.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="telnet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tftp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="timeval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="transfer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="url.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="version.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ldap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

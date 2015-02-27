@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{f56c4b72-f26d-49fa-8334-0fe11ebdd0e1}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Source Core">
+      <UniqueIdentifier>{0273a28e-aaeb-4d2f-8b3c-28f3fc4a4b94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DShow Base Classes">
+      <UniqueIdentifier>{50d7a97e-8dea-4db4-96fd-2282d43e72f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9f246515-13c6-4655-a8a1-cd69dd74922e}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Header Core">
+      <UniqueIdentifier>{bda36ec3-c8be-4c77-a877-8f8b11afdef1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="fsAVIIdx1Builder.cpp">
+      <Filter>Source Files\Source Core</Filter>
+    </ClCompile>
+    <ClCompile Include="fsDShowFilterDetector.cpp">
+      <Filter>Source Files\Source Core</Filter>
+    </ClCompile>
+    <ClCompile Include="fsFileReader.cpp">
+      <Filter>Source Files\Source Core</Filter>
+    </ClCompile>
+    <ClCompile Include="fsFileStream.cpp">
+      <Filter>Source Files\Source Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\amextra.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\amfilter.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\amvideo.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\asyncio.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\asyncrdr.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\combase.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\cprop.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\ctlutil.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\ddmm.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\dllentry.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\dllsetup.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\mtype.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\outputq.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\pstream.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\pullpin.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\refclock.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\renbase.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\schedule.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\seekpt.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\source.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\strmctl.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\sysclock.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\transfrm.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\transip.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\videoctl.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\vtrans.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\winctrl.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\winutil.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\wxdebug.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\wxlist.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Include.Add\DShow\wxutil.cpp">
+      <Filter>Source Files\DShow Base Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="fsPartMediaPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fsAVIIdx1Builder.h">
+      <Filter>Header Files\Header Core</Filter>
+    </ClInclude>
+    <ClInclude Include="fsDShowFilterDetector.h">
+      <Filter>Header Files\Header Core</Filter>
+    </ClInclude>
+    <ClInclude Include="fsFileReader.h">
+      <Filter>Header Files\Header Core</Filter>
+    </ClInclude>
+    <ClInclude Include="fsFileStream.h">
+      <Filter>Header Files\Header Core</Filter>
+    </ClInclude>
+    <ClInclude Include="fsPartMediaPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

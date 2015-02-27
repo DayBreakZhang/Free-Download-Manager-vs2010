@@ -1,0 +1,38 @@
+// FDMUploadBtnForIe.idl : IDL source for FDMUploadBtnForIe.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (FDMUploadBtnForIe.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(FA4FD29A-921D-435D-96F9-0CAE6F6CE028),
+		dual,
+		helpstring("IFDMUploadBtnForIe Interface"),
+		pointer_default(unique)
+	]
+	interface IFDMUploadBtnForIe : IDispatch
+	{
+	};
+
+[
+	uuid(2821CA5A-FD0A-4501-B56C-E8A979D6043D),
+	version(1.0),
+	helpstring("FDMUploadBtnForIe 1.0 Type Library")
+]
+library FDMUPLOADBTNFORIELib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(FD4E2FF8-973C-4A19-89BD-8E86B3CFCFE1),
+		helpstring("FDMUploadBtnForIe Class")
+	]
+	coclass FDMUploadBtnForIe
+	{
+		[default] interface IFDMUploadBtnForIe;
+	};
+};

@@ -1,0 +1,90 @@
+<script language="VBScript">
+
+function vbType(t)
+vbType = TypeName(t)
+end function
+
+Sub AddLink(Url,Info,SelectedText)
+On Error Resume Next
+set obj = CreateObject ("WG.WGUrlReceiver" )
+if err<>0 then
+Alert("Free Download Manager not properly installed! Please reinstall Free Download Manager")
+else
+obj.Url = Url
+
+if SelectedText <> "" then
+	obj.Comment = SelectedText
+else
+	obj.Comment = Info
+end if
+
+obj.Referer = external.menuArguments.document.Url
+obj.Cookies = external.menuArguments.document.cookie
+obj.AddDownload
+end if
+end sub
+</script>
+
+<script type="text/javascript">
+function OnContextMenu(){
+var srcEvent = external.menuArguments.event;
+var EventElement;
+var newIE = false;
+var strComment;
+/*@cc_on
+newIE = (@_jscript_version >= 9);
+@*/
+if (newIE)
+{
+    EventElement = srcEvent.srcElement;
+    strComment = EventElement.text;
+}
+else
+{
+    EventElement = external.menuArguments.document.elementFromPoint(srcEvent.clientX, srcEvent.clientY);
+    strComment = external.menuArguments.document.selection.createRange().text;
+}
+//alert(srcEvent.type);
+//alert(vbType(EventElement));
+if (srcEvent.type == 'MenuExtAnchor'){
+var srcAnchor = EventElement;
+while(vbType(srcAnchor)!='HTMLAnchorElement'){
+var srcAnchor=srcAnchor.parentElement;
+}
+AddLink(srcAnchor.href,srcAnchor.innerText,strComment);
+}else if(srcEvent.type=='MenuExtImage'){
+if(vbType(EventElement)=='HTMLAreaElement'){
+AddLink(EventElement.href,EventElement.Alt,strComment);
+}
+else{
+var srcImage = EventElement;
+var srcAnchor = srcImage.parentElement;
+while(vbType(srcAnchor)!='HTMLAnchorElement'){
+var srcAnchor=srcAnchor.parentElement
+if(vbType(srcAnchor)=='Nothing'){
+AddLink(srcImage.href,srcImage.Alt,strComment);
+return;
+}
+}
+AddLink(srcAnchor.href,srcImage.Alt,strComment);
+}
+}else if(srcEvent.type == 'MenuExtUnknown'){
+
+var srcAnchor = EventElement;
+while(vbType(srcAnchor)!='HTMLAnchorElement'){
+//alert(srcAnchor);
+srcAnchor = srcAnchor.parentElement;
+if(vbType(srcAnchor)=="Nothing"){
+AddLink(EventElement.href,EventElement.innerText,strComment);
+return;
+}
+}
+
+AddLink(srcAnchor.href,srcAnchor.innerText,strComment);
+}else if(1 == 1){
+alert('Unknown Event Source "‘ + srcEvent.type + ‘"\r\nPlease send description of error to website adminstrator.');
+}
+}
+
+OnContextMenu();
+</script>

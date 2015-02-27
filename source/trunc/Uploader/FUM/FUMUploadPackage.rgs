@@ -1,0 +1,24 @@
+HKCR
+{
+	FUM.FUMUploadPackage.1 = s 'FUMUploadPackage Class'
+	{
+		CLSID = s '{680609BB-5B3B-49CF-B3DB-333782B58417}'
+	}
+	FUM.FUMUploadPackage = s 'FUMUploadPackage Class'
+	{
+		CLSID = s '{680609BB-5B3B-49CF-B3DB-333782B58417}'
+		CurVer = s 'FUM.FUMUploadPackage.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {680609BB-5B3B-49CF-B3DB-333782B58417} = s 'FUMUploadPackage Class'
+		{
+			ProgID = s 'FUM.FUMUploadPackage.1'
+			VersionIndependentProgID = s 'FUM.FUMUploadPackage'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{EF9226D1-F0FA-46CC-8108-D124021EC150}'
+			'TypeLib' = s '{0E911853-22D3-4662-8A2C-BE7BA2EABDCD}'
+		}
+	}
+}

@@ -1,0 +1,24 @@
+HKCR
+{
+	WG.WGUrlListReceiver.1 = s 'WGUrlListReceiver Class'
+	{
+		CLSID = s '{83E6F60E-7147-4475-9DF6-5F1E237FE2CE}'
+	}
+	WG.WGUrlListReceiver = s 'WgUrlListReceiver Class'
+	{
+		CLSID = s '{83E6F60E-7147-4475-9DF6-5F1E237FE2CE}'
+		CurVer = s 'WG.WGUrlListReceiver.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {83E6F60E-7147-4475-9DF6-5F1E237FE2CE} = s 'WGUrlListReceiver Class'
+		{
+			ProgID = s 'WG.WGUrlListReceiver.1'
+			VersionIndependentProgID = s 'WG.WGUrlListReceiver'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{B56675FE-F704-4451-BD93-5314116B0DA7}'
+			'TypeLib' = s '{DA122254-5927-44C6-8E37-459473384004}'
+		}
+	}
+}

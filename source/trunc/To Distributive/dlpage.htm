@@ -1,0 +1,14 @@
+<!--
+Script for downloading web page or site from IE context menu
+Copyright (c) 2004-2007, FreeDownloadManager.ORG.
+-->
+<script language="VBScript">
+	On Error Resume Next
+	set obj = CreateObject ("WG.WGUrlReceiver" )
+	if err<>0 then
+		Alert("Free Download Manager not properly installed! Please reinstall Free Download Manager")
+	else
+		obj.Url = external.menuArguments.document.URL
+		obj.ShowAddPageDownloadDialog
+        end if
+</script>

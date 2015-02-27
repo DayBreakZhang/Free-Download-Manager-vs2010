@@ -1,0 +1,74 @@
+
+	// FUM.idl : IDL source for FUM.exe
+//
+// This file will be processed by the MIDL tool to
+// produce the type library (FUM.tlb) and marshalling code.
+import "oaidl.idl";
+import "ocidl.idl";
+	
+	[
+		object,
+		uuid(D1FDAAB7-19BB-43A4-81CD-753A1B98FC86),
+		dual,
+		helpstring("IFUMApp Interface"),
+		pointer_default(unique)
+	]
+	interface IFUMApp : IDispatch
+	{
+	};
+	[
+		object,
+		uuid(DDDDF2D1-E41C-41EF-BA1D-36B39BA9D7CF),
+		dual,
+		helpstring("IFUMApplication Interface"),
+		pointer_default(unique)
+	]
+	interface IFUMApplication : IDispatch
+	{
+		[id(1), helpstring("method Shutdown")] HRESULT Shutdown([in] BOOL bAskUser);
+	};
+[
+	uuid(0E911853-22D3-4662-8A2C-BE7BA2EABDCD),
+	version(1.0),
+	helpstring("FUM 1.0 Type Library")
+]
+library FUMLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	importlib("fuminterfaces.tlb");
+	[
+		uuid(D6C52111-8802-4148-8219-F60E23189AFB),
+		helpstring("FUMUploader Class")
+	]
+	coclass FUMUploader
+	{
+		[default] interface IUploader;
+	};
+	[
+		uuid(680609BB-5B3B-49CF-B3DB-333782B58417),
+		helpstring("FUMUploadPackage Class")
+	]
+	coclass FUMUploadPackage
+	{
+		[default] interface IUploadPackage;
+	};
+	[
+		uuid(06B1730C-69C0-4CA6-8DE3-19F0F6AB9A19),
+		helpstring("FUMApp Class")
+	]
+	coclass FUMApp
+	{
+		[default] interface IFUMApp;
+	};
+	[
+		uuid(545E2BA5-C2EE-4680-8FDD-234C282360EE),
+		helpstring("FUMApplication Class")
+	]
+	coclass FUMApplication
+	{
+		[default] interface IFUMApplication;
+	};
+};
+
+	

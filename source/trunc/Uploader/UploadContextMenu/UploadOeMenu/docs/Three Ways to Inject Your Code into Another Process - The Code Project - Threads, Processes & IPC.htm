@@ -1,0 +1,1192 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Three Ways to Inject Your Code into Another Process - The Code Project - Threads, Processes &amp; IPC</title>
+<base target="_top" />
+<meta http-equiv="Reply-to" content="mailto:webmaster@codeproject.com" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="MS.LOCALE"          content="en-US" />
+<meta name="Description"        content="How to inject code into another processes address space, and then execute it in the context of this process." />
+<meta name="Search.TopicType"   content="kbArticle" />
+<meta name="Author"             content="Robert Kuster" />
+<meta name="Search.PublishDate" content="24 Jul 2003 14:00:00 GMT" />
+<meta name="Search.RevisedDate" content="20 Aug 2003 14:00:00 GMT" />
+
+<meta NAME="keywords" Content="Free source code, , Visual C++, MFC, Windows, Code Injection, Windows Hooks, Remote Threads">
+<meta name="Copyright" content="Article content copyright Robert Kuster, 2003, everthing else Copyright © CodeProject, 1999-2006, All Rights Reserved." />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All topics" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=1" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - MFC / C++" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=2" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=3" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - ASP.NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=4" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - .NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=5" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - VB.NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=6" />
+<link rel="search" type="application/opensearchdescription+xml" title="The Code Project" href="http://www.codeproject.com/info/OpenSearch.xml">
+<link rel="icon" href="/favicon.ico" type="image/ico" />
+<link rel="SHORTCUT ICON" href="/favicon.ico" />
+<link rel="stylesheet" type=text/css href="/styles/global.css">
+
+<script language="javascript" src="/script/oncopy.js"></script>
+<script language="javascript">
+if (top != self) top.location.href = location.href;
+if (typeof(DemoUrl) != "undefined")
+	document.write('<me' + 'ta http' + '-equiv="re' + 'fresh" con' + 'tent="1;url=' + DemoUrl + '">');
+</script>
+
+</head>
+<body text="black" bgcolor="white" alink="red" link="blue" vlink="navy" style="margin: 0" 
+      oncopy="return copyCode();">
+
+<!-- BEGIN I/PRO PAGE TAG - COPYRIGHT 2006 I/PRO Corporation ALL RIGHTS RESERVED. --> 
+<script language="JavaScript"> 
+var LSPT=""; 
+LSPT += "?durl=" + escape(document.URL); 
+LSPT += "&hostname=" + location.hostname; 
+LSPT += "&url=" + location.pathname; 
+LSPT += "&query=" + escape(location.search) + escape(location.hash); 
+LSPT += "&referrer=" + escape(document.referrer); 
+LSPT += "&browser=" + escape(navigator.appName); 
+LSPT += "&version=" + escape(navigator.appVersion); 
+LSPT += "&os=" + escape(navigator.platform); 
+LSPT += "&xdomain=codeproject.com"; 
+LSPT += "&custid=codeproject"; 
+</script> 
+<script Language="Javascript"> 
+document.write('<img src=http://'+'content.ipro.com/images/pixel.gif'+LSPT+' height="1" width="1" style="position:absolute;top:0px;left:0px">'); 
+</script> 
+<noscript> 
+<img src="http://content.ipro.com/images/pixel.gif?version=nonjava&xdomain=codeproject.com" height="1" width="1" style="position:absolute;top:0px;left:0px"> 
+</noscript> 
+<!-- END I/PRO PAGE TAG -->
+
+
+<table border="0" cellPadding="0" cellSpacing="0" width="100%">
+
+<tr>
+	<td class="HeaderLogo"><a href="/"><img alt="Home" border="0" height="90" src="/images/standard/codeproject225x90.gif" /></a></td>
+	<td class="HeaderBanner"><span id=AdBanner4><script language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=2690&way=ban\" target=_blank><img src=\"/script/ann/ServeImg.aspx?File=%2Fscript%2Fadmentor%2Fimages%2FWholeTomato%5FRefRename%5F728x90%2Egif&C=False&id=2690&cb=4782078\" alt=\"The intellisense upgrade for Visual Studio .NET - make your IDE as smart as you.\" border=0 width=728 height=90></a>");</script></span></td>
+</tr>
+<tr><td colspan="2">
+<table cellpadding="5" cellspacing="0" width="100%" class="MemberNavBar" border=0>
+<tr valign="middle">
+
+<td class="smallText" style="font-weight:bold">3,709,887 members and growing! &nbsp;
+6,270 now online.
+</td>
+
+
+<td align="right" class="userNavText">
+
+
+
+<a href='/script/profile/whos_who.asp?id=804084'>
+_dd__aa_cc_
+</a> |
+<a href="/script/profile/modify.asp?ct=/threads/winspy.asp"><b>My Settings</b></a> |
+<a href="/script/profile/bookmark_list.asp">My Bookmarks</a> |
+<a href="/script/articles/list_articles.asp?userid=804084">My Articles</a> |
+
+<a href="/script/profile/logoff.asp?ct=/threads/winspy.asp">Sign out</a>
+
+
+</td>
+</tr>
+</table></td></tr>
+<tr><td colspan="2">
+<table cellpadding="0" cellspacing="0" class="SiteNavBar" id="tblSiteToolbar">
+<tr>
+<td><a href="/">Home</a></td>
+<td  nowrap><a href="/index.asp?cat=2" >MFC/C++</a></td>
+<td ><a href="/index.asp?cat=3">C#</a></td>
+<td  nowrap><a href="/index.asp?cat=4" >ASP.NET</a></td>
+<td ><a href="/index.asp?cat=5">.NET</a></td>
+<td  nowrap><a href="/index.asp?cat=6">VB.NET</a></td>
+<td class="SelCat" nowrap><a href="/index.asp?cat=1">All Topics</a></td>
+<td width="100%">&nbsp;</td>
+<td>
+	<div id='MenuPos' style='position: relative; width: 380; height: 22;top:1'>
+	<table id="MPH" width="380" cellpadding="0" cellspacing="0" style="border-width:0;height:20">
+	<tr valign="middle">
+		<td nowrap style="border-width:0"><a href='/info/faq.asp'>Help!</a></td>
+		<td nowrap style="border-width:0"><a href='/info/latest.asp'>Articles</a></td>
+		<td nowrap style="border-width:0"><a href='/script/comments/forums.asp'>Message Boards</a></td>
+		<td nowrap style="border-width:0"><a href='/store/'>StoreFront</a></td>
+		<td nowrap style="border-width:0"><a href='/lounge.asp'>Lounge</a></td>
+	</tr>
+	</table>
+	</div>
+</td>
+</tr>
+</table>
+<script type='text/javascript'>function Go(){return}</script>
+<script type='text/javascript' src='/script/HVMenu/cpmenu_var.js'></script>
+<script type='text/javascript' src='/script/HVMenu/menu10_com.js'></script>
+<script type="text/javascript">
+var MPH = document.getElementById("MPH");
+if (MPH) MPH.style.display='none';
+</script>
+</td></tr>
+
+
+<tr><td colspan="2">
+
+	<table cellpadding="3" cellspacing="0" width="100%" class="ArticleHeader">
+	<tr valign="top">
+		<td class="smallText" style="padding-right:10;"><a href='/?cat=1'>All Topics</a>, <a href='/?cat=2'>MFC / C++</a> &gt;&gt; <a href='/threads/'>Threads, Processes &amp; IPC</a> &gt;&gt; <a href='/threads/#Processes'>Processes</a><br />
+			
+			<br />
+			<div style="font-weight:bold;font-size:16pt">Three Ways to Inject Your Code into Another Process</div>
+			<b>By <a href="/script/Articles/list_articles.asp?userid=136330">Robert Kuster</a></b>.
+			
+			<br /><br /><div style="font-size:12px">How to inject code into another processes address space, and then execute it in the context of this process.</div>
+		</td>
+		<td class="smallText" style="width:200;">
+			C++ (VC6)<br> Windows (Win2K, Win2003, WinXP, NT4)<br> MFC, Win32, VS<br> Dev<br />
+			<span style="padding-right:2ex">Posted</span>: <b>25 Jul 2003</b><br />
+			
+			<span style="padding-right:0.3ex">Updated</span>: <b>21 Aug 2003</b><br />
+			<span style="padding-right:3ex">Views</span>: <b>747,352</b>
+		</td>
+	</tr>
+	
+	
+
+	</td></tr>
+</td></tr>
+
+</table>
+<table cellspacing="0" cellpadding="0" border="0">
+<tr valign="top">
+
+	
+	<td rowspan="2" class="LHNavBar">
+	
+	<!-- Yes, there are IE hacks that will allow us to create a min-width DIV 
+	     (eg http://www.webreference.com/programming/min-width/) but I couldn't
+	     be arsed. Wait for it in v2.0 -->
+	
+	<div class="FeatureBlockHeader">Announcements</div>
+<div class="FeatureBlockContent RHFeatureBar">
+
+<div style="padding-top:5"><img src="/Feature/Vista/vista20.gif" width="20" height="20" alt="Vista" style="float:left;padding-right:10" />
+<a href="/redir.aspx?id=2666">Vista API competition<br />$10,000 in  prizes</a></div>
+
+<div style="padding-top:5"><img src="/Feature/Gadgets/gadgets20.gif" width="20" height="20" alt="Vista" style="float:left;padding-right:10" />
+<a href="/redir.aspx?id=2848">Vista Gadget comp: $2,000 in prizes</a></div>
+
+<div style="padding-top:5"><img src="/script/images/prize_winner_sm.gif" width="10"  height="20" 
+alt="Comp" style="float:left;padding-right:10;margin-left:7;margin-right:10;" /><a href='/script/competitions/monthly/'>Monthly Competition</a></div>
+
+</div>	<center>
+<script language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=2780&way=ban\" target=_blank><img src=\"/script/ann/ServeImg.aspx?File=%2Fscript%2Fadmentor%2Fimages%2FMainsoft%5FGHQ3%5F160x600v2%2Egif&C=False&id=2780&cb=4782086\" alt=\"Code .NET / Build Java / Run Linux\" border=0 width=160 height=600></a>");</script>
+</center>
+<br /><br />
+
+	
+	<img src="/script/images/t.gif" height="1" width="160" />
+	
+	</td>
+	
+
+	<td width="100%">
+
+		<table class="SearchHeaderBar" cellspacing="0" width="100%">
+<tr>
+<td valign="middle" align="right" nowrap="nowrap" width="60%">
+
+	<form method="post" action="/info/search.asp" name="Search" style="margin:0;">
+	<b>Search &nbsp;</b><input class="smallText" name="target" style="width:200;" />
+	<select style="font-weight:bold;font-size:8pt" name="st">
+		<option value="kw">Articles</option>
+		<option value="au">Authors</option>
+	</select>
+	<input type="submit" style="font-weight:bold;font-size:8pt" value=" Go! " /> &nbsp;
+	</form>
+</td>
+
+<td class="tinyText" nowrap="nowrap">
+<a href="/info/search.asp">Advanced Search</a><br />
+<a href="/script/articles/sections.asp">Sitemap</a> 
+
+ | <a Href="#" title="Add The Code Project to your IE search Providers" onClick="window.external.AddSearchProvider(&quot;http://www.codeproject.com/info/OpenSearch.xml&quot;);">Add to IE Search</a>
+
+
+</td>
+</tr>
+</table>
+		
+		<table width="100%">
+		<tr valign="top">
+		<td nowrap class="SmallText"><img align=absmiddle src="/images/prize_winner.gif"> &nbsp;<b>Prize winner: July, 2003</b><br><table><tr><td nowrap class=smallText><img align=absmiddle src='/images/print.gif'> <a href='/threads/winspy.asp?print=true' target=_print>Print</a></td><td nowrap class=smallText><img align=absmiddle src='/script/images/sitebuild_icon.gif'><a href="/script/submit/ReportProblem.asp?GUID=winspy%2Fthreads7%2F25%2F2003">Broken Article?</a></td><td nowrap class=smallText><img align=absmiddle src='/images/link.gif'><a href="/script/profile/add_bookmark.asp?t=0&ct=%2Fthreads%2Fwinspy%2Easp&guid=winspy%2Fthreads7%2F25%2F2003">Bookmark</a></td><td nowrap class=smallText><img align=absmiddle src='/images/mail_small.gif'> <a href='#__comments'>Discuss</a></td><td nowrap class=smallText><img align=absmiddle src='/images/mail.gif'> <a href="/script/recommend/form.asp?guid=winspy%2Fthreads7%2F25%2F2003">Send to a friend</a></td></tr></table>
+		</td>
+		<td align="right" nowrap><a name="__top"></a><table><tr><td align=right class=smallText>449 votes  for this article.</td><td>
+<table border="2" cellpadding="0" cellspacing="0"><tr>
+<td><img src='/script/images/red.gif' width='20' height='5' border='0'></td>
+<td><img src='/script/images/red.gif' width='20' height='5' border='0'></td>
+<td><img src='/script/images/red.gif' width='20' height='5' border='0'></td>
+<td><img src='/script/images/red.gif' width='20' height='5' border='0'></td>
+<td><img src='/script/images/red.gif' width='15' height='5' border='0'><img src='/script/images/white.gif' width='5' height='5' border='0'></td>
+</tr></table>
+</td></tr><tr><td colspan=2 align=right class=smallText><a href='/script/articles/top_articles.asp?st=2' title='Calculated as rating x Log10(# votes)'>Popularity: 12.55</a>. Rating: <b>4.73</b> out of 5.</td></tr></table></td></tr>
+		</table>
+		
+			
+	</td>
+</tr>
+
+<tr>
+	<td class="ArticlePane">
+
+<span id="intelliTXT">
+<div id="contentdiv">
+
+
+<!-- Article Starts -->
+
+
+<UL class=download>
+<LI><A href="winspy/winspy_package.zip">Download entire package - 180 Kb</A> 
+<LI><A href="winspy/winspy_app.zip">Download WinSpy - 20 Kb</A> (demo application) </LI></UL><!-------------------------------     STEP 3      ---------------------------><!--  Add the article text. Please use simple formatting (<h2>, <p> etc)   -->
+<H2>Contents</H2>
+<UL>
+<LI><A href="#introduction">Introduction</A> 
+<LI><A href="#section_1">Windows Hooks</A> 
+<LI><A href="#section_2">The CreateRemoteThread &amp; LoadLibrary Technique</A> 
+<UL>
+<LI><A href="#section_2_ipc">Interprocess Communications</A></LI></UL>
+<LI><A href="#section_3">The CreateRemoteThread &amp; WriteProcessMemory Technique</A> 
+<UL>
+<LI><A href="#section_3_1">How to Subclass a Remote Control With this Technique</A> 
+<LI><A href="#section_3_2">When to Use this Technique</A></LI></UL>
+<LI><A href="#fine">Some Final Words</A> 
+<LI><A href="#appendixes">Appendixes</A> 
+<LI><A href="#references">References</A> 
+<LI><A href="#history">Article History</A> </LI></UL><A name=introduction>
+<H2>Introduction</H2></A>
+<P><IMG height=320 alt=" WinSpy " src="winspy/winspy1.gif" width=600></P>
+<P>Several password spy tutorials have been posted to The Code Project, but all of them rely on Windows hooks. Is there any other way to make such a utility? Yes, there is. But first, let me review the problem briefly, just to make sure we're all on the same page.</P>
+<P>To "read" the contents of any control - either belonging to your application or not - you generally send the <CODE>WM_GETTEXT</CODE> message to it. This also applies to edit controls, except in one special case. If the edit control belongs to another process and the <CODE>ES_PASSWORD</CODE> style is set, this approach fails. Only the process that "owns" the password control can get its contents via <CODE>WM_GETTEXT</CODE>. So, our problem reduces to the following: How to get</P><PRE>::SendMessage( hPwdEdit, WM_GETTEXT, nMaxChars, psBuffer );</PRE>
+<P>executed in the address space of another process.</P>
+<P>In general, there are three possibilities to solve this problem:</P>
+<OL>
+<LI>Put your code into a DLL; then, map the DLL to the remote process via <A href="#section_1">windows hooks</A>. 
+<LI>Put your code into a DLL and map the DLL to the remote process using the <A href="#section_2">CreateRemoteThread &amp; LoadLibrary</A> technique. 
+<LI>Instead of writing a separate DLL, copy your code to the remote process directly - via <CODE>WriteProcessMemory</CODE> - and start its execution with <CODE>CreateRemoteThread</CODE>. A detailed description of this technique can be found <A href="#section_3">here</A>. </LI></OL><A name=section_1>
+<H2>I. Windows Hooks</H2></A>
+<H3><B>Demo applications</B>: <B>HookSpy</B> and <B>HookInjEx</B> </H3>
+<P>The primary role of windows hooks is to monitor the message traffic of some thread. In general there are:</P>
+<OL>
+<LI><B>Local hooks</B>, where you monitor the message traffic of any thread belonging to your process. 
+<LI><B>Remote hooks</B>, which can be: 
+<OL type=a>
+<LI><B>thread-specific</B>, to monitor the message traffic of a thread belonging to another process; 
+<LI><B>system-wide</B>, to monitor the message traffic for all threads currently running on the system.</LI></OL></LI></OL>
+<P>If the hooked thread belongs to another process (cases 2a &amp; 2b), your hook procedure must reside in a dynamic-link library (DLL). The system then maps the DLL containing the hook procedure into the address space of the hooked thread. Windows will map the entire DLL, not just the hook procedure. That is why Windows hooks can be used to inject code into another process's address space.</P>
+<P>While I won't discuss hooks in this article further (take a look at the <CODE>SetWindowHookEx</CODE> API in <A href="http://msdn.microsoft.com/">MSDN</A> for more details), let me give you two more hints that you won't find in the documentation, but might still be useful:</P>
+<OL>
+<LI>After a successful call to <CODE>SetWindowsHookEx</CODE>, the system maps the DLL into the address space of the hooked thread automatically, but not necessary immediately. Because windows hooks are all about messages, the DLL isn't really mapped until an adequate event happens. For example: 
+<BLOCKQUOTE>If you install a hook that monitors all nonqueued messages of some thread (<CODE>WH_CALLWNDPROC</CODE>), the DLL won't be mapped into the remote process until a message is actually sent to (some window of) the hooked thread. In other words, if <CODE>UnhookWindowsHookEx</CODE> is called before a message was sent to the hooked thread, the DLL will never be mapped into the remote process (although the call to <CODE>SetWindowsHookEx</CODE> itself succeeded). To force an immediate mapping, send an appropriate event to the concerned thread right after the call to <CODE>SetWindowsHookEx</CODE>. </BLOCKQUOTE>
+<P>The same is true for unmapping the DLL after calling <CODE>UnhookWindowsHookEx</CODE>. The DLL isn't really unmapped until an adequate event happens.<BR></P>
+<LI>When you install hooks, they can affect the overall system performance (especially system-wide hooks). However, you can easily overcome this shortcoming if you use thread-specific hooks solely as a DLL mapping mechanism, and not to trap messages. Consider the following code snippet: <PRE>BOOL APIENTRY DllMain( HANDLE hModule,
+                       DWORD  ul_reason_for_call,
+                       LPVOID lpReserved )
+{
+    <span class='cpp-keyword'>if</span>( ul_reason_for_call == DLL_PROCESS_ATTACH )
+    {
+        <span class='cpp-comment'>// Increase reference count via LoadLibrary</span>
+        <span class='cpp-keyword'>char</span> lib_name[MAX_PATH]; 
+        ::GetModuleFileName( hModule, lib_name, MAX_PATH );
+        <B>::LoadLibrary</B>( lib_name );
+
+        <span class='cpp-comment'>// Safely remove hook</span>
+        ::UnhookWindowsHookEx( g_hHook );
+    }    
+    <span class='cpp-keyword'>return</span> TRUE;
+}
+</PRE>
+<P>So, what happens? First we map the DLL to the remote process via Windows hooks. Then, right after the DLL has actually been mapped, we unhook it. Normally, the DLL would be unmapped now, too, as soon as the first message to the hooked thread would arrive. The dodgy thing is we prevent this unmapping by increasing the DLLs reference count via <CODE>LoadLibrary</CODE>.</P>
+<P>The question that remains is: How to unload the DLL now, once we are finished? <CODE>UnhookWindowsHookEx</CODE> won't do it because we unhooked the thread already. You could do it this way:</P>
+<UL>
+<LI>Install another hook, just before you want to unmap the DLL; 
+<LI>Send a "special" message to the remote thread; 
+<LI>Catch this message in your hook procedure; in response, call <CODE>FreeLibrary &amp; UnhookWindowsHookEx</CODE>. </LI></UL>
+<P>Now, hooks are used only while mapping/unmapping the DLL to/from the remote process; there is no influence on the performance of the "hooked" thread in the meantime. Put anohter way: We get a DLL mapping mechanism that doesn't interfere the target process more than the <CODE>LoadLibrary</CODE> technique discussed below does (see <A href="#section_2">Section II.</A>). However, opposed to the <CODE>LoadLibrary</CODE> technique, this solution works on both: WinNT and Win9x.</P>
+<P>But, when should one use this trick? Always when the DLL has to be present in the remote process for a longer period of time (i.e. if you subclass a control belonging to another process) and you want to interfere the target process as little as possible. I didn't use it in HookSpy because the DLL there is injected just for a moment - just long enough to get the password. I rather provided another example - HookInjEx - to demonstrate it. HookInjEx maps/unmaps a DLL into "explorer.exe", where it subclasses the Start button. More precisely: It swaps the left and right mouse clicks for the Start button.</P></LI></OL>
+<P>You will find HookSpy and HookInjEx as well as their sources in the download package <A href="#__top">at the beginning</A> of the article.</P><A name=section_2>
+<H2>II. The CreateRemoteThread &amp; LoadLibrary Technique</H2></A>
+<H3><B>Demo application: LibSpy</B> </H3>
+<P>In general, any process can load a DLL dynamically by using the <CODE>LoadLibrary</CODE> API. But, how do we force an external process to call this function? The answer is <CODE>CreateRemoteThread</CODE>. 
+<P>Let's take a look at the declaration of the <CODE>LoadLibrary</CODE> and <CODE>FreeLibrary</CODE> APIs first:</P><PRE><B>HINSTANCE LoadLibrary(</B>
+  <B>LPCTSTR</B> lpLibFileName   <span class='cpp-comment'>// address of filename of library module</span>
+<B>);</B>
+
+<B>BOOL FreeLibrary(</B>
+  <B>HMODULE</B> hLibModule      <span class='cpp-comment'>// handle to loaded library module</span>
+<B>);</B>
+</PRE>
+<P>Now, compare them with the declaration of <CODE>ThreadProc</CODE> - the thread routine - passed to <CODE>CreateRemoteThread</CODE>: <PRE><B>DWORD WINAPI ThreadProc(</B>
+  <B>LPVOID</B> lpParameter   <span class='cpp-comment'>// thread data</span>
+<B>);</B>
+</PRE>
+<P>As you can see, all functions use the same calling convention and all accept a 32-bit parameter. Also, the size of the returned value is the same. In other words: We may pass a pointer to <CODE>LoadLibrary/FreeLibrary</CODE> as the thread routine to <CODE>CreateRemoteThread</CODE>.</P>
+<P>However, there are two problems (see the description for <CODE>CreateRemoteThread</CODE> <A href="#rem_thread">below</A>):</P>
+<OL>
+<LI>The <CODE>lpStartAddress</CODE> parameter in <CODE>CreateRemoteThread</CODE> must represent the starting address of the thread routine in the remote process. 
+<LI>If <CODE>lpParameter</CODE> - the parameter passed to <CODE>ThreadFunc</CODE> - is interpreted as an ordinary 32-bit value (<CODE>FreeLibrary</CODE> interprets it as an <CODE>HMODULE</CODE>), everything is fine. However, if <CODE>lpParameter</CODE> is interpreted as a pointer (<CODE>LoadLibraryA</CODE> interprets it as a pointer to a <CODE><span class='cpp-keyword'>char</span></CODE> string), it must point to some data in the remote process. </LI></OL>
+<P>The first problem is actually solved by itself. Both <CODE>LoadLibrary</CODE> and <CODE>FreeLibray</CODE> are functions residing in <I>kernel32.dll</I>. Because <I>kernel32</I> is guaranteed to be present and at the same load address in every "normal" process (see <A href="#Appendix_A">Appendix A</A>), the address of <CODE>LoadLibrary/FreeLibray</CODE> is the same in every process too. This ensures that a valid pointer is passed to the remote process.</P>
+<P>The second problem is also easy to solve: Simply copy the DLL module name (needed by <CODE>LoadLibrary</CODE>) to the remote process via <CODE>WriteProcessMemory</CODE>.</P>
+<P>So, to use the <CODE>CreateRemoteThread</CODE> &amp; <CODE>LoadLibrary technique</CODE>, follow these steps:</P>
+<OL>
+<LI>Retrieve a <CODE>HANDLE</CODE> to the remote process (<CODE>OpenProcess</CODE>). 
+<LI>Allocate memory for the DLL name in the remote process (<CODE>VirtualAllocEx</CODE>). 
+<LI>Write the DLL name, including full path, to the allocated memory (<CODE>WriteProcessMemory</CODE>). 
+<LI>Map your DLL to the remote process via <CODE>CreateRemoteThread &amp; LoadLibrary</CODE>. 
+<LI>Wait until the remote thread terminates (<CODE>WaitForSingleObject</CODE>); this is until the call to <CODE>LoadLibrary</CODE> returns. Put another way, the thread will terminate as soon as our <CODE>DllMain</CODE> (called with reason <CODE>DLL_PROCESS_ATTACH</CODE>) returns. 
+<LI>Retrieve the exit code of the remote thread (<CODE>GetExitCodeThread</CODE>). Note that this is the value returned by <CODE>LoadLibrary</CODE>, thus the base address (<CODE>HMODULE</CODE>) of our mapped DLL. 
+<LI>Free the memory allocated in Step #2 (<CODE>VirtualFreeEx</CODE>). 
+<LI>Unload the DLL from the remote process via <CODE>CreateRemoteThread &amp; FreeLibrary</CODE>. Pass the <CODE>HMODULE</CODE> handle retreived in Step #6 to <CODE>FreeLibrary</CODE> (via <CODE>lpParameter</CODE> in <CODE>CreateRemoteThread</CODE>). <BR>Note: If your injected DLL spawns any new threads, be sure they are all terminated before unloading it. 
+<LI>Wait until the thread terminates (<CODE>WaitForSingleObject</CODE>). </LI></OL>
+<P>Also, don't forget to close all the handles once you are finished: To both threads, created in Steps #4 and #8; and the handle to the remote process, retrieved in Step #1.</P>
+<P>Let's examine some parts of LibSpy's sources now, to see how the above steps are implemented in reality. For the sake of simplicity, error handling and unicode support are removed. <PRE>HANDLE hThread;
+<span class='cpp-keyword'>char</span>    szLibPath[_MAX_PATH];  <span class='cpp-comment'>// The name of our "LibSpy.dll" module</span>
+                               <span class='cpp-comment'>// (including full path!);</span>
+<span class='cpp-keyword'>void</span>*   <B>pLibRemote</B>;   <span class='cpp-comment'>// The address (in the remote process) where </span>
+                      <span class='cpp-comment'>// szLibPath will be copied to;</span>
+DWORD   hLibModule;   <span class='cpp-comment'>// Base address of loaded module (==HMODULE);</span>
+HMODULE hKernel32 = ::GetModuleHandle(<span class='cpp-string'>"Kernel32"</span>);
+
+<span class='cpp-comment'>// initialize szLibPath</span>
+<span class='cpp-comment'>//...</span>
+
+<span class='cpp-comment'>// 1. Allocate memory in the remote process for szLibPath</span>
+<span class='cpp-comment'>// 2. Write szLibPath to the allocated memory</span>
+<B>pLibRemote</B> = ::VirtualAllocEx( hProcess, NULL, <span class='cpp-keyword'>sizeof</span>(szLibPath),
+                               MEM_COMMIT, PAGE_READWRITE );
+::WriteProcessMemory( hProcess, <B>pLibRemote</B>, (<span class='cpp-keyword'>void</span>*)szLibPath,
+                      <span class='cpp-keyword'>sizeof</span>(szLibPath), NULL );
+
+
+<span class='cpp-comment'>// Load "LibSpy.dll" into the remote process</span>
+<span class='cpp-comment'>// (via CreateRemoteThread &amp; LoadLibrary)</span>
+hThread = ::CreateRemoteThread( hProcess, NULL, <span class='cpp-literal'>0</span>,
+            (LPTHREAD_START_ROUTINE) ::GetProcAddress( hKernel32,
+                                       <span class='cpp-string'>"LoadLibraryA"</span> ),
+             <B>pLibRemote</B>, <span class='cpp-literal'>0</span>, NULL );
+::WaitForSingleObject( hThread, INFINITE );
+
+<span class='cpp-comment'>// Get handle of the loaded module</span>
+::GetExitCodeThread( hThread, &amp;hLibModule );
+
+<span class='cpp-comment'>// Clean up</span>
+::CloseHandle( hThread );
+::VirtualFreeEx( hProcess, pLibRemote, <span class='cpp-keyword'>sizeof</span>(szLibPath), MEM_RELEASE );</PRE>
+<P>Assume our <CODE>SendMessage</CODE> - the code that we actually wanted to inject - was placed in <CODE>DllMain</CODE> (<CODE>DLL_PROCESS_ATTACH</CODE>), so it has already been executed by now. Then, it is time to unload the DLL from the target process: </P><PRE><span class='cpp-comment'>// Unload "LibSpy.dll" from the target process</span>
+<span class='cpp-comment'>// (via CreateRemoteThread &amp; FreeLibrary)</span>
+hThread = ::CreateRemoteThread( hProcess, NULL, <span class='cpp-literal'>0</span>,
+            (LPTHREAD_START_ROUTINE) ::GetProcAddress( hKernel32,
+                                       <span class='cpp-string'>"FreeLibrary"</span> ),
+            (<span class='cpp-keyword'>void</span>*)hLibModule, <span class='cpp-literal'>0</span>, NULL );
+::WaitForSingleObject( hThread, INFINITE );
+
+<span class='cpp-comment'>// Clean up</span>
+::CloseHandle( hThread );
+</PRE><A name=section_2_ipc>
+<H3>Interprocess Communications</H3></A>
+<P>Until now, we only talked about how to inject the DLL to the remote process. However, in most situations the injected DLL will need to communicate with your original application in some way (recall that the DLL is mapped into some remote process now, not to our local application!). Take our Password Spy: The DLL has to know the handle to the control that actually contains the password. Obviously, this value can't be hardcoded into it at compile time. Similarly, once the DLL gets the password, it has to send it back to our application so we can display it appropriately.</P>
+<P>Fortunately, there are many ways to deal with this situation: File Mapping, <CODE>WM_COPYDATA</CODE>, the Clipboard, and the sometimes very handy <CODE><span class='cpp-preprocessor'>#pragma data_seg</span></CODE>, to name just a few. I won't describe these techniques here because they are all well documented either in MSDN (see Interprocess Communications) or in other tutorials. Anyway, I used solely the <CODE><span class='cpp-preprocessor'>#pragma data_seg</span></CODE> in the LibSpy example.</P>
+<P>You will find LibSpy and its sources in the download package <A href="#__top">at the beginning</A> of the article.</P><A name=section_3>
+<H2>III. The CreateRemoteThread &amp; WriteProcessMemory Technique</H2></A>
+<H3><B>Demo application:</B> <B>WinSpy</B> </H3>
+<P>Another way to copy some code to another process's address space and then execute it in the context of this process involves the use of remote threads and the <CODE>WriteProcessMemory</CODE> API. Instead of writing a separate DLL, you copy the code to the remote process directly now - via <CODE>WriteProcessMemory</CODE> - and start its execution with <CODE>CreateRemoteThread</CODE>.</P>
+<P><A name=rem_thread>Let's</A> take a look at the declaration of <CODE>CreateRemoteThread</CODE> first:</P><PRE><B>HANDLE CreateRemoteThread(</B>
+  <B>HANDLE</B> hProcess<I>,</I>        <span class='cpp-comment'>// handle to process to create thread in</span>
+  <B>LPSECURITY_ATTRIBUTES</B> lpThreadAttributes<I>,</I>  <span class='cpp-comment'>// pointer to security</span>
+                                             <span class='cpp-comment'>// attributes</span>
+  <B>DWORD</B> dwStackSize<I>,</I>      <span class='cpp-comment'>// initial thread stack size, in bytes</span>
+  <B>LPTHREAD_START_ROUTINE</B> lpStartAddress<I>,</I>     <span class='cpp-comment'>// pointer to thread</span>
+                                             <span class='cpp-comment'>// function</span>
+  <B>LPVOID</B> lpParameter<I>,</I>     <span class='cpp-comment'>// argument for new thread</span>
+  <B>DWORD</B> dwCreationFlags<I>,</I>  <span class='cpp-comment'>// creation flags</span>
+  <B>LPDWORD</B> lpThreadId      <span class='cpp-comment'>// pointer to returned thread identifier</span>
+<B>);</B>
+</PRE>
+<P>If you compare it to the declaration of <CODE>CreateThread</CODE> (MSDN), you will notice the following differences:</P>
+<UL>
+<LI>The <CODE>hProcess</CODE> parameter is additional in <CODE>CreateRemoteThread</CODE>. It is the handle to the process in which the thread is to be created. 
+<LI>The <CODE>lpStartAddress</CODE> parameter in <CODE>CreateRemoteThread</CODE> represents the starting address of the thread in the remote processes address space. The function must exist in the remote process, so we can't simply pass a pointer to the local <CODE>ThreadFunc</CODE>. We have to copy the code to the remote process first. 
+<LI>Similarly, the data pointed to by <CODE>lpParameter</CODE> must exist in the remote process, so we have to copy it there, too. </LI></UL>
+<P>Now, we can summarize this technique in the following steps:</P>
+<OL>
+<LI>Retrieve a <CODE>HANDLE</CODE> to the remote process (<CODE>OpenProces</CODE>). 
+<LI>Allocate memory in the remote process's address space for injected data (<CODE>VirtualAllocEx</CODE>). 
+<LI>Write a copy of the initialised <CODE>INJDATA</CODE> structure to the allocated memory (<CODE>WriteProcessMemory</CODE>). 
+<LI>Allocate memory in the remote process's address space for injected code. 
+<LI>Write a copy of <CODE>ThreadFunc</CODE> to the allocated memory. 
+<LI>Start the remote copy of <CODE>ThreadFunc</CODE> via <CODE>CreateRemoteThread</CODE>. 
+<LI>Wait until the remote thread terminates (<CODE>WaitForSingleObject</CODE>). 
+<LI>Retrieve the result from the remote process (<CODE>ReadProcessMemory</CODE> or <CODE>GetExitCodeThread</CODE>). 
+<LI>Free the memory allocated in Steps #2 and #4 (<CODE>VirtualFreeEx</CODE>). 
+<LI>Close the handles retrieved in Steps #6 and #1 (<CODE>CloseHandle</CODE>). </LI></OL><A name=rules>
+<P>Additional caveats that <CODE>ThreadFunc</CODE> has to obey: </A>
+<OL>
+<LI><CODE>ThreadFunc</CODE> should not call any functions besides those in <I>kernel32.dll</I> and <I>user32.dll</I>; only <I>kernel32</I> and <I>user32</I> are, if present (note that <I>user32</I> isn't mapped into every Win32 process!), guaranteed to be at the same load address in both the local and the target process (see <A href="#Appendix_A">Appendix A</A>). If you need functions from other libraries, pass the addresses of <CODE>LoadLibrary</CODE> and <CODE>GetProcAddress</CODE> to the injected code, and let it go and get the rest itself. You could also use <CODE>GetModuleHandle</CODE> instead of <CODE>LoadLibrary</CODE>, if for one or another reason the debatable DLL is already mapped into the target process.<BR>Similarly, if you want to call your own subroutines from within <CODE>ThreadFunc</CODE>, copy each routine to the remote process individually and supply their addresses to <CODE>ThreadFunc</CODE> via <CODE>INJDATA</CODE>. 
+<LI>Don't use any static strings. Rather pass all strings to <CODE>ThreadFunc</CODE> via <CODE>INJDATA</CODE>. <BR>Why? The compiler puts all static strings into the ".data" section of an executable and only references (=pointers) remain in the code. Then, the copy of <CODE>ThreadFunc</CODE> in the remote process would point to something that doesn't exist (at least not in its address space). 
+<LI>Remove the /GZ compiler switch; it is set by default in debug builds (see <A href="#Appendix_B">Appendix B</A>). 
+<LI>Either declare <CODE>ThreadFunc</CODE> and <CODE>AfterThreadFunc</CODE> as <CODE><span class='cpp-keyword'>static</span></CODE> or disable incremental linking (see <A href="#Appendix_C">Appendix C</A>). 
+<LI>There must be less than a page-worth (4 Kb) of local variables in <CODE>ThreadFunc</CODE> (see <A href="#Appendix_D">Appendix D</A>). Note that in debug builds some 10 bytes of the available 4 Kb are used for internal variables. 
+<LI>
+<P>If you have a <CODE><span class='cpp-keyword'>switch</span></CODE> block with more than three <CODE><span class='cpp-keyword'>case</span></CODE> statements, either split it up like this: <PRE><span class='cpp-keyword'>switch</span>( expression ) {
+    <span class='cpp-keyword'>case</span> constant1: statement1; goto END;
+    <span class='cpp-keyword'>case</span> constant2: statement2; goto END;
+    <span class='cpp-keyword'>case</span> constant3: statement2; goto END;
+}
+<span class='cpp-keyword'>switch</span>( expression ) {
+    <span class='cpp-keyword'>case</span> constant4: statement4; goto END;
+    <span class='cpp-keyword'>case</span> constant5: statement5; goto END;
+    <span class='cpp-keyword'>case</span> constant6: statement6; goto END;
+}
+END:
+</PRE>
+<P>or modify it into an <CODE><span class='cpp-keyword'>if</span>-<span class='cpp-keyword'>else</span> <span class='cpp-keyword'>if</span></CODE> sequence (see <A href="#Appendix_E">Appendix E</A>). </P></LI></OL>
+<P>You will almost certainly crash the target process if you don't play by those rules. Just remember: Don't assume anything in the target process is at the same address as it is in your process (see <A href="#Appendix_F">Appendix F</A>).</P>
+<H3>GetWindowTextRemote(A/W)</H3>
+<P>All the functionality you need to get the password from a "remote" edit control is encapsulated in <CODE>GetWindowTextRemot(A/W)</CODE>:</P><PRE><span class='cpp-keyword'>int</span> <B>GetWindowTextRemoteA</B>( HANDLE hProcess, HWND hWnd, <B>LPSTR</B>  lpString );
+<span class='cpp-keyword'>int</span> <B>GetWindowTextRemoteW</B>( HANDLE hProcess, HWND hWnd, <B>LPWSTR</B> lpString );
+</PRE>
+<H4>Parameters</H4>
+<DL>
+<DT>
+<P><CODE>hProcess</CODE> </P>
+<DD>Handle to the process the edit control belongs to. 
+<DT>
+<P><CODE>hWnd</CODE> </P>
+<DD>Handle to the edit control containing the password. 
+<DT>
+<P><CODE>lpString</CODE> </P>
+<DD>Pointer to the buffer that is to receive the text. </DD></DL>
+<H4>Return Value</H4>
+<P>The return value is the number of characters copied.</P>
+<P>Let's examine some parts of its sources now - especially the injected data and code - to see how <CODE>GetWindowTextRemote</CODE> works. Again, unicode support is removed for the sake of simplicity.</P>
+<H4>INJDATA</H4><PRE><span class='cpp-keyword'>typedef</span> LRESULT     (WINAPI *SENDMESSAGE)(HWND,UINT,WPARAM,LPARAM);
+
+<span class='cpp-keyword'>typedef</span> <span class='cpp-keyword'>struct</span> {    
+    HWND hwnd;                    <span class='cpp-comment'>// handle to edit control</span>
+    SENDMESSAGE  fnSendMessage;   <span class='cpp-comment'>// pointer to user32!SendMessageA</span>
+
+    <span class='cpp-keyword'>char</span> psText[<span class='cpp-literal'>128</span>];    <span class='cpp-comment'>// buffer that is to receive the password</span>
+} INJDATA;
+</PRE>
+<P><CODE>INJDATA</CODE> is the data structure being injected into the remote process. However, before doing so the structure's pointer to <CODE>SendMessageA</CODE> is initialised in our application. The dodgy thing here is that <I>user32.dll</I> is (if present!) always mapped to the same address in every process; thus, the address of <CODE>SendMessageA</CODE> is always the same, too. This ensures that a valid pointer is passed to the remote process.</P>
+<H4>ThreadFunc</H4><PRE><span class='cpp-keyword'>static</span> DWORD WINAPI ThreadFunc (INJDATA *pData) 
+{
+    pData-&gt;fnSendMessage( pData-&gt;hwnd, WM_GETTEXT,    <span class='cpp-comment'>// Get password</span>
+                          <span class='cpp-keyword'>sizeof</span>(pData-&gt;psText),
+                          (LPARAM)pData-&gt;psText );  
+    <span class='cpp-keyword'>return</span> <span class='cpp-literal'>0</span>;
+}
+
+<span class='cpp-comment'>// This function marks the memory address after ThreadFunc.</span>
+<span class='cpp-comment'>// int cbCodeSize = (PBYTE) AfterThreadFunc - (PBYTE) ThreadFunc.</span>
+<span class='cpp-keyword'>static</span> <span class='cpp-keyword'>void</span> AfterThreadFunc (<span class='cpp-keyword'>void</span>)
+{
+}
+</PRE>
+<P><CODE>ThradFunc</CODE> is the code executed by the remote thread. Point of interest:</P>
+<UL>
+<LI>Note how <CODE>AfterThreadFunc</CODE> is used to calculate the code size of <CODE>ThreadFunc</CODE>. In general this isn't the best idea, because the linker is free to change order of your functions (i.e. it could place <CODE>ThreadFunc</CODE> behind <CODE>AfterThreadFunc</CODE>). However, you can be pretty sure that in small projects, like our WinSpy is, the order of your functions will be preserved. If necessary, you could also use the /ORDER linker option to help you out; or yet better: Determine the size of <CODE>ThreadFunc</CODE> with a dissasembler. </LI></UL><A name=section_3_1>
+<H3>How to Subclass a Remote Control With this Technique</H3></A>
+<H3><B>Demo application:</B> <B>InjectEx</B> </H3>
+<P>Let's explain something more complicated now: How to subclass a control belonging to another process with this technique? 
+<P>First of all, note that you have to copy two functions to the remote process to accomplish this task: 
+<OL>
+<LI><CODE>ThreadFunc</CODE>, which actually subclasses the control in the remote process via <CODE>SetWindowLong</CODE>, and 
+<LI><CODE>NewProc</CODE>, the new window procedure of the subclassed control. </LI></OL>
+<P>However, the main problem is how to pass data to the remote <CODE>NewProc</CODE>. Because <CODE>NewProc</CODE> is a callback function and thus has to conform to specific guidelines, we can't simply pass a pointer to <CODE>INJDATA</CODE> to it as an argument. Fortunately, there are other ways to solve this problem (I found two), but all rely on the assembly language. So, when I tried to preserve the assembly for the appendixes until now, it won't go without it this time.</P>
+<H4>Solution 1</H4>
+<P>Observe the following picture:</P>
+<P><IMG height=267 alt="The virtual address space" src="winspy/winspy2.gif" width=438></P>
+<P>Note that <CODE>INJDATA</CODE> is placed immediately before <CODE>NewProc</CODE> in the remote process? This way <CODE>NewProc</CODE> knows the memory location of <CODE>INJDATA</CODE> in the remote processes address space at compile time. More precisely: It knows the address of <CODE>INJDATA</CODE> relative to its own location, but that's actually all we need. Now <CODE>NewProc</CODE> might look like this: <PRE><span class='cpp-keyword'>static</span> LRESULT CALLBACK NewProc(
+  HWND hwnd,       <span class='cpp-comment'>// handle to window</span>
+  UINT uMsg,       <span class='cpp-comment'>// message identifier</span>
+  WPARAM wParam,   <span class='cpp-comment'>// first message parameter</span>
+  LPARAM lParam )  <span class='cpp-comment'>// second message parameter</span>
+{
+    INJDATA* pData = (INJDATA*) NewProc;  <span class='cpp-comment'>// pData points to</span>
+                                          <span class='cpp-comment'>// NewProc;</span>
+    pData--;              <span class='cpp-comment'>// now pData points to INJDATA;</span>
+                          <span class='cpp-comment'>// recall that INJDATA in the remote </span>
+                          <span class='cpp-comment'>// process is immediately before NewProc;</span>
+
+    <span class='cpp-comment'>//-----------------------------</span>
+    <span class='cpp-comment'>// subclassing code goes here</span>
+    <span class='cpp-comment'>// ........</span>
+    <span class='cpp-comment'>//-----------------------------</span>
+
+    <span class='cpp-comment'>// call original window procedure;</span>
+    <span class='cpp-comment'>// fnOldProc (returned by SetWindowLong) was initialised</span>
+    <span class='cpp-comment'>// by (the remote) ThreadFunc and stored in (the remote) INJDATA;</span>
+    <span class='cpp-keyword'>return</span> pData-&gt;fnCallWindowProc( pData-&gt;fnOldProc, 
+                                    hwnd,uMsg,wParam,lParam );
+}
+</PRE>
+<P>However, there is still a problem. Observe the first line:</P><PRE>INJDATA* pData = (INJDATA*) NewProc;</PRE>
+<P>This way, a hardcoded value (the memory location of the original <CODE>NewProc</CODE> in our process) will be arranged to <CODE>pData</CODE>. That is not quite what we want: The memory location of the "current" copy of <CODE>NewProc</CODE> in the remote process, regardless of to what location it is (<CODE>NewProc</CODE>) actually moved. In other words, we would need some kind of a "this pointer."</P>
+<P>While there is no way to solve this in C/C++, it can be done with inline assembly. Consider the modified <CODE>NewProc</CODE>:</P><PRE><span class='cpp-keyword'>static</span> LRESULT CALLBACK NewProc(
+  HWND hwnd,      <span class='cpp-comment'>// handle to window</span>
+  UINT uMsg,      <span class='cpp-comment'>// message identifier</span>
+  WPARAM wParam,  <span class='cpp-comment'>// first message parameter</span>
+  LPARAM lParam ) <span class='cpp-comment'>// second message parameter</span>
+{
+    <span class='cpp-comment'>// calculate location of the INJDATA struct;</span>
+    <span class='cpp-comment'>// remember that INJDATA in the remote process</span>
+    <span class='cpp-comment'>// is placed right before NewProc;</span>
+    INJDATA* pData;
+    <span class='cpp-keyword'>_asm</span> {
+        call    dummy
+dummy:
+        pop     ecx         <span class='cpp-comment'>// &lt;- ECX contains the current EIP</span>
+        sub     ecx, <span class='cpp-literal'>9</span>      <span class='cpp-comment'>// &lt;- ECX contains the address of NewProc</span>
+        mov     pData, ecx
+    }
+    pData--;
+
+    <span class='cpp-comment'>//-----------------------------</span>
+    <span class='cpp-comment'>// subclassing code goes here</span>
+    <span class='cpp-comment'>// ........</span>
+    <span class='cpp-comment'>//-----------------------------</span>
+
+    <span class='cpp-comment'>// call original window procedure</span>
+    <span class='cpp-keyword'>return</span> pData-&gt;fnCallWindowProc( pData-&gt;fnOldProc, 
+                                    hwnd,uMsg,wParam,lParam );
+}
+</PRE>
+<P>So, what's going on? Virtually every processor has a special register that points to the memory location of the next instruction to be executed. That's the so-called instruction pointer, denoted EIP on 32-bit Intel and AMD processors. Because EIP is a special-purpose register, you can't access it programmatically as you can general purpose registers (EAX, EBX, etc). Put another way: There is no OpCode, with which you could address EIP and read or change its contents explicitly. However, EIP can still be changed (and is changed all the time) implicitly, by instructions such as <CODE>JMP</CODE>, <CODE>CALL</CODE> and <CODE>RET</CODE>. Let's, for example, explain how the subroutine <CODE>CALL/RET</CODE> mechanism works on 32-bit Intel and AMD processors:</P>
+<P>
+<BLOCKQUOTE>When you call a subroutine (via <CODE>CALL</CODE>), the address of the subroutine is loaded into EIP. But, even before EIP is modified, its old value is automatically pushed onto the stack (for use later as a return instruction-pointer). At the end of a subroutine, the <CODE>RET</CODE> instruction automatically pops the top of the stack into EIP. </BLOCKQUOTE>
+<P>Now you know how EIP is modified via <CODE>CALL</CODE> and <CODE>RET</CODE>, but how to get its current value? <BR>Well, remember that <CODE>CALL</CODE> pushes EIP onto the stack? So, in order to get its current value call a "dummy function" and pop the stack right thereafter. Let's explain the whole trick at our compiled <CODE>NewProc</CODE>: <PRE lang=asm><B> Address   OpCode/Params   Decoded instruction</B>
+--------------------------------------------------
+:<span class='cpp-literal'>004010</span><B><span class='cpp-literal'>00</span></B>  <span class='cpp-literal'>55</span>              <span class='cpp-keyword'>push</span> ebp            <span class='cpp-comment'>; entry point of</span>
+                                               <span class='cpp-comment'>; NewProc</span>
+:<span class='cpp-literal'>00401001</span>  8BEC            <span class='cpp-keyword'>mov</span> ebp, esp
+:<span class='cpp-literal'>00401003</span>  <span class='cpp-literal'>51</span>              <span class='cpp-keyword'>push</span> <span class='cpp-keyword'>ecx</span>
+:<span class='cpp-literal'>00401004</span>  E800000000      <span class='cpp-keyword'>call</span> <span class='cpp-literal'>00401009</span>       <span class='cpp-comment'>; *a*    call dummy</span>
+:<span class='cpp-literal'>004010</span><B><span class='cpp-literal'>09</span></B>  <span class='cpp-literal'>59</span>              <B><span class='cpp-keyword'>pop</span> <span class='cpp-keyword'>ecx</span></B>             <span class='cpp-comment'>; *b*</span>
+:0040100A  <span class='cpp-literal'>83E909</span>          <span class='cpp-keyword'>sub</span> <span class='cpp-keyword'>ecx</span>, <span class='cpp-literal'>00000009</span>   <span class='cpp-comment'>; *c*</span>
+:0040100D  894DFC          <span class='cpp-keyword'>mov</span> [ebp-<span class='cpp-literal'>04</span>], <span class='cpp-keyword'>ecx</span>   <span class='cpp-comment'>; mov pData, ECX</span>
+:<span class='cpp-literal'>00401010</span>  8B45FC          <span class='cpp-keyword'>mov</span> <span class='cpp-keyword'>eax</span>, [ebp-<span class='cpp-literal'>04</span>]
+:<span class='cpp-literal'>00401013</span>  <span class='cpp-literal'>83E814</span>          <span class='cpp-keyword'>sub</span> <span class='cpp-keyword'>eax</span>, <span class='cpp-literal'>00000014</span>   <span class='cpp-comment'>; pData--;</span>
+.....
+.....
+:0040102D  8BE5            <span class='cpp-keyword'>mov</span> esp, ebp
+:0040102F  5D              <span class='cpp-keyword'>pop</span> ebp
+:<span class='cpp-literal'>00401030</span>  C21000          <span class='cpp-keyword'>ret</span> <span class='cpp-literal'>0010</span>
+</PRE>
+<OL type=a>
+<LI>A dummy function call; it just jumps to the next instruction and pushes EIP onto the stack. 
+<LI>Pop the stack into ECX. ECX then holds EIP; this is exactly the address of the <CODE><span class='cpp-string'>"pop ECX"</span></CODE> instruction as well. 
+<LI>Note that the "distance" between the entry point of <CODE>NewProc</CODE> and the <CODE><span class='cpp-string'>"pop ECX"</span></CODE> instruction is 9 bytes; thus, to calculate the address of <CODE>NewProc</CODE>, subtract 9 from ECX. </LI></OL>
+<P>This way, <CODE>NewProc</CODE> can always calculate its own address, regardless of to what location it is actually moved! However, be aware that the distance between the entry point of <CODE>NewProc</CODE> and the <CODE><span class='cpp-string'>"pop ECX"</span></CODE> instruction might change as you change your compiler/linker options, and is thus different in release and debug builds, too. But, the point is that you still know the exact value at compile time:</P>
+<OL>
+<LI>First, compile your function. 
+<LI>Determine the correct distance with a disassembler. 
+<LI>Finally, recompile with the correct distance. </LI></OL>
+<P>That's the solution used in InjectEx. InjectEx, similarly as HookInjEx, swaps the left and right mouse clicks for the Start button.</P>
+<H4>Solution 2</H4>
+<P>Placing <CODE>INJDATA</CODE> right before <CODE>NewProc</CODE> in the remote processes address space isn't the only way to solve our problem. Consider the following variant of <CODE>NewProc</CODE>:</P><PRE><span class='cpp-keyword'>static</span> LRESULT CALLBACK NewProc(
+  HWND hwnd,      <span class='cpp-comment'>// handle to window</span>
+  UINT uMsg,      <span class='cpp-comment'>// message identifier</span>
+  WPARAM wParam,  <span class='cpp-comment'>// first message parameter</span>
+  LPARAM lParam ) <span class='cpp-comment'>// second message parameter</span>
+{
+    INJDATA* pData = <span class='cpp-literal'>0xA0B0C0D0</span>;    <span class='cpp-comment'>// a dummy value</span>
+
+    <span class='cpp-comment'>//-----------------------------</span>
+    <span class='cpp-comment'>// subclassing code goes here</span>
+    <span class='cpp-comment'>// ........</span>
+    <span class='cpp-comment'>//-----------------------------</span>
+
+    <span class='cpp-comment'>// call original window procedure</span>
+    <span class='cpp-keyword'>return</span> pData-&gt;fnCallWindowProc( pData-&gt;fnOldProc, 
+                                    hwnd,uMsg,wParam,lParam );
+}
+</PRE>
+<P>Here, <CODE><span class='cpp-literal'>0xA0B0C0D0</span></CODE> is just a placeholder for the real (absolute!) address of <CODE>INJDATA</CODE> in the remote processes address space. Recall that you can't know this address at compile time. However, you do know the location of <CODE>INJDATA</CODE> in the remote process right after the call to <CODE>VirtualAllocEx</CODE> (for <CODE>INJDATA</CODE>) is made. 
+<P>Our <CODE>NewProc</CODE> could compile into something like this:</P><PRE lang=asm><B> Address   OpCode/Params     Decoded instruction</B>
+--------------------------------------------------
+:<span class='cpp-literal'>00401000</span>  <span class='cpp-literal'>55</span>                <span class='cpp-keyword'>push</span> ebp
+:<span class='cpp-literal'>00401001</span>  8BEC              <span class='cpp-keyword'>mov</span> ebp, esp
+:<span class='cpp-literal'>00401003</span>  C745FC<B>D0C0B0A0</B>    <span class='cpp-keyword'>mov</span> [ebp-<span class='cpp-literal'>04</span>], <B>A0B0C0D0</B>
+:0040100A  ...
+....
+....
+:0040102D  8BE5              <span class='cpp-keyword'>mov</span> esp, ebp
+:0040102F  5D                <span class='cpp-keyword'>pop</span> ebp
+:<span class='cpp-literal'>00401030</span>  C21000            <span class='cpp-keyword'>ret</span> <span class='cpp-literal'>0010</span>
+</PRE>
+<P>Thus, its compiled code (in hexadecimal) would be: <CODE>558BECC745FC<B>D0C0B0A0</B>......8BE55DC21000</CODE>.</P>
+<P>Now, you would proceed as follows:</P>
+<OL>
+<LI>Copy <CODE>INJDATA</CODE>, <CODE>ThreadFunc</CODE> and <CODE>NewProc</CODE> to the target process. 
+<LI>Change the code of <CODE>NewProc</CODE>, so that <CODE>pData</CODE> holds the real address of <CODE>INJDATA</CODE>. <BR>For example, let's say the address of <CODE>INJDATA</CODE> (the value returned by <CODE>VirtualAllocEx</CODE>) in the target process is <CODE><span class='cpp-literal'>0x008a0000</span></CODE>. Then you modify the code of <CODE>NewProc</CODE> as follows: <BR><BR>
+<TABLE cellSpacing=0 cellPadding=0>
+<TBODY>
+<TR vAlign=top>
+<TD width=320><CODE>558BECC745FC<B>D0C0B0A0</B>......8BE55DC21000</CODE> </TD>
+<TD><CODE>&lt;-</CODE> original <CODE>NewProc</CODE> <B><SUP>1</SUP></B></TD></TR>
+<TR vAlign=top>
+<TD><CODE>558BECC745FC<B>00008A00</B>......8BE55DC21000</CODE> </TD>
+<TD><CODE>&lt;-</CODE> modified <CODE>NewProc</CODE> with real address of <CODE>INJDATA</CODE></TD></TR></TBODY></TABLE><BR>Put another way: You replace the dummy value <CODE>A0B0C0D0</CODE> with the real address of <CODE>INJDATA</CODE>. <B><SUP>2</SUP></B> 
+<LI>Start execution of the remote <CODE>ThreadFunc</CODE>, which in turn subclasses the control in the remote process. </LI></OL><B>¹</B> One might wonder why the addresses <CODE>A0B0C0D0</CODE> and <CODE>008a0000</CODE> in the compiled code appear in reverse order. It's because Intel and AMD processors use the little-endian notation for to represent their (multi-byte) data. In other words: The low-order byte of a number is stored in memory at the lowest address, and the high-order byte at the highest address.<BR>Imagine the word UNIX stored in four bytes. In big-endian systems, it would be stored as UNIX. In little-endian systems, it would be stored as XINU. 
+<P><B>²</B> Some (bad) cracks modify the code of an executable in a similar way. However, once loaded into memory, a program can't change its own code (the code resides in the ".text" section of an executable, which is write protected). Still we could modify our remote <CODE>NewProc</CODE>, because it was previously copied to a peace of memory with <CODE>PAGE_EXECUTE_READWRITE</CODE> permission.</P><A name=section_3_2>
+<H3>When to use the CreateRemoteThread &amp; WriteProcessMemory technique</H3></A>
+<P>The CreateRemoteThread &amp; WriteProcessMemory technique of code injection is, when compared to the other methods, more flexible in that you don't need an additional DLL. Unfortunately, it is also more complicated and riskier than the other methods. You can (and most probably will) easily crash the remote process, as soon as something is wrong with your <CODE>ThreadFunc</CODE> (see <A href="#Appendix_F">Appendix F</A>). Because debugging a remote <CODE>ThreadFunc</CODE> can also be a nightmare, you should use this technique only when injecting at most a few instructions. To inject a larger peace of code, use one of the methods discussed in Sections II and I.</P>
+<P>Again, WinSpy and InjectEx, as well as their sources, can be found in the download package <A href="#__top">at the beginning</A> of the article.</P><A name=fine>
+<H2>Some Final Words</H2></A>
+<P>At the end, let's summarize some facts we didn't mention so far:</P>
+<TABLE cellSpacing=2 cellPadding=2 border=2>
+<TBODY>
+<TR vAlign=top align=middle bgColor=#ffff99>
+<TD></TD>
+<TD>OS</TD>
+<TD>Processes</TD></TR>
+<TR>
+<TD>I. Hooks</TD>
+<TD>Win9x and WinNT</TD>
+<TD>only processes that link with USER32.DLL<B><SUP>1</SUP></B></TD></TR>
+<TR>
+<TD>II. CreateRemoteThread &amp; LoadLibrary</TD>
+<TD>WinNT only<B><SUP>2</SUP></B></TD>
+<TD>all processes<B><SUP>3</SUP></B>, including system services<B><SUP>4</SUP></B></TD></TR>
+<TR>
+<TD>III. CreateRemoteThread &amp; WriteProcessMemory</TD>
+<TD>WinNT only</TD>
+<TD>all processes, including system services</TD></TR></TBODY></TABLE>
+<OL>
+<LI>Obviously you can't hook a thread that has no message queue. Also, <CODE>SetWindowsHookEx</CODE> wont work with system services, even if they link against USER32.DLL. 
+<LI>There is no <CODE>CreateRemoteThread</CODE> nor <CODE>VirtualAllocEx</CODE> on Win9x. (Actually, they can be emulated on Win9x, too; but that's a story for yet another day.) 
+<LI><B>All processes = All Win32 processes + csrss.exe</B> <BR>Native applications (smss.exe, os2ss.exe, autochk.exe, etc) don't use Win32 APIs, and thus don't link against <I>kernel32.dll</I> either. The only exception is csrss.exe, the Win32 subsystem itself. It's a native application but some of its libraries (~winsrv.dll) require Win32 DLLs, including <I>kernel32.dll</I>. 
+<LI>If you want to inject code into system services (lsass.exe, services.exe, winlogon.exe, and so on) or into csrss.exe, set the privileges of your process to "SeDebugPrivilege" (<CODE>AdjustTokenPrivileges</CODE>) before opening a handle to the remote process (<CODE>OpenProcess</CODE>). </LI></OL>
+<P>That's almost it. There is just one more thing that you should bear in mind: Your injected code can, especially if something is wrong with it, easily pull the target process down to oblivion with it. Just remember: Power comes with responsibility! 
+<P>Because many examples in this article were about passwords, you might find it interesting to read the article <A href="http://www.codeguru.com/ieprogram/SPwdSpy.html">Super Password Spy++</A>, written by Zhefu Zhang, too. There he explains how to get the passwords out of an Internet Explorer password field. More. He even shows you how to protect your password controls against such attacks. 
+<P>Last note: The only reward someone gets for writing and publishing an article is the feedback he gets, so, if you found it useful simply drop in a comment or vote for it (<IMG height=16 alt="ola :)" src="http://www.codeproject.com/script/images/smiley_smile.gif" width=16 align=absMiddle>). But even more importantly: Let me know if something is wrong or buggy, if you think something could be done better, or that something is still left unclear. 
+<H3>Acknowledgments</H3>
+<P>First, thanks to my readers at CodeGuru, where this *text* was initially published. It is mainly because of your questions, that the article grew from its initial 1200 words to what it is today: An 6000 word "animal." However, if there is someone that especially deserves to be singled out, then it is Rado Picha. Parts of the article greatly benefited from his suggestions and explanations to me. Last, but not least, thanks to Susan Moore for helping me through that minefield called the English language, and making my article more readable. <A name=appendixes>
+<H2>Appendices</H2>
+<DL><A name=Appendix_A></A>
+<DT>
+<P>A) Why are <I>kernel32.dll</I> and <I>user32.dll</I> always mapped to the same address? </P>
+<DD>My presumption: Because Microsoft programmers thought that it could be a useful speed optimization. Let's explain why. 
+<P>In general, an executable is composed of several sections, including a ".reloc" section.</P>
+<P>When the linker creates an EXE or DLL file, it makes an assumption about where the file will be mapped into memory. That's the so-called assumed/preferred load/base address. All the absolute addresses in the image are based on this linker assumed load address. If for whatever reason the image isn't loaded at this address, the PE - portable executable - loader has to fix all the absolute addresses in the image. That is where the ".reloc" section comes in: It contains a list of all the places in the image, where the difference between the linker assumed load address and the actual load address needs to be factored in (anyway, note that most of the instructions produced by the compiler use some kind of relative addressing; as a result, there are not as many relocations as you might think). If, on the other side, the loader is able to load the image at the linkers preferred base address, the ".reloc" section is completely ignored.</P>But, how do <I>kernel32.dll</I>, <I>user32.dll</I> and their load addresses fit into the story? Because every Win32 application needs <I>kernel32.dll</I>, and most of them need <I>user32.dll</I>, too, you can improve the load time of all executables by always mapping them (<I>kernel32</I> and <I>user32</I>) to their preferred bases. Then the loader must never fix any (absolute) addresses in <I>kernel32.dll</I> and <I>user32.dll</I>. 
+<P>Let's close out this discussion with the following example:</P>
+<BLOCKQUOTE>Set the image base of some App.exe to KERNEL32's (<CODE>/base:<span class='cpp-string'>"0x77e80000"</span></CODE>) or to USER32's (<CODE>/base:<span class='cpp-string'>"0x77e10000"</span></CODE>) preferred base. If App.exe doesn't import from USER32, just <CODE>LoadLibrary</CODE> it. Then compile App.exe and try to run it. An error box pops up ("Illegal System DLL Relocation") and App.exe fails to load. </BLOCKQUOTE>
+<P>Why? When creating a process, the loader on Win 2000, Win XP and Win 2003 checks if <I>kernel32.dll</I> and <I>user32.dll</I> (their names are hardcoded into the loader) are mapped at their preferred bases; if not, a hard error is raised. In WinNT 4 <I>ole32.dll</I> was also checked. In WinNT 3.51 and lower such checks were not present, so <I>kernel32.dll</I> and <I>user32.dll</I> could be anywhere. Anyway, the only module that is always at its base is <I>ntdll.dll</I>. The loader doesn't check it, but if <I>ntdll.dll</I> is not at its base, the process just can't be created. 
+<P>To summarize, on WinNT 4 and higher:</P>
+<UL>
+<LI>DLLs, that are always mapped to their bases: <I>kernel32.dll</I>, <I>user32.dll</I> and <I>ntdll.dll</I>. 
+<LI>DLLs that are present in every Win32 application (+ csrss.exe): <I>kernel32.dll</I> and <I>ntdll.dll</I>. 
+<LI>The only DLL that is present in every process, even in native applications: <I>ntdll.dll</I>. </LI></UL><A name=Appendix_B></A>
+<DT>
+<P>B) The /GZ compiler switch </P>
+<DD>In Debug builds, the /GZ compiler feature is turned on by default. You can use it to catch some errors (see the documentation for details). But what does it mean to our executable? 
+<P>When /GZ is turned on, the compiler will add some additional code to every function residing in the executable, including a function call (added at the very end of every function) that verifies the ESP stack pointer hasn't changed through our function. But wait, a function call is added to <CODE>ThreadFunc</CODE>? That's the road to disaster. Now the remote copy of <CODE>ThreadFunc</CODE> will call a function that doesn't exist in the remote process (at least not at the same address).</P><A name=Appendix_C></A>
+<DT>
+<P>C) Static functions Vs. Incremental linking </P>
+<DD>Incremental linking is used to shorten the linking time when building your applications. The difference between normally and incrementally linked executables is that in incrementally linked ones each function call goes through an extra <CODE>JMP</CODE> instruction emitted by the linker (an exception to this rule are functions declared as static!). These <CODE>JMP</CODE>s allow the linker to move the functions around in memory without updating all the <CODE>CALL</CODE> instructions that reference the function. But it's exactly this <CODE>JMP</CODE> that causes problems too: now <CODE>ThreadFunc</CODE> and <CODE>AfterThreadFunc</CODE> will point to the <CODE>JMP</CODE> instructions instead to the real code. So, when calculating the size of <CODE>ThreadFunc</CODE> this way: <PRE><span class='cpp-keyword'>const</span> <span class='cpp-keyword'>int</span> cbCodeSize = ((LPBYTE) AfterThreadFunc - (LPBYTE) ThreadFunc);</PRE>you will actually calculate the "distance" between the <CODE>JMP</CODE>s that point to <CODE>ThreadFunc</CODE> and <CODE>AfterThreadFunc</CODE> respectively (usually they will appear one right after the other; but don't count on this). Now suppose our <CODE>ThreadFunc</CODE> is at address <CODE>004014C0</CODE> and the accompanying <CODE>JMP</CODE> instruction at <CODE><span class='cpp-literal'>00401020</span></CODE>. <PRE lang=asm>:<span class='cpp-literal'>00401020</span>   <span class='cpp-keyword'>jmp</span>  <B>004014C0</B>
+ ...
+<B>:004014C0</B>   <span class='cpp-keyword'>push</span> EBP          <span class='cpp-comment'>; real address of ThreadFunc</span>
+:004014C1   <span class='cpp-keyword'>mov</span>  EBP, ESP
+ ...
+</PRE>
+<P>Then <PRE>WriteProcessMemory( .., &amp;ThreadFunc, cbCodeSize, ..);</PRE>will copy the <CODE><span class='cpp-string'>"JMP 004014C0"</span></CODE> instruction (and all instructions in the range of <CODE>cbCodeSize</CODE> that follow it) to the remote process - not the real <CODE>ThreadFunc</CODE>. The first thing the remote thread will execute will be a <CODE><span class='cpp-string'>"JMP 004014C0"</span></CODE>. Well, it will also be among its last instructions - not only to the remote thread, but to the whole process. 
+<P>However, there is an exception to this <CODE>JMP</CODE> instruction "rule." If a function is declared as <CODE><span class='cpp-keyword'>static</span></CODE>, it will be called directly, even if linked incrementally. That's why <A href="#rules">Rule #4</A> says to declare <CODE>ThreadFunc</CODE> and <CODE>AfterThreadFunc</CODE> as <CODE><span class='cpp-keyword'>static</span></CODE> or disable incremental linking. (Some other aspects of incremental linking can be found in the article "Remove Fatty Deposits from Your Applications Using Our 32-bit Liposuction Tools" by Matt Pietrek) <A name=Appendix_D></A></P>
+<DT>
+<P>D) Why can my <CODE>ThreadFunc</CODE> have only 4k of local variables? </P>
+<DD>Local variables are always stored on the stack. If a function has, say, 256 bytes of local variables, the stack pointer is decreased by 256 when entering the function (more precisely, in the functions prologue). The following function: <PRE><span class='cpp-keyword'>void</span> Dummy(<span class='cpp-keyword'>void</span>) {
+    BYTE var[<span class='cpp-literal'>256</span>];
+    var[<span class='cpp-literal'>0</span>] = <span class='cpp-literal'>0</span>;
+    var[<span class='cpp-literal'>1</span>] = <span class='cpp-literal'>1</span>;
+    var[<span class='cpp-literal'>255</span>] = <span class='cpp-literal'>255</span>;
+}
+</PRE>
+<DD>
+<P>could, for instance, compile into something like this: <PRE lang=asm>:<span class='cpp-literal'>00401000</span>   <span class='cpp-keyword'>push</span> ebp
+:<span class='cpp-literal'>00401001</span>   <span class='cpp-keyword'>mov</span>  ebp, esp
+:<span class='cpp-literal'>00401003</span>   <B><span class='cpp-keyword'>sub</span>  esp, <span class='cpp-literal'>00000100</span></B>           <span class='cpp-comment'>; change ESP as storage for</span>
+                                         <span class='cpp-comment'>; local variables is needed</span>
+:<span class='cpp-literal'>00401006</span>   <span class='cpp-keyword'>mov</span>  <span class='cpp-keyword'>byte</span> <span class='cpp-keyword'>ptr</span> [esp], <span class='cpp-literal'>00</span>      <span class='cpp-comment'>; var[0] = 0;</span>
+:0040100A   <span class='cpp-keyword'>mov</span>  <span class='cpp-keyword'>byte</span> <span class='cpp-keyword'>ptr</span> [esp+<span class='cpp-literal'>01</span>], <span class='cpp-literal'>01</span>   <span class='cpp-comment'>; var[1] = 1;</span>
+:0040100F   <span class='cpp-keyword'>mov</span>  <span class='cpp-keyword'>byte</span> <span class='cpp-keyword'>ptr</span> [esp+FF], FF   <span class='cpp-comment'>; var[255] = 255;</span>
+:<span class='cpp-literal'>00401017</span>   <span class='cpp-keyword'>mov</span>  esp, ebp                <span class='cpp-comment'>; restore stack pointer</span>
+:<span class='cpp-literal'>00401019</span>   <span class='cpp-keyword'>pop</span>  ebp
+:0040101A   <span class='cpp-keyword'>ret</span>
+</PRE>
+<P>Note how the stack pointer (ESP) was changed in the above example? But what is different if a function needs more than 4 Kb for its local variables? Well, then the stack pointer isn't changed directly. Rather, another function (a stack probe) is called, which in turn changes it appropriately. But it's exactly this additional function call that makes our <CODE>ThreadFunc</CODE> "corrupt," because its remote copy would call something that's not there. 
+<P>Let's see what the documentation says about stack probes and the /Gs compiler option:</P>
+<BLOCKQUOTE>"The /Gs<I>size</I> option is an advanced feature with which you can control stack probes. A stack probe is a sequence of code that the compiler inserts into every function call. When activated, a stack probe reaches benignly into memory by the amount of space required to store the associated function's local variables. 
+<P>If a function requires more than <I>size</I> stack space for local variables, its stack probe is activated. The default value of <I>size</I> is the size of one page (4 Kb for 80x86 processors). This value allows a carefully tuned interaction between an application for Win32 and the Windows NT virtual-memory manager to increase the amount of memory committed to the program stack at run time." </P></BLOCKQUOTE>
+<P>I'm sure one or another wondered about the above statement: "...a stack probe reaches benignly into memory...". Those compiler options (their descriptions!) are sometimes really irritating, at least until you look under the hood and see what's going on. If, for instance, a function needs 12 Kb storage for its local variables, the memory on the stack would be "allocated" (more precisely: committed) this way:</P><PRE lang=asm><span class='cpp-keyword'>sub</span>    esp, <span class='cpp-literal'>0x1000</span>    <span class='cpp-comment'>; "allocate" first 4 Kb</span>
+<span class='cpp-keyword'>test</span>  [esp], <span class='cpp-keyword'>eax</span>      <span class='cpp-comment'>; touches memory in order to commit a</span>
+                      <span class='cpp-comment'>; new page (if not already committed)</span>
+<span class='cpp-keyword'>sub</span>    esp, <span class='cpp-literal'>0x1000</span>    <span class='cpp-comment'>; "allocate" second 4 Kb</span>
+<span class='cpp-keyword'>test</span>  [esp], <span class='cpp-keyword'>eax</span>      <span class='cpp-comment'>; ...</span>
+<span class='cpp-keyword'>sub</span>    esp, <span class='cpp-literal'>0x1000</span>
+<span class='cpp-keyword'>test</span>  [esp], <span class='cpp-keyword'>eax</span>
+</PRE>
+<P>Note how the stack pointer is changed in 4 Kb steps now and, more importantly, how the bottom of the stack is "touched" (via <CODE>test</CODE>) after each step. This ensures the page containing the bottom of the stack is being committed, before "allocating" (committing) another page.</P>
+<P>After reading ..</P>
+<BLOCKQUOTE>"Each new thread receives its own stack space, consisting of both committed and reserved memory. By default, each thread uses 1 Mb of reserved memory, and one page of committed memory. The system will commit one page block from the reserved stack memory as needed." (see MSDN <CODE>CreateThread &gt; dwStackSize &gt;</CODE> "Thread Stack Size"). </BLOCKQUOTE>
+<P>.. it should also be clear why the documentation about /Gs says that you get with stack probes a carefully tuned interaction between your application and the Windows NT virtual-memory manager.</P>
+<P>Now back to our <CODE>ThreadFunc</CODE> and 4 Kb limit:<BR>Although you could prevent calls to the stack probe routine with /Gs, the documentation warns you about doing so. Further, the documentation says you can turn stack probes on or off by using the <CODE><span class='cpp-preprocessor'>#pragma check_stack</span></CODE> directive. However, it seems this <CODE>pragma</CODE> doesn't affect stack probes at all (either the documentation is buggy, or I am missing some other facts?). Anyway, recall that the <A href="#section_3">CreateRemoteThread &amp; WriteProcessMemory technique</A> should be used only when injecting small peaces of code, so your local variables should rarely *consume* more than a few bytes and thus not get even close to the 4 Kb limit.</P><A name=Appendix_E></A>
+<DT>
+<P>E) Why should I split up my <CODE><span class='cpp-keyword'>switch</span></CODE> block with more than three <CODE><span class='cpp-keyword'>case</span></CODE> statements? </P>
+<DD>Again, it is easiest to explain it with an example. Consider the following function: <PRE><span class='cpp-keyword'>int</span> Dummy( <span class='cpp-keyword'>int</span> arg1 ) 
+{
+    <span class='cpp-keyword'>int</span> ret =<span class='cpp-literal'>0</span>;
+
+    <span class='cpp-keyword'>switch</span>( arg1 ) {
+    <span class='cpp-keyword'>case</span> <span class='cpp-literal'>1</span>: ret = <span class='cpp-literal'>1</span>; <span class='cpp-keyword'>break</span>;
+    <span class='cpp-keyword'>case</span> <span class='cpp-literal'>2</span>: ret = <span class='cpp-literal'>2</span>; <span class='cpp-keyword'>break</span>;
+    <span class='cpp-keyword'>case</span> <span class='cpp-literal'>3</span>: ret = <span class='cpp-literal'>3</span>; <span class='cpp-keyword'>break</span>;
+    <span class='cpp-keyword'>case</span> <span class='cpp-literal'>4</span>: ret = <span class='cpp-literal'>0xA0B0</span>; <span class='cpp-keyword'>break</span>;
+    }
+    <span class='cpp-keyword'>return</span> ret;
+}
+</PRE>
+<P>It would compile into something like this: <PRE lang=asm> <B>Address   OpCode/Params    Decoded instruction</B>
+--------------------------------------------------
+                                             <span class='cpp-comment'>; arg1 -&gt; ECX</span>
+:<span class='cpp-literal'>00401000</span>  8B4C2404         <span class='cpp-keyword'>mov</span> <span class='cpp-keyword'>ecx</span>, <span class='cpp-keyword'>dword</span> <span class='cpp-keyword'>ptr</span> [esp+<span class='cpp-literal'>04</span>]
+:<span class='cpp-literal'>00401004</span>  33C0             <span class='cpp-keyword'>xor</span> <span class='cpp-keyword'>eax</span>, <span class='cpp-keyword'>eax</span>     <span class='cpp-comment'>; EAX = 0</span>
+:<span class='cpp-literal'>00401006</span>  <span class='cpp-literal'>49</span>               <span class='cpp-keyword'>dec</span> <span class='cpp-keyword'>ecx</span>          <span class='cpp-comment'>; ECX --</span>
+:<span class='cpp-literal'>00401007</span>  83F903           <span class='cpp-keyword'>cmp</span> <span class='cpp-keyword'>ecx</span>, <span class='cpp-literal'>00000003</span>
+:0040100A  771E             <span class='cpp-keyword'>ja</span> 0040102A
+
+<span class='cpp-comment'>; JMP to one of the addresses in table <B>***</B></span>
+<span class='cpp-comment'>; note that ECX contains the offset</span>
+:0040100C  <B>FF</B>248D2C104000   <B><span class='cpp-keyword'>jmp</span></B> <span class='cpp-keyword'>dword</span> <span class='cpp-keyword'>ptr</span> [<span class='cpp-literal'>4</span>*<span class='cpp-keyword'>ecx</span>+0040102C]
+
+:<span class='cpp-literal'>00401013</span>  B801000000       <span class='cpp-keyword'>mov</span> <span class='cpp-keyword'>eax</span>, <span class='cpp-literal'>00000001</span>   <span class='cpp-comment'>; case 1: eax = 1;</span>
+:<span class='cpp-literal'>00401018</span>  C3               <span class='cpp-keyword'>ret</span>
+:<span class='cpp-literal'>00401019</span>  B802000000       <span class='cpp-keyword'>mov</span> <span class='cpp-keyword'>eax</span>, <span class='cpp-literal'>00000002</span>   <span class='cpp-comment'>; case 2: eax = 2;</span>
+:0040101E  C3               <span class='cpp-keyword'>ret</span>
+:0040101F  B803000000       <span class='cpp-keyword'>mov</span> <span class='cpp-keyword'>eax</span>, <span class='cpp-literal'>00000003</span>   <span class='cpp-comment'>; case 3: eax = 3;</span>
+:<span class='cpp-literal'>00401024</span>  C3               <span class='cpp-keyword'>ret</span>
+:<span class='cpp-literal'>00401025</span>  B8B0A00000       <span class='cpp-keyword'>mov</span> <span class='cpp-keyword'>eax</span>, 0000A0B0   <span class='cpp-comment'>; case 4: eax = 0xA0B0;</span>
+:0040102A  C3               <span class='cpp-keyword'>ret</span>
+:0040102B  <span class='cpp-literal'>90</span>               <span class='cpp-keyword'>nop</span>
+
+<span class='cpp-comment'>; Address table <B>***</B></span>
+:0040102C  <span class='cpp-literal'>13104000</span>         <span class='cpp-keyword'>DWORD</span> <span class='cpp-literal'>00401013</span>   <span class='cpp-comment'>; jump to case 1</span>
+:<span class='cpp-literal'>00401030</span>  <span class='cpp-literal'>19104000</span>         <span class='cpp-keyword'>DWORD</span> <span class='cpp-literal'>00401019</span>   <span class='cpp-comment'>; jump to case 2</span>
+:<span class='cpp-literal'>00401034</span>  1F104000         <span class='cpp-keyword'>DWORD</span> 0040101F   <span class='cpp-comment'>; jump to case 3</span>
+:<span class='cpp-literal'>00401038</span>  <span class='cpp-literal'>25104000</span>         <span class='cpp-keyword'>DWORD</span> <span class='cpp-literal'>00401025</span>   <span class='cpp-comment'>; jump to case 4</span>
+</PRE>
+<P>Note how the <CODE><span class='cpp-keyword'>switch</span>-<span class='cpp-keyword'>case</span></CODE> was implemented?<BR>Rather than examining every single <CODE><span class='cpp-keyword'>case</span></CODE> statement separately, an address table is created. Then, we jump to the right <CODE><span class='cpp-keyword'>case</span></CODE> by simply calculating the offset into the address table. If you think for a moment, this really is an improvement. Imagine you had a <CODE><span class='cpp-keyword'>switch</span></CODE> with 50 <CODE><span class='cpp-keyword'>case</span></CODE> statements. Without the above trick, you had to execute 50 <CODE>CMP</CODE> and <CODE>JMP</CODE> instructions to get to the last <CODE><span class='cpp-keyword'>case</span></CODE>. With the address table, on the contrary, you can jump to any <CODE><span class='cpp-keyword'>case</span></CODE> by a single table look-up. In terms of computer algorithms and time complexity: We replace an <B>O</B>(2n) algorithm by an <B>O</B>(5) one, where: </P>
+<OL>
+<LI><B>O</B> denotes the worst-case time complexity. 
+<LI>We assume five instructions are neccessary to calculate the offset, do the table look-up, and finally jump to the appropriate address. </LI></OL>
+<P>Now, one might think the above was possible only because the <CODE><span class='cpp-keyword'>case</span></CODE> constants were carefully chosen to be consecutive (1,2,3,4). Fortunately, it turns out the same solution can be applied to most real-world examples, only the offset calculation becomes somewhat more complicated. But there are two exceptions, though:</P>
+<UL>
+<LI>if there are three or less <CODE><span class='cpp-keyword'>case</span></CODE> statements or 
+<LI>if the <CODE><span class='cpp-keyword'>case</span></CODE> constants are completely unrelated to each other (i.e. <CODE><span class='cpp-string'>"case 1"</span></CODE>, <CODE><span class='cpp-string'>"case 13"</span></CODE>, <CODE><span class='cpp-string'>"case 50"</span></CODE>, and <CODE><span class='cpp-string'>"case 1000"</span></CODE>) </LI></UL>
+<P>then the resulting code does it the long way by examining every single <CODE><span class='cpp-keyword'>case</span></CODE> constant separately, with the <CODE>CMP</CODE> and <CODE>JMP</CODE> instructions. In other words, then the resulting code is essentially the same as if you had an ordinary <CODE><span class='cpp-keyword'>if</span>-<span class='cpp-keyword'>else</span> <span class='cpp-keyword'>if</span></CODE> sequence.</P>
+<P>Point of interest: If you ever wondered for what reason only a constant-expression can accompany a <CODE><span class='cpp-keyword'>case</span></CODE> statement, then you know why by now. In order to create the address table, this value obviously has to be known at compile time. 
+<P>Now back to the problem!<BR>Notice the <CODE>JMP</CODE> instruction at address <CODE>0040100C</CODE>? Let's see what Intel's documentation says about the hex opcode <CODE>FF</CODE>:</P><PRE lang=text><B>Opcode    Instruction    Description</B>
+FF /4     JMP r/m32      Jump near, absolute indirect,
+                         address given in r/m32</PRE>
+<P>Oops, the debatable <CODE>JMP</CODE> uses some kind of absolute addressing? In other words, one of its operands (<CODE>0040102C</CODE> in our case) represents an absolute address. Need I say more? Now, the remote <CODE>ThreadFunc</CODE> would blindly think the address table for its <CODE><span class='cpp-keyword'>switch</span></CODE> is at <CODE>0040102C</CODE>, <CODE>JMP</CODE> to a wrong place, and thus effectively crash the remote process.</A></P>
+<DT>
+<P>F) Why does the remote process crash, anyway? </P>
+<DD>When your remote process crashes, it will always be for one of the following reasons: 
+<OL>
+<LI>You referenced a string inside of <CODE>ThreadFunc</CODE> that doesn't exist. 
+<LI>One or more instructions in <CODE>ThreadFunc</CODE> use absolute addressing (see <A href="#Appendix_E">Appendix E</A> for an example). 
+<LI><CODE>ThreadFunc</CODE> calls a function that doesn't exist (the call could be added by the compiler/linker). When you will look at <CODE>ThreadFunc</CODE> in dissasembler in this case you will see something like this: <PRE lang=asm>:004014C0    <span class='cpp-keyword'>push</span> EBP         <span class='cpp-comment'>; entry point of ThreadFunc</span>
+:004014C1    <span class='cpp-keyword'>mov</span> EBP, ESP
+ ...
+:004014C5    <B><span class='cpp-keyword'>call</span> <span class='cpp-literal'>0041550</span></B>     <span class='cpp-comment'>; this will crash the</span>
+                              <span class='cpp-comment'>; remote process</span>
+ ...
+:<span class='cpp-literal'>00401502</span>    <span class='cpp-keyword'>ret</span>
+</PRE>
+<P>If the debatable <CODE>CALL</CODE> was added by the compiler (because some "forbidden" switch, such as /GZ, was turned on), it will be located either somewhere at the beginning or near the end of <CODE>ThreadFunc</CODE>. </P></LI></OL>
+<P>In any case, you can't be careful enough with the <A href="#section_3">CreateRemoteThread &amp; WriteProcessMemory technique</A>. Especially watch for your compiler/linker options. They could easily add something to your <CODE>ThreadFunc</CODE>. </P></DD></DL><A name=references>
+<H2>References:</H2></A>
+<OL>
+<LI><A href="http://www.microsoft.com/msj/backissues96.asp">Load Your 32-bit DLL into Another Process's Address Space Using INJLIB</A> by Jeffrey Richter. MSJ May, 1994 
+<LI><A href="http://support.microsoft.com/support/kb/articles/q125/6/80.asp">HOWTO: Subclass a Window in Windows 95</A>; Microsoft Knowledge Base Article - 125680 
+<LI><A href="http://win32assembly.online.fr/tutorials.html">Tutorial 24: Windows Hooks</A> by Iczelion 
+<LI><A href="http://www.mvps.org/win32/processes/remthread.html">CreateRemoteThread</A> by Felix Kasza 
+<LI><A href="http://www.codeproject.com/system/hooksys.asp">API hooking revealed</A> by Ivo Ivanov 
+<LI><A href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dnwbgen/html/msdn_peeringpe.asp">Peering Inside the PE: A Tour of the Win32 Portable Executable File Format</A> by Matt Pietrek, March 1994 
+<LI><A href="http://www.intel.com/design/intarch/manuals/243191.htm">Intel Architecture Software Developer's Manual</A>, Volume 2: Instruction Set Reference </LI></OL><A name=history>
+<H2>Article History</H2></A>
+<UL>
+<LI>July 25, 2003: Article published 
+<LI>August 19, 2003: Applied only some minor formatting changes </A></LI></UL>
+
+<!-- Article Ends -->
+
+
+
+</div>
+</span>
+
+<script type="text/javascript" src="/script/togglePre.js"></script>
+
+<h2>About Robert Kuster</h2>
+<div style="overflow:hidden"><table border=0><tr valign=top><td nowrap class=smallText ><img src='/script/profile/images/{45E36D6C-DBEA-4A67-8C4F-791706B8024F}.gif'><br></td><td class=smallText>Sometimes I dream that I could fly a jet fighter or that I could play guitar like the Gipsy Kings. While I then always realize that bombing people probably isn't so cool, I'm still not so sure about the Gipsy Kings and the guitar. Still, I think writing code is the next best thing that I could do so I will try to make the best out of it. <img src="/script/images/smiley_smile.gif" align=absmiddle> <br>Currently I am working at <a href="http://www.nero.com">Nero AG</a> in Germany and am a postgraduate student at the <a href="http://www.fri.uni-lj.si/en/education/postgraduate_studies/">Faculty of Computer and Information Science</a> in Ljubljana, Slovenia. While my English is still far from perfect, I pretend to speak more or less fluently Slovenian, Bosnian, and German.<br><br>You can visit me at <a href="http://www.it.rkuster.com"><b>www.it.rkuster.com</b></a> or at <a href="http://www.rkuster.com"><b>www.rkuster.com</b></a>.<p class=smallText>Click <a href='/script/profile/whos_who.asp?vt=arts&id=136330'>here</a> to view Robert Kuster's online profile.</p></td></tr></table></div><br>
+<table cellpadding=4 width='100%' border=0><tr valign=top>
+<td width='100%'><h2>Other popular Threads, Processes &amp; IPC articles:</h2><ul><li><a href="/threads/bridgewinjava.asp">Bridge Between Java And Windows</a><div class="smallText">Make your windows programs communicate with java programs easily</div></li><li><a href="/threads/usingworkerthreads.asp">Using Worker Threads</a><div class="smallText">Learn how to create and use worker threads in your applications.</div></li><li><a href="/threads/RMI_For_Cpp.asp">RMI for C++</a><div class="smallText">User-friendly remote method invocation in C++.</div></li><li><a href="/threads/sync.asp">Introduction to Multi-threaded Code</a><div class="smallText">Synchronizing worker threads using 3 different methods</div></li></ul></td>
+<td width=360>
+<script language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=2787&way=ban\" target=_blank><img src=\"/script/ann/ServeImg.aspx?File=%2Fscript%2Fadmentor%2Fimages%2Faspose%5F300x250%5FStatic%5FTotal%5FStr%2Egif&C=False&id=2787&cb=4782090\" alt=\"\" border=0 width=300 height=250></a>");</script>
+</td>
+</tr></table>
+
+		<form action="/script/rating/code/app/insert_vote.asp" method="post">
+		<input type="hidden" name="vote_name" value="winspy/threads7/25/2003">
+		<input type="hidden" name="goal" value="/threads/winspy.asp">
+
+<table bgColor=#ff9900 border=0 cellPadding=1 cellSpacing=0 width="100%">
+<tr><td width="100%">
+<table bgColor=#FBEDBB border=0 cellPadding=4 cellSpacing=0 width="100%"><tr>
+<td valign=middle class=smalltext>[<a href="#__top">Top</a>]</td>
+<td align=right valign=middle nowrap >
+<i><b>Rate this Article for us!</b></i>&nbsp;&nbsp;&nbsp;&nbsp; <i>Poor</i><input type=radio value='1'  name=rate><input type=radio value='2'  name=rate><input type=radio value='3'  name=rate><input type=radio value='4'  name=rate><input type=radio value='5'  name=rate><i>Excellent</i>&nbsp;&nbsp;<input type=submit value=Vote class=FormButton >
+</td></tr>
+</table></td></tr></table>
+</form>
+<center>
+<table cellspacing="0" cellpadding="0" border="0"><tr>
+<td width="120" height=60 style="background-color:#eee;padding:2;"><div align="center">
+<script language=javascript>document.write("<IFRAME src=\"/script/ann/ServeHTML.aspx?C=False&id=2634&cb=4782095\" border=0 frameborder=0 scrolling=no width=120 height=60></IFRAME>");</script>
+</div></td>
+<td width=100>&nbsp;</td>
+<td height=60 width="468"><span id=AdBanner5><script language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=2840&way=ban\" target=_blank><img src=\"/script/ann/ServeImg.aspx?File=%2Fscript%2Fadmentor%2Fimages%2Fvista%5Fgadgets%5Fcp%5Fcompetition%5F468x60v4%2Egif&C=False&id=2840&cb=4782082\" alt=\"\" border=0 width=468 height=60></a>");</script></span></td>
+</tr></table></center>
+
+<a name='__comments'></a>
+
+<script language="JavaScript">
+
+function MsgVoteForm(MemberID, MsgID)
+{
+	document.write("<span id=\"MVF" + MsgID + "\">");
+	document.write("Rate this message: ");
+	for (var i=1; i<=5;i++)
+	{
+		document.write("<a href='#xx" + MsgID.toString() + "xx' title='give this message a vote of " + i.toString());
+		document.write("' onclick='return RateMsg(" + MemberID.toString() + ", " + MsgID.toString() + ", ");
+		document.write(i.toString() + ")'><b>" + i.toString() + "</b></a> ");
+	}
+	document.write(" (out of 5)");
+	document.writeln("</span>");
+	
+	document.write("<br />Report as <a href='#xx" + MsgID.toString() + "xx' title='Mark as Spam' onclick='return ReportMsg(" + MemberID.toString());
+	document.writeln(", " + MsgID.toString() + ",-1)'>Spam</a> or ");
+	document.write("<a href='#xx" + MsgID.toString() + "xx' title='Mark as Abuse' onclick='return ReportMsg(" + MemberID.toString());
+	document.writeln(", " + MsgID.toString() + ",-2)'>Abuse</a>");
+}
+
+function RetypeForm(MemberID, MsgID)
+{
+	var types = [
+				 {pic:'news_general.gif',  id: 1},
+	             {pic:'news_info.gif',     id: 2},
+	             {pic:'news_question.gif', id: 4},
+	             {pic:'news_answer.gif',   id: 8},
+	             {pic:'news_game.gif',     id: 16},
+	             {pic:'news_spam.gif',     id: 32}
+	            ];
+	
+	document.write("<span id=\"RTF" + MsgID + "\">");
+	for (var i=0;i<types.length;i++)
+	{
+		document.write("<a href='/script/comments/retype?msg=" + MsgID.toString());
+		document.write("&mid=" + MemberID.toString() + "&type=" + types[i].id + "'>");
+		document.write("<img border=0 src='/script/images/" + types[i].pic + "'></a><br />");
+	}
+	document.writeln("</span>");
+}
+
+function ReportMsg(userid, msgid, score)
+{
+	if (confirm("Are you sure you want to report this message?") == true)
+		return RateMsg(userid, msgid, score);
+	else return false;
+}
+
+
+function RateMsg(userid, msgid, score)
+{
+
+   var req = new ActiveXObject("Msxml2.XMLHTTP"); 
+
+   req.onreadystatechange = function()
+   {
+      if ( req.readyState == 4 )
+      {
+         if ( req.status == 200 )
+         {
+         	var respText = req.responseText;
+         	var re = new RegExp("\<div\>([^\<]*)\</div\>", "g");
+         	var match = re.exec(respText);
+         	status.innerHTML = "<b>" + (match)?match[1]:"An error occured" + "</b>";
+         }
+         else
+         {
+            status.innerHTML = "<b style='color:red'>Failed!" + req.statusText + "</b>";
+         }
+      }
+   }
+   
+   var status = document.getElementById("MVF" + msgid);
+   if (!status) return;  // should never happen...   
+   status.innerHTML = "<b style='color:green'>Voting...</b>";
+   
+   var strAction = "/script/comments/vote.asp?js=1&user="+userid+"&msg="+msgid+"&score="+score;
+   req.open("GET", strAction, true);
+   req.send(null);
+   return false;
+}
+
+</script>
+
+
+<script language="JavaScript">
+var Selected = "";
+
+var AdTime = new Date();
+
+
+// Ensures the expanded message appears reasonably close to where 
+// it should appear: on screen, and if possible, under the mouse cursor.
+function SwitchMessage(e)
+{
+   if ( !e ) e = window.event;
+   var target = e.target ? e.target : e.srcElement;
+
+   // is it a post?
+   while ( target && target.id != 'DynMessLink' )
+      target = target.parentNode;
+   if ( !target || target.id != 'DynMessLink' )
+      return;
+
+   if (Selected)
+   {
+      var body = document.getElementById(Selected + "_h1");
+      if (body)
+         body.style.display = 'none';
+      var head = document.getElementById(Selected + "_h0");
+      if (head)
+         head.bgColor = '#FEF9E7';
+   }
+
+   if (Selected == target.name) // just collapse
+      Selected="";
+   else
+   {
+      Selected = target.name;
+      var body = document.getElementById(Selected + "_h1");
+      if (body)
+      {
+         if (body.style.display=='none')
+            body.style.display='';
+         else
+            body.style.display = 'none';
+      }
+      var head = document.getElementById(Selected + "_h0");
+      if (head)
+         head.bgColor = '#99CCFF';
+
+      if ( body && head && body.style.display != 'none' )
+      {
+         // the bit that keeps the post on-screen and under the cursor
+         //var dif = (getRealPos(head, "Top") + head.offsetHeight/2) - (document.body.scrollTop+e.clientY);
+         //document.body.scrollTop += dif;
+         document.body.scrollTop = getRealPos(head, "Top") - document.body.clientHeight/10;
+         EnsureMessageVisible(target.name, true);
+      }
+   }
+
+   if ( e.preventDefault )
+      e.preventDefault();
+   else
+      e.returnValue = false;
+   return false;
+}
+
+// does its best to make a message visible on-screen (vs. scrolled off somewhere).
+function EnsureMessageVisible(msgID, bShowTop) {
+   var msgHeader = document.getElementById(msgID + "_h0");
+   var msgBody = document.getElementById(msgID + "_h1");
+
+   // determine scroll position of top and bottom
+   var scrollContainer = document.body;
+   var top = getRealPos(msgHeader, 'Top');
+   var bottom = getRealPos(msgBody, 'Top') + msgBody.offsetHeight;
+
+   // if not already visible, scroll to make it so
+   if ( scrollContainer.scrollTop > top && !bShowTop)
+      scrollContainer.scrollTop = top - document.body.clientHeight/10;
+   if ( scrollContainer.scrollTop+scrollContainer.clientHeight < bottom )
+      scrollContainer.scrollTop = bottom-scrollContainer.clientHeight;
+   if ( scrollContainer.scrollTop > top && bShowTop)
+      scrollContainer.scrollTop = top - document.body.clientHeight/10;
+}
+
+// utility
+function getRealPos(i,which)
+{
+   iPos = 0
+   while (i!=null)
+   {
+      iPos += i["offset" + which];
+      i = i.offsetParent;
+   }
+   return iPos
+}
+
+
+</script>
+<div id="_MessageBoard" onclick="SwitchMessage(event)"><table border=0 bgcolor='#ff9900' width=100% cellpadding=0 cellspacing=0><tr><td width='100%'><table border=0 id=ForumTable bgcolor='#ff9900' width=100% cellpadding=0 cellspacing=1><form action='/script/comments/app/do_filtermessages.asp?main=/threads/winspy.asp&df=100&forumid=16291' method=post><tr><td><table width=100% bgcolor=white border=0 cellspacing=0 cellpadding=3><tr bgcolor=#FBEDBB><td nowrap class=smalltext><a href='/script/comments/faq.asp'><img src='/script/images/forum_faq.GIF' border=0 width=16 height=16 align=absmiddle> <b>FAQ</b></a>&nbsp;</td><td nowrap valign=top align=right class=smalltext>Message score threshold <select size=1 name=noise class=smalltext><option value="1">1.0 </option>
+<option value="2">2.0</option>
+<option selected value="3">3.0</option>
+<option value="4">4.0</option>
+<option value="5">5.0</option>
+</select>&nbsp;&nbsp;</td><td class=smalltext nowrap align=right valign=middle colspan=2><a href='/script/comments/search_comments.asp?forumid=16291'><img src="/script/images/forum_search.gif" width=16 height=15 border=0> Search comments</a> &nbsp;</td><td valign=top align=right><input type=submit value='Set Options' name=submit class=FormButton></td></tr><tr bgcolor='#ff9900'><td width='100%'>&nbsp;</td><td nowrap align=right valign=top class=smalltext>View <select size=1 name=expand class=smalltext><option value="0">Normal (slow)</option>
+<option value="2">Preview (slow)</option>
+<option selected value="5">Message View</option>
+<option value="6">Topic View</option>
+<option value="1">Thread View</option>
+<option value="3">Expanded (Supporters only)</option>
+</select>&nbsp;&nbsp;</td><td nowrap valign=top class=smalltext>Per page <select size=1 name=perpage class=smalltext><option value="10">10</option>
+<option selected value="25">25</option>
+<option value="50">50</option>
+</select></td><td colspan=2>&nbsp;</td></tr></table>
+</td></tr></form><tr bgcolor=#FBEDBB><td><a name=xx0xx></a><table border=0 cellpadding=2 width=100% bgcolor=#FBEDBB><tr><td class=messagetitle><img src='/script/images/forum_newmsg.gif' width=16 height=16 border=0 align=top><a href='/script/comments/user_new.asp?main=/threads/winspy.asp&df=100&forumid=16291'  class=HoverLink  target=_top name=HoverNL title='Add a new message to the discussions'><b>New Message</b></a></td><td class=messagetitle>Msgs 1 to 25 of 246 (Total: 246) (<a href='/threads/winspy.asp?df=100&forumid=16291'>Refresh</a>)</td><td align=right nowrap><font class=messagetitle><span class=HoverLink >First</span> <span class=HoverLink >Prev</span> <a class=HoverLink name=HoverNL href='/threads/winspy.asp?df=100&forumid=16291&fr=26'>Next</a> <span class=HoverLink >&nbsp;&nbsp;&nbsp;&nbsp;</span> </font></td></tr></table>
+</td></tr><tr bgcolor=white><td><table border=0 cellspacing=0 cellpadding=0 width='100%' border=0><tr><td width='100%'><table bgcolor=#FBEDBB border=0 cellspacing=0 cellpadding=2><tr><td width='100%' class=messagetitle>Subject&nbsp;</td><td width=140 nowrap class=messagetitle>Author&nbsp;</td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle>Date&nbsp;</font></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr bgcolor='#FEF9E7' id=1803067_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1803067xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1803067 href='/threads/winspy.asp?df=100&forumid=16291&select=1803067#xx1803067xx'><b>Marvelous</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=3638603'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>SteinsiekDoc</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>14:24 13 Dec '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1803067_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>In my opinion, it's a marvelous article - easy to read (and understand), though very detailed.<br><br>I'm using a combination of Techniques 2 and 3 in order to modify the behaviour of a "black box" application, i.e. I inject a DLL into the application's process. This DLL, on the one hand, subclasses the application's main window's WindowProc, on the other hand, itself contains several ThreadProc's, whose start addresses (in the "black box" application's address space) are committed back to the "injector" application so that the latter application is able to CreateRemoteThread's with these addresses. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1803067' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1803067'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1803067&forumid=16291&select=1803067#xx1803067xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1803067#xx1803067xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(3638603,1803067);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1784407_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1784407xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1784407 href='/threads/winspy.asp?df=100&forumid=16291&select=1784407#xx1784407xx'><b>How to hook multiple instances?</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=658032'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>ehaerim</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>21:06 30 Nov '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1784407_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>I've been playing around with HookInjEx which worked fine for a single instance of Notepad.exe.<br>However, when I run two Notepad instances, the injection worked for only one instance and not for the other one.<br><br>Is there any nice and clean way to make hooking work for all the instances?<br><br>haerim<br> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1784407' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1784407'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1784407&forumid=16291&select=1784407#xx1784407xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1784407#xx1784407xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 2.0 (1 vote).  <script language=Javascript>MsgVoteForm(658032,1784407);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1710445_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1710445xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1710445 href='/threads/winspy.asp?df=100&forumid=16291&select=1710445#xx1710445xx'><b>get function start address</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=609924'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>fanoble</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>22:34 12 Oct '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1710445_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>it works well <img src="/script/images/smiley_smile.gif" align=absmiddle><br><br>LRESULT CALLBACK HookProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)<br>{<br>    PINJDATA    pData;<br><br>    __asm<br>    {<br>        call    end_jmp;                    // push eip<br>start_jmp:<br>        jmp     HookProc;                   // dummy instruction<br>end_jmp:<br>        pop     ecx;                        // get address of start_jmp<br>        mov     eax, ecx;<br>        sub     ecx, offset start_jmp;      // add size of jmp instruction<br>        add     ecx, offset end_jmp;<br>        add     ecx, [eax + 1];             // relative address of jmp destination<br>        mov     pData, ecx;                 // ecx equal to function start<br>    }<br><br>    pData--;    // point to INJDATA<br><br>    ...<br>} <br><br><div class="ForumSig">hi <img src="/script/images/smiley_smile.gif" align=absmiddle></div><br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1710445' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1710445'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1710445&forumid=16291&select=1710445#xx1710445xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1710445#xx1710445xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(609924,1710445);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1654861_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1654861xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1654861 href='/threads/winspy.asp?df=100&forumid=16291&select=1654861#xx1654861xx'><b>How I can get the text of a textbox that is on other app?</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1815436'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>Marco2250</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>20:56 4 Sep '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1654861_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Hi all.<br><br>Does anyone have a code (in c#) that do the following?<br><br>Example:<br>I have an app running that has a textbox which Text property is "MICROSOFT VISUAL STUDIO ROCKS!".<br><br>I want to make an application that will obtain the handle of that textbox and get its contents (its text property value). I already have the code that obtain the handle.<br><br>I think that I need to use WM_GETTEXT in conjunction with OpenProcess, WriteProcessMemory, SendMessage and ReadProcessMemory. But I have no idea how to do it.<br><br>Please help me.<br><br>PS: I'm posting the question here because I know that C++ people know better<br>windows api than vb.net or c# developers.<br><br>Thx in advance.<br>Best regards,<br>Marco Alves. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1654861' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1654861'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1654861&forumid=16291&select=1654861#xx1654861xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1654861#xx1654861xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 4.0 (3 votes).  <script language=Javascript>MsgVoteForm(1815436,1654861);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1654527_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1654527xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1654527 href='/threads/winspy.asp?df=100&forumid=16291&select=1654527#xx1654527xx'><b>Hookfunction will never be called</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=483481'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>ArneM</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>10:45 4 Sep '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1654527_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Hi<br><br>first let me say this is a very good articel and it help alot to understand how things in processes work.<br><br>But now to the problem, I implemented the InjectDll Code and everything works win. The dll is loaded in the other process the SetHookWindowEx functions also sets the hook and returns an HookHandle. But the HookFunction is never called.<br><br>I wrote a little storage class so that for each new thread in the process the hook function is set for this thread and everything look ok. But the callback function never gets called. I analysed my logfile and for each thread I set an hooked, and if the threat gets detached from the dll the Unhook function is called with the correct hHook.<br><br><code><b><i><br>//WH_CBT, WH_CALLWNDPROC, WH_CALLWNDPROCRET<br>pNewThread->hHook = ::SetWindowsHookEx (WH_GETMESSAGE<br>, WindowsHookFunction<br>, NULL  // m_hDll<br>, dwThreadID);</i></b></code><br><br>So I don't understand why the callback function does not get called. Any idea's. <br>BTW: I also exported the callback in the def file as well as made the dll stdcall. But still nothing.<br><br>The logfile shows all the Threads of the Process but no entries for the callback function<br><br><code>P:0x00002060	T:0x0000206c	SetWindowsHookEx (0x002f05ff)<br>P:0x00002060	T:0x0000206c	DllMain (0x01050000, DLL_THREAD_ATTACH)<br><br>P:0x00002060	T:0x0000206c	UnhookWindowsHookEx (0x002f05ff)<br>P:0x00002060	T:0x0000206c	DllMain (0x01050000, DLL_THREAD_DETACH)</code><br><br>regards<br>Arne <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1654527' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1654527'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1654527&forumid=16291&select=1654527#xx1654527xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1654527#xx1654527xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(483481,1654527);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1529192_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1529192xx'></a><img align=absmiddle src='/script/images/news_question.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1529192 href='/threads/winspy.asp?df=100&forumid=16291&select=1529192#xx1529192xx'><b>Injecting WNDPROC (2nd method)</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1483673'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>chick80</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>7:46 13 Jun '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1529192_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>First of all thanks for the article, it's fantastic!<br><br>I'm trying to use the 2nd method you describe here to subclass some controls of a remote process.<br><br>I can succesfully inject the DLL as if I put code in DllMain it works.... problem is that if in DllMain I use SetWindowLong to subclass the controls it crashes the remote process...<br><br>The new WNDPROC resides in the DLL... I'm not really sure if I should somehow copy it in the remote thread or what... sorry, I'm still trying to completely understand how the thing works <img src="/script/images/smiley_doh.gif" align=absmiddle>, so it may be a stupid question!<br><br>Thanks in advance to anyone who can help me!<br><br>Nicola <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1529192' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1529192'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1529192&forumid=16291&select=1529192#xx1529192xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1529192#xx1529192xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1483673,1529192);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1497989_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1497989xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1497989 href='/threads/winspy.asp?df=100&forumid=16291&select=1497989#xx1497989xx'><b>HookInjEx fails on TrayClockWClass</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=5741'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>Michael Chapman</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>3:38 22 May '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1497989_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Hello,<br><br>I'm trying to subclass the system tray clock (TrayClockWClass), but, for some reason, your HookInjEx sample does not work with that window class.<br><br>In <i>HookInjEx.cpp</i>, I changed <pre>   hStart = ::FindWindow ("Shell_TrayWnd",NULL);<br>   hStart = ::FindWindowEx (hStart, NULL,"BUTTON",NULL);</pre> to <pre>   hStart = ::FindWindow ("Shell_TrayWnd",NULL);<br>   hStart = ::FindWindowEx (hStart, NULL,"TrayNotifyWnd",NULL);<br>   hStart = ::FindWindowEx (hStart, NULL,"TrayClockWClass",NULL);</pre> leaving everything else in both the EXE and DLL project as is in VS2003.  The left- and right-button switch does not occur when I inject the DLL.  I'm getting the proper HWND for TrayClockWClass when I check with Spy++.<br><br>Any insight into this issue would be greatly appreciated. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1497989' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1497989'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1497989&forumid=16291&select=1497989#xx1497989xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1497989#xx1497989xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 4.0 (2 votes).  <script language=Javascript>MsgVoteForm(5741,1497989);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1503691_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1503691xx'></a><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1503691 href='/threads/winspy.asp?df=100&forumid=16291&select=1503691#xx1503691xx'>Re: HookInjEx fails on TrayClockWClass</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=5741'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >Michael Chapman&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >13:00 25 May '06&nbsp;</font></td></tr></table></td></tr>
+<tr id=1503691_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>My bad on this one.  I should've used Spy++ to see if mouse button messages were getting to the control, and they are not.  Your code works very well and it's much cleaner than some other injection examples out there. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1503691' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1503691'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1497989&forumid=16291&select=1503691#xx1503691xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1503691#xx1503691xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 4.4 (2 votes).  <script language=Javascript>MsgVoteForm(5741,1503691);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1478944_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1478944xx'></a><img align=absmiddle src='/script/images/news_question.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1478944 href='/threads/winspy.asp?df=100&forumid=16291&select=1478944#xx1478944xx'><b>WriteProcessMemory in WinXP SP2</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=2984779'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>vvczech</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>16:41 8 May '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1478944_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>I tried the method II. and having trouble to write dll name into a remote process address space.The WriteProcesMemory comes always back with "Access Error" (GetLast Error returns 5). It works OK on NT4,W2k and XP SP1. Any idea??????<img src="/script/images/smiley_doh.gif" align=absmiddle><br>Thanks <br><br>VV<br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1478944' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1478944'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1478944&forumid=16291&select=1478944#xx1478944xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1478944#xx1478944xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(2984779,1478944);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1496285_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1496285xx'></a><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_answer.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1496285 href='/threads/winspy.asp?df=100&forumid=16291&select=1496285#xx1496285xx'>Re: WriteProcessMemory in WinXP SP2</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=2984779'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >vvczech&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >15:58 19 May '06&nbsp;</font></td></tr></table></td></tr>
+<tr id=1496285_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Hi, just letting you know. It works as long as you have full Admi rights<img src="/script/images/smiley_smile.gif" align=absmiddle> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1496285' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1496285'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1478944&forumid=16291&select=1496285#xx1496285xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1496285#xx1496285xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 3.4 (3 votes).  <script language=Javascript>MsgVoteForm(2984779,1496285);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1522356_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1522356xx'></a><img height=1 width=36 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1522356 href='/threads/winspy.asp?df=100&forumid=16291&select=1522356#xx1522356xx'>Re: WriteProcessMemory in WinXP SP2</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=986488'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >liyuncheng&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >5:56 8 Jun '06&nbsp;</font></td></tr></table></td></tr>
+<tr id=1522356_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=36 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>When Deep Freeze(a software) installed, openprocess for winlogon.exe failed with access denied( err number is 5). Why? How to tackle it? <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1522356' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1522356'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1478944&forumid=16291&select=1522356#xx1522356xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1522356#xx1522356xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(986488,1522356);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1477051_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1477051xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1477051 href='/threads/winspy.asp?df=100&forumid=16291&select=1477051#xx1477051xx'><b>ActiveX replacement</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1908379'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>AlexEvans</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>5:09 7 May '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1477051_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>I have an application provided by a 3rd party, it is made up of 3 components<br><br>1)	A hardware device connected to my serial port<br>2)	An ActiveX acting as a “Client” that is interacting with that hardware device<br>3)	An ActiveX that is acting as a “Server” component, listens to the Client’s ActiveX messages and sending the relevant commands to some IP address.<br><br>I want to trap the “Conversation” between the Client’s ActiveX and the hardware, in an attempt to replace that ActiveX (I don’t have the source code for that ActiveX) and be able to provide that “Bridge” functionality between the hardware device and the “Server” ActiveX myself, using MFC / C++ only<br><br>Can this be done? How?<br><br>Any help will be appreciated<br><br>Thanks<br>Alex<br> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1477051' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1477051'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1477051&forumid=16291&select=1477051#xx1477051xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1477051#xx1477051xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1908379,1477051);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1502570_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1502570xx'></a><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1502570 href='/threads/winspy.asp?df=100&forumid=16291&select=1502570#xx1502570xx'>Re: ActiveX replacement</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1698175'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >Mike_HA&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >19:45 24 May '06&nbsp;</font></td></tr></table></td></tr>
+<tr id=1502570_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent><br><br>start here.<br><br><a href="http://www.codeproject.com/useritems/HardwareSupport.asp" rel="nofollow">http://www.codeproject.com/useritems/HardwareSupport.asp</a>[<a href="http://www.codeproject.com/useritems/HardwareSupport.asp" target="_blank" rel="nofollow" title="New Window">^</a>]<br><br>--<br>Michael <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1502570' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1502570'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1477051&forumid=16291&select=1502570#xx1502570xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1502570#xx1502570xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1698175,1502570);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1454174_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1454174xx'></a><img align=absmiddle src='/script/images/news_question.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1454174 href='/threads/winspy.asp?df=100&forumid=16291&select=1454174#xx1454174xx'><b>Failed to call function in DLL with method II</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=2836847'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>Fredericfr</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>18:16 18 Apr '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1454174_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Hello, I want to test the second technique "The CreateRemoteThread & LoadLibrary" but I failed to call my own function in the DLL that is injected. Memory access error. I've tried many solutions such as with getprocaddress or written my function into the injected processus.<br><br>My DLL is well loaded because if I put code in my MainDLL function in the DLL, it is executed. However I don't want to execute my code in the MainDLL.<br>So imagine in my DLL I've got this function:<br><code>int hello()<br>{<br>int fd = open("C:\\hello.txt", _O_CREAT | _O_RWONLY);<br>write(fd, hello, 5);<br>close(fd);<br>return 0<br>}</code><br><br>Can you please show me a snipped code that allows to call this "hello" function from the DLL into the injected processus.<br><br>Thanks for your help.<br>Greetings for Robert for this great article. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1454174' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1454174'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1454174&forumid=16291&select=1454174#xx1454174xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1454174#xx1454174xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(2836847,1454174);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1476301_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1476301xx'></a><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_answer.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1476301 href='/threads/winspy.asp?df=100&forumid=16291&select=1476301#xx1476301xx'>Re: Failed to call function in DLL with method II</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=2791227'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >zhaoyu162&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >3:29 6 May '06&nbsp;</font></td></tr></table></td></tr>
+<tr id=1476301_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>After you have injected your DLL into the target process, also you can CreateRemoteThread() to execute this procedure by the virtual address of Hello in injected process. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1476301' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1476301'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1454174&forumid=16291&select=1476301#xx1476301xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1476301#xx1476301xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(2791227,1476301);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1446186_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1446186xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1446186 href='/threads/winspy.asp?df=100&forumid=16291&select=1446186#xx1446186xx'><b>A link between a WTS session and an Activex installed on the host OS</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1908379'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>AlexEvans</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>3:08 12 Apr '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1446186_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Hello there<br><br>I need to create a “Link” between a program that runs in a WTS session (In32 app using C++), and the hosting machine that runs say Windows CE or Windows XP embedded inside a Thin client device and has an ActiveX installed - I do NOT have the source for that ActiveX.<br><br>Is it possible? Can someone please point me in the right direction (C++ please)<br><br>Thanks<br>Alex<br> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1446186' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1446186'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1446186&forumid=16291&select=1446186#xx1446186xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1446186#xx1446186xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1908379,1446186);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1411917_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1411917xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1411917 href='/threads/winspy.asp?df=100&forumid=16291&select=1411917#xx1411917xx'><b>FromHandlePermanent</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1439301'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>Mihai Dobrescu</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>8:03 17 Mar '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1411917_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent><br>You say there is a permanent map on each thread and if I call Create and FromHandlePermanent from the same thread it should work - the thing is that it does not!<br><br>I work under VS 2005, in VC++, I am creating a window with "Create" and later on I look in "wincore.cpp", in function <br>"BOOL PASCAL CWnd::WalkPreTranslateTree(HWND hWndStop, MSG* pMsg)" and there I see that the following call fails:<br>CWnd* pWnd = CWnd::FromHandlePermanent(hWnd);<br><br>I have checked and the hwnd is the one I get to my CWnd immediately after "create" and the breakpoint in "wincore.cpp" happens immediately after my window is displayed, and on the same thread!! (at lest this is what the call stack sais) - I also checked the hwnd with the "Spy++".<br><br>Could anybody give a hint as to what is wrong? Or how can I get around this? <br><br>Thanks in advance,<br>Mihai<br> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1411917' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1411917'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1411917&forumid=16291&select=1411917#xx1411917xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1411917#xx1411917xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1439301,1411917);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1401264_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1401264xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1401264 href='/threads/winspy.asp?df=100&forumid=16291&select=1401264#xx1401264xx'><b>Very impressive</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1233238'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>HesyKhan</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>12:16 9 Mar '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1401264_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>more and more stuffs to learn.<br>thank you so much. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1401264' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1401264'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1401264&forumid=16291&select=1401264#xx1401264xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1401264#xx1401264xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1233238,1401264);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1378572_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1378572xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1378572 href='/threads/winspy.asp?df=100&forumid=16291&select=1378572#xx1378572xx'><b>Found small bug in VirtualFreeEx call</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=2697819'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>Ivar Refnes</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>2:13 21 Feb '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1378572_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>You call VirtualFreeEx by saying:<br><br>::VirtualFreeEx( hProcess, pLibRemote, sizeof(szLibPath), MEM_RELEASE );<br><br>This fails however, and sizeof(szLibPath) should be replaced with 0. So the correct thing to do is:<br><br>::VirtualFreeEx( hProcess, pLibRemote, 0, MEM_RELEASE );<br><br>This is noted in the Win32 programmer's Reference under VirtualFreeEx -> dwSize:<br><br>(...) If the MEM_RELEASE flag is set in the dwFreeType parameter, dwSize must be zero.<br><br>It's written more slightly more clearly under the MEM_RELEASE flag:<br><br>(...) If you specify this flag, dwSize must be zero, and lpAddress must point to the base address returned by the VirtualAllocEx function when the region was reserved. The function fails if either of these conditions is not met.<br><br>Thanks for an otherwise fine article! <img src="/script/images/smiley_smile.gif" align=absmiddle><br>-Ivar <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1378572' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1378572'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1378572&forumid=16291&select=1378572#xx1378572xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1378572#xx1378572xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(2697819,1378572);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1372830_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1372830xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle style='color:#AA0000;' ><a class=messagetitle style='color:#AA0000;'  id=DynMessLink name=1372830 href='/threads/winspy.asp?df=100&forumid=16291&select=1372830#xx1372830xx'><b>Excellent clarity</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=548140'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle style='color:#AA0000;'  ><b>Peter Foster</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle style='color:#AA0000;'  ><b>21:58 15 Feb '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1372830_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>I have read a number of articles in Code Project on this subject. I must admire and thank you for the clear and precise approach made in your essay. The fact that you had someone go to the trouble of correcting bad grammar makes your work easier to understand and read. Using your logically arranged "point lists" to summarise procedures is a bonus too, as well as your comprehensive appendices. I realise that English for many programmers contributing work to Code Project is a second language. This makes your effort even more admirable. You also give just enough code in simple code blocks, that we can play around with the concepts without having to delve laborously into large class hierarchies. Top marks! <img src="/script/images/smiley_smile.gif" align=absmiddle> <br><br>Peter Foster<br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1372830' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1372830'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1372830&forumid=16291&select=1372830#xx1372830xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1372830#xx1372830xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 5.0 (1 vote).  <script language=Javascript>MsgVoteForm(548140,1372830);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1373023_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1373023xx'></a><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1373023 href='/threads/winspy.asp?df=100&forumid=16291&select=1373023#xx1373023xx'>Re: Excellent clarity</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=136330'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >Robert Kuster&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >2:30 16 Feb '06&nbsp;</font></td></tr></table></td></tr>
+<tr id=1373023_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Thank you.<br>After all it is mainly because of such comments that you think: "It has been worth to do it."<br>I hope I will find the time to write more articles later this year.<br><br>Kind Regards,<br>Robert Kuster <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1373023' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1373023'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1372830&forumid=16291&select=1373023#xx1373023xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1373023#xx1373023xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(136330,1373023);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1323552_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1323552xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1323552 href='/threads/winspy.asp?df=100&forumid=16291&select=1323552#xx1323552xx'><b>API Hook OpenProcess</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1810219'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>Vitoto</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>14:52 3 Jan '06</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1323552_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>need a GlobalHook or Spy to the API Openprocess <br><br>Openprocess Which within its parameters uses a PID, the this delivery the use of some of these APIs :<br><br>pid = FindWindow -> parameters<br>pid = GetHProcExe -> parameters<br>pid = GetWindowProcessID -> parameters<br><br>OpenProcess(reqdAccess, bInherit , pid )<br><br>When the application is cheat program, the will use in the PID the value of the PID my Game in memory. <br><br>From my application .Net I obtain the PID of the Game after launching it.<br><br>Is possible to interact with the GlobalHook to pass to him the PID to leak at the time of spying on all the programs that use the API Openprocess ?<br><br><br>You Think you code can help me ?<br><br>Thank you.<br> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1323552' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1323552'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1323552&forumid=16291&select=1323552#xx1323552xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1323552#xx1323552xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 4.0 (1 vote).  <script language=Javascript>MsgVoteForm(1810219,1323552);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1308818_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1308818xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1308818 href='/threads/winspy.asp?df=100&forumid=16291&select=1308818#xx1308818xx'><b>This article just proves it again: There's always more stuff to learn.</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1357601'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>Hal Angseesing</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>10:12 16 Dec '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1308818_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>I've been programming Windows for years and I still love to learn new things. This taught me several!<br><br>Great article, well written and lots of fab content. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1308818' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1308818'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1308818&forumid=16291&select=1308818#xx1308818xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1308818#xx1308818xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1357601,1308818);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1300786_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1300786xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1300786 href='/threads/winspy.asp?df=100&forumid=16291&select=1300786#xx1300786xx'><b>How does LibSpy unload?</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=313203'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>taylorjonl</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>21:01 8 Dec '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1300786_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>The logic seems to be flawed.  hLibModule is never initialized to a valid HMODULE instance which is what FreeLibrary takes as an argument.  Basically it is initialized to the exit code of the LoadLibraryA's thread through the GetExitCodeThread call.<br><br><code>	hThread = ::CreateRemoteThread( hProcess, NULL, 0,	<br>					(LPTHREAD_START_ROUTINE) ::GetProcAddress(hKernel32,"LoadLibraryA"), <br>					pLibRemote, 0, NULL );<br>	if( hThread == NULL )<br>		goto JUMP;<br><br>	::WaitForSingleObject( hThread, INFINITE );<br><br>	// Get handle of loaded module<br>	::GetExitCodeThread( hThread, &hLibModule );<br>	::CloseHandle( hThread );<br><br>JUMP:	<br>	::VirtualFreeEx( hProcess, pLibRemote, sizeof(szLibPath), MEM_RELEASE );<br>	if( hLibModule == NULL )<br>		return false;<br>	<br><br>	// Unload "LibSpy.dll" from the remote process <br>	// (via CreateRemoteThread & FreeLibrary)<br>	hThread = ::CreateRemoteThread( hProcess,<br>                NULL, 0,<br>                (LPTHREAD_START_ROUTINE) ::GetProcAddress(hKernel32,"FreeLibrary"),<br>                (void*)hLibModule,<br>                 0, NULL );<br></code><br><br>Am I just crazy or misunderstanding this code?<br><br>According to the way that I am reading it, the library that injected will never be freed? <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1300786' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1300786'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1300786&forumid=16291&select=1300786#xx1300786xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1300786#xx1300786xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(313203,1300786);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1294696_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1294696xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1294696 href='/threads/winspy.asp?df=100&forumid=16291&select=1294696#xx1294696xx'><b>Is there any way to do this one by WinSpy.</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1780048'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>orvision</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>0:19 2 Dec '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1294696_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>For password edit control of other process . Basically windows prohibits<br>SendMessage(hWnd, WM_GETTEXT, nCopy, textBuffer);<br>So by using WinSpy (No. 3) method, we can inject our code into the target process.<br><br>I was trying to send the WM_SETFONT to windows belongs to other process.<br>SendMessage(hWnd, WM_SETFONT, handle to font, redraw option);<br>But found the setting was not successful.<br><br>By trying:<br>http://www.codeproject.com/tools/MessageSender.asp to send WM_SETFONT to remote window<br>I found if we select the context as "Target window thread", then the result is correct.<br>Else, the result is incorrect.<br><br>Which means, I need to do<br>SendMessage(hWnd, WM_SETFONT, handle to font, redraw option);<br>in the remote process context.<br><br>But my problem is:<br>I have no idea how can I resolve the "handle to font" parameter.<br><br>I assume I need to do:<br>1. In local process, figure out the size of the font object<br>2. Copy local font object memory block into the remote process<br>3. Add a font handle into the remote process GDI font table.<br><br>But I really don't have any clue of 1&3.<br><br>Now I can only use Hook as one approach. But I need an extra DLL, <img src="/script/images/smiley_frown.gif" align=absmiddle><br><br>Any one have idea?<br>Thanks a lot.<br><br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1294696' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/threads/winspy.asp&df=100&forumid=16291&select=1294696'  title='Email a reply to the author of this message'>Email</a> | <a href='/threads/winspy.asp?df=100&tid=1294696&forumid=16291&select=1294696#xx1294696xx' title='View only messages within this thread'>View Thread</a> | <a href='/threads/winspy.asp?msg=1294696#xx1294696xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1780048,1294696);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr></table></td></tr><tr bgcolor=#FBEDBB><td><table width='100%' cellpadding=2><tr><td class=messagetitle>Last Visit: 12:07 Sunday 14th January, 2007</td><td align=right nowrap><font class=messagetitle><span class=HoverLink >First</span> <span class=HoverLink >Prev</span> <a class=HoverLink name=HoverNL href='/threads/winspy.asp?df=100&forumid=16291&fr=26'>Next</a> <span class=HoverLink >&nbsp;&nbsp;&nbsp;&nbsp;</span> </font></td></tr></table></td></tr></table></td></tr></table>
+</div><p class=smallText><img align=absmiddle src='/script/images/news_general.gif'> General comment &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_info.gif'> News / Info &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_question.gif'> Question &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_answer.gif'> Answer &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_game.gif'> Joke / Game &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_sticky.gif'> Admin message</p>
+<br>
+
+
+<table width=100% cellspacing=5>
+<tr valign="top"><td class="smallText">
+
+Updated: 21 Aug 2003
+</td><td align="right" class="SmallText">
+Article content copyright Robert Kuster, 2003<br>
+everything else Copyright © <A href='mailto:webmaster@codeproject.com'>CodeProject</A>, 1999-2006</a>.
+
+<br>
+Web15 |
+<a href='/info/MediaKit'>Advertise on The Code Project</a> | <a href="/info/privacy.asp">Privacy</a>
+
+</td></tr>
+</table>
+
+</td></tr></table>
+
+
+<script type="text/javascript" src="http://codeproject.us.intellitxt.com/intellitxt/front.asp?ipid=5102"></script>
+<br>
+<center>
+<table border="0" cellspacing="0" cellpadding="0" width="95%">
+<tr><td height=1 bgcolor=#ff9900><img src='/images/space.gif' height=1></td></tr>
+<tr>
+<td align=center><font size=1>
+
+<a href="http://www.theultimatetoolbox.com">The Ultimate Toolbox</a> •
+<a href="http://www.ASPAlliance.com/">ASP Alliance</a> •
+<a href="http://www.developerfusion.co.uk/">Developer Fusion</a> •
+<a href="http://www.developersdex.com/">Developersdex</a> •
+<a href="http://www.devguru.com/">DevGuru</a> •
+<a href="http://www.programmersheaven.com/">Programmers Heaven</a> •
+<A href="http://www.planet-source-code.com/">Planet Source Code</a> •
+<a href="http://www.tek-tips.com/">Tek-Tips Forums</a> •
+
+</font>	
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>

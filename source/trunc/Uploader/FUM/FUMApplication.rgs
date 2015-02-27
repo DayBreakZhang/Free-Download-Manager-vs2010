@@ -1,0 +1,24 @@
+HKCR
+{
+	FUM.FUMApplication.1 = s 'FUMApplication Class'
+	{
+		CLSID = s '{545E2BA5-C2EE-4680-8FDD-234C282360EE}'
+	}
+	FUM.FUMApplication = s 'FUMApplication Class'
+	{
+		CLSID = s '{545E2BA5-C2EE-4680-8FDD-234C282360EE}'
+		CurVer = s 'FUM.FUMApplication.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {545E2BA5-C2EE-4680-8FDD-234C282360EE} = s 'FUMApplication Class'
+		{
+			ProgID = s 'FUM.FUMApplication.1'
+			VersionIndependentProgID = s 'FUM.FUMApplication'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{EF9226D1-F0FA-46CC-8108-D124021EC150}'
+			'TypeLib' = s '{0E911853-22D3-4662-8A2C-BE7BA2EABDCD}'
+		}
+	}
+}

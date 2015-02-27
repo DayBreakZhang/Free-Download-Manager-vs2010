@@ -1,0 +1,33 @@
+HKCR
+{
+	UploadShellExt.FdmUplSendToShlExt.1 = s 'FdmUplSendToShlExt Class'
+	{
+		CLSID = s '{8D97E4FE-18C2-48D4-85E7-31D29576F735}'
+	}
+	UploadShellExt.FdmUplSendToShlExt = s 'FdmUplSendToShlExt Class'
+	{
+		CLSID = s '{8D97E4FE-18C2-48D4-85E7-31D29576F735}'
+		CurVer = s 'UploadShellExt.FdmUplSendToShlExt.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {8D97E4FE-18C2-48D4-85E7-31D29576F735} = s 'FdmUplSendToShlExt Class'
+		{
+			ProgID = s 'UploadShellExt.FdmUplSendToShlExt.1'
+			VersionIndependentProgID = s 'UploadShellExt.FdmUplSendToShlExt'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{A0E139BE-C48A-4028-A814-2652035A732A}'
+			val NeverShowExt = s ''
+            DefaultIcon = s '%MODULE%,0'
+            shellex
+            {
+                DropHandler = s '{8D97E4FE-18C2-48D4-85E7-31D29576F735}'
+            }
+		}
+	}
+	.FdmUplSendToShlExt = s 'CLSID\{8D97E4FE-18C2-48D4-85E7-31D29576F735}'
+}

@@ -1,0 +1,1171 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Remote Library - The Code Project - Win32 / SDK</title>
+<base target="_top" />
+<meta http-equiv="Reply-to" content="mailto:webmaster@codeproject.com" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="MS.LOCALE"          content="en-US" />
+<meta name="Description"        content="A library that implements a common interface for remote memory handling and remote execution for all Windows versions." />
+<meta name="Search.TopicType"   content="kbArticle" />
+<meta name="Author"             content="Antnio Feijo" />
+<meta name="Search.PublishDate" content="03 May 2005 14:00:00 GMT" />
+<meta name="Search.RevisedDate" content="29 Sep 2005 14:00:00 GMT" />
+
+<meta NAME="keywords" Content="Free source code, , Visual C++, MFC, Windows, remote memory handling execution">
+<meta name="Copyright" content="Article content copyright Antnio Feijo, 2005, everthing else Copyright © CodeProject, 1999-2006, All Rights Reserved." />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All topics" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=1" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - MFC / C++" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=2" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=3" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - ASP.NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=4" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - .NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=5" />
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - VB.NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=6" />
+<link rel="search" type="application/opensearchdescription+xml" title="The Code Project" href="http://www.codeproject.com/info/OpenSearch.xml">
+<link rel="icon" href="/favicon.ico" type="image/ico" />
+<link rel="SHORTCUT ICON" href="/favicon.ico" />
+<link rel="stylesheet" type=text/css href="/styles/global.css">
+
+<script language="javascript" src="/script/oncopy.js"></script>
+<script language="javascript">
+if (top != self) top.location.href = location.href;
+if (typeof(DemoUrl) != "undefined")
+	document.write('<me' + 'ta http' + '-equiv="re' + 'fresh" con' + 'tent="1;url=' + DemoUrl + '">');
+</script>
+
+</head>
+<body text="black" bgcolor="white" alink="red" link="blue" vlink="navy" style="margin: 0" 
+      oncopy="return copyCode();">
+
+<!-- BEGIN I/PRO PAGE TAG - COPYRIGHT 2006 I/PRO Corporation ALL RIGHTS RESERVED. --> 
+<script language="JavaScript"> 
+var LSPT=""; 
+LSPT += "?durl=" + escape(document.URL); 
+LSPT += "&hostname=" + location.hostname; 
+LSPT += "&url=" + location.pathname; 
+LSPT += "&query=" + escape(location.search) + escape(location.hash); 
+LSPT += "&referrer=" + escape(document.referrer); 
+LSPT += "&browser=" + escape(navigator.appName); 
+LSPT += "&version=" + escape(navigator.appVersion); 
+LSPT += "&os=" + escape(navigator.platform); 
+LSPT += "&xdomain=codeproject.com"; 
+LSPT += "&custid=codeproject"; 
+</script> 
+<script Language="Javascript"> 
+document.write('<img src=http://'+'content.ipro.com/images/pixel.gif'+LSPT+' height="1" width="1" style="position:absolute;top:0px;left:0px">'); 
+</script> 
+<noscript> 
+<img src="http://content.ipro.com/images/pixel.gif?version=nonjava&xdomain=codeproject.com" height="1" width="1" style="position:absolute;top:0px;left:0px"> 
+</noscript> 
+<!-- END I/PRO PAGE TAG -->
+
+
+<table border="0" cellPadding="0" cellSpacing="0" width="100%">
+
+<tr>
+	<td class="HeaderLogo"><a href="/"><img alt="Home" border="0" height="90" src="/images/standard/codeproject225x90.gif" /></a></td>
+	<td class="HeaderBanner"><span id=AdBanner4><script language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=2788&way=ban\" target=_blank><img src=\"/script/ann/ServeImg.aspx?File=%2Fscript%2Fadmentor%2Fimages%2Fvista%5Fapi%5Fcp%5Fcompetition%5F728x90v4%2Egif&C=False&id=2788&cb=4744159\" alt=\"\" border=0 width=728 height=90></a>");</script></span></td>
+</tr>
+<tr><td colspan="2">
+<table cellpadding="5" cellspacing="0" width="100%" class="MemberNavBar" border=0>
+<tr valign="middle">
+
+<td class="smallText" style="font-weight:bold">3,709,877 members and growing! &nbsp;
+6,065 now online.
+</td>
+
+
+<td align="right" class="userNavText">
+
+
+
+<a href='/script/profile/whos_who.asp?id=804084'>
+_dd__aa_cc_
+</a> |
+<a href="/script/profile/modify.asp?ct=/win32/Remote.asp"><b>My Settings</b></a> |
+<a href="/script/profile/bookmark_list.asp">My Bookmarks</a> |
+<a href="/script/articles/list_articles.asp?userid=804084">My Articles</a> |
+
+<a href="/script/profile/logoff.asp?ct=/win32/Remote.asp">Sign out</a>
+
+
+</td>
+</tr>
+</table></td></tr>
+<tr><td colspan="2">
+<table cellpadding="0" cellspacing="0" class="SiteNavBar" id="tblSiteToolbar">
+<tr>
+<td><a href="/">Home</a></td>
+<td  nowrap><a href="/index.asp?cat=2" >MFC/C++</a></td>
+<td ><a href="/index.asp?cat=3">C#</a></td>
+<td  nowrap><a href="/index.asp?cat=4" >ASP.NET</a></td>
+<td ><a href="/index.asp?cat=5">.NET</a></td>
+<td  nowrap><a href="/index.asp?cat=6">VB.NET</a></td>
+<td class="SelCat" nowrap><a href="/index.asp?cat=1">All Topics</a></td>
+<td width="100%">&nbsp;</td>
+<td>
+	<div id='MenuPos' style='position: relative; width: 380; height: 22;top:1'>
+	<table id="MPH" width="380" cellpadding="0" cellspacing="0" style="border-width:0;height:20">
+	<tr valign="middle">
+		<td nowrap style="border-width:0"><a href='/info/faq.asp'>Help!</a></td>
+		<td nowrap style="border-width:0"><a href='/info/latest.asp'>Articles</a></td>
+		<td nowrap style="border-width:0"><a href='/script/comments/forums.asp'>Message Boards</a></td>
+		<td nowrap style="border-width:0"><a href='/store/'>StoreFront</a></td>
+		<td nowrap style="border-width:0"><a href='/lounge.asp'>Lounge</a></td>
+	</tr>
+	</table>
+	</div>
+</td>
+</tr>
+</table>
+<script type='text/javascript'>function Go(){return}</script>
+<script type='text/javascript' src='/script/HVMenu/cpmenu_var.js'></script>
+<script type='text/javascript' src='/script/HVMenu/menu10_com.js'></script>
+<script type="text/javascript">
+var MPH = document.getElementById("MPH");
+if (MPH) MPH.style.display='none';
+</script>
+</td></tr>
+
+
+<tr><td colspan="2">
+
+	<table cellpadding="3" cellspacing="0" width="100%" class="ArticleHeader">
+	<tr valign="top">
+		<td class="smallText" style="padding-right:10;"><a href='/?cat=1'>All Topics</a>, <a href='/?cat=2'>MFC / C++</a> &gt;&gt; <a href='/win32/'>Win32 / SDK</a> &gt;&gt; <a href='/win32/#General'>General</a> &nbsp;(<span class="SmallText" style="color:red;font-weight:bold">Advanced</span>)<br />
+			
+			<br />
+			<div style="font-weight:bold;font-size:16pt">Remote Library</div>
+			<b>By <a href="/script/Articles/list_articles.asp?userid=214034">Antnio Feijo</a></b>.
+			
+			<br /><br /><div style="font-size:12px">A library that implements a common interface for remote memory handling and remote execution for all Windows versions.</div>
+		</td>
+		<td class="smallText" style="width:200;">
+			C++ (VC6)<br> Windows (NT4, Win2K, WinXP, Win95, Win98, WinME)<br> Win32, VS (VS6)<br> Dev<br />
+			<span style="padding-right:2ex">Posted</span>: <b>4 May 2005 </b><br />
+			
+			<span style="padding-right:0.3ex">Updated</span>: <b>30 Sep 2005</b><br />
+			<span style="padding-right:3ex">Views</span>: <b>30,245</b>
+		</td>
+	</tr>
+	
+	
+
+	</td></tr>
+</td></tr>
+
+</table>
+<table cellspacing="0" cellpadding="0" border="0">
+<tr valign="top">
+
+	
+	<td rowspan="2" class="LHNavBar">
+	
+	<!-- Yes, there are IE hacks that will allow us to create a min-width DIV 
+	     (eg http://www.webreference.com/programming/min-width/) but I couldn't
+	     be arsed. Wait for it in v2.0 -->
+	
+	<div class="FeatureBlockHeader">Announcements</div>
+<div class="FeatureBlockContent RHFeatureBar">
+
+<div style="padding-top:5"><img src="/Feature/Vista/vista20.gif" width="20" height="20" alt="Vista" style="float:left;padding-right:10" />
+<a href="/redir.aspx?id=2666">Vista API competition<br />$10,000 in  prizes</a></div>
+
+<div style="padding-top:5"><img src="/Feature/Gadgets/gadgets20.gif" width="20" height="20" alt="Vista" style="float:left;padding-right:10" />
+<a href="/redir.aspx?id=2848">Vista Gadget comp: $2,000 in prizes</a></div>
+
+<div style="padding-top:5"><img src="/script/images/prize_winner_sm.gif" width="10"  height="20" 
+alt="Comp" style="float:left;padding-right:10;margin-left:7;margin-right:10;" /><a href='/script/competitions/monthly/'>Monthly Competition</a></div>
+
+</div>	<center>
+<script language=javascript>document.write("<IFRAME src=\"/script/ann/ServeHTML.aspx?C=False&id=2775&cb=4745225\" border=0 frameborder=0 scrolling=no width=160 height=600></IFRAME>");</script>
+</center>
+<br /><br />
+
+	
+	<img src="/script/images/t.gif" height="1" width="160" />
+	
+	</td>
+	
+
+	<td width="100%">
+
+		<table class="SearchHeaderBar" cellspacing="0" width="100%">
+<tr>
+<td valign="middle" align="right" nowrap="nowrap" width="60%">
+
+	<form method="post" action="/info/search.asp" name="Search" style="margin:0;">
+	<b>Search &nbsp;</b><input class="smallText" name="target" style="width:200;" />
+	<select style="font-weight:bold;font-size:8pt" name="st">
+		<option value="kw">Articles</option>
+		<option value="au">Authors</option>
+	</select>
+	<input type="submit" style="font-weight:bold;font-size:8pt" value=" Go! " /> &nbsp;
+	</form>
+</td>
+
+<td class="tinyText" nowrap="nowrap">
+<a href="/info/search.asp">Advanced Search</a><br />
+<a href="/script/articles/sections.asp">Sitemap</a> 
+
+ | <a Href="#" title="Add The Code Project to your IE search Providers" onClick="window.external.AddSearchProvider(&quot;http://www.codeproject.com/info/OpenSearch.xml&quot;);">Add to IE Search</a>
+
+
+</td>
+</tr>
+</table>
+		
+		<table width="100%">
+		<tr valign="top">
+		<td nowrap class="SmallText"><table><tr><td nowrap class=smallText><img align=absmiddle src='/images/print.gif'> <a href='/win32/Remote.asp?print=true' target=_print>Print</a></td><td nowrap class=smallText><img align=absmiddle src='/script/images/sitebuild_icon.gif'><a href="/script/submit/ReportProblem.asp?GUID=Remote%2Fwin325%2F4%2F2005">Broken Article?</a></td><td nowrap class=smallText><img align=absmiddle src='/images/link.gif'><a href="/script/profile/add_bookmark.asp?t=0&ct=%2Fwin32%2FRemote%2Easp&guid=Remote%2Fwin325%2F4%2F2005">Bookmark</a></td><td nowrap class=smallText><img align=absmiddle src='/images/mail_small.gif'> <a href='#__comments'>Discuss</a></td><td nowrap class=smallText><img align=absmiddle src='/images/mail.gif'> <a href="/script/recommend/form.asp?guid=Remote%2Fwin325%2F4%2F2005">Send to a friend</a></td></tr></table>
+		</td>
+		<td align="right" nowrap><a name="__top"></a><table><tr><td align=right class=smallText>25 votes  for this article.</td><td>
+<table border="2" cellpadding="0" cellspacing="0"><tr>
+<td><img src='/script/images/red.gif' width='20' height='5' border='0'></td>
+<td><img src='/script/images/red.gif' width='20' height='5' border='0'></td>
+<td><img src='/script/images/red.gif' width='20' height='5' border='0'></td>
+<td><img src='/script/images/red.gif' width='20' height='5' border='0'></td>
+<td><img src='/script/images/red.gif' width='14' height='5' border='0'><img src='/script/images/white.gif' width='6' height='5' border='0'></td>
+</tr></table>
+</td></tr><tr><td colspan=2 align=right class=smallText><a href='/script/articles/top_articles.asp?st=2' title='Calculated as rating x Log10(# votes)'>Popularity: 6.59</a>. Rating: <b>4.71</b> out of 5.</td></tr></table></td></tr>
+		</table>
+		
+			
+	</td>
+</tr>
+
+<tr>
+	<td class="ArticlePane">
+
+<span id="intelliTXT">
+<div id="contentdiv">
+
+
+<!-- Article Starts -->
+
+
+<UL class=download>
+<LI><A href="Remote/remote_src.zip">Download source - 59.4 Kb</A> 
+<LI><A href="Remote/remote_demo.zip">Download demo - 34.2 Kb</A> </LI></UL>
+<H2>Introduction</H2>
+<P>Remote code injection has always been a popular topic with dozens of articles written about the subject. One of the preferred techniques involves the following steps <A href="#4">[4]</A>:</P>
+<OL>
+<LI>Allocate memory in the remote process using <CODE>VirtualAllocEx()</CODE>. 
+<LI>Copy the code to the allocated remote memory using <CODE>WriteProcessMemory()</CODE>. 
+<LI>Execute the remote code using <CODE>CreateRemoteThread()</CODE>. </LI></OL>
+<P>The problem of this technique (as stated by several remote injection tutorials) is that the needed Windows functions don't exist across all Windows versions. The purpose of this library is to emulate the missing functions to allow to use the same code across all Windows versions.</P>
+<H2>Remote memory handling</H2>
+<P>The <CODE>VirtualAllocEx()</CODE> function is used to allocate memory within the virtual address of a specified process, and <CODE>VirtualFreeEx()</CODE> is used to release the allocated memory. The difference between <CODE>VirtualAllocEx()</CODE>/<CODE>VirtualFreeEx()</CODE> and <CODE>VirtualAlloc()</CODE>/<CODE>VirtualFree()</CODE> is the first parameter (<CODE>hProcess</CODE>) that allows to allocate/release memory for any process and not only within the address space of the calling process. The Kernel32 functions <CODE>VirtualAllocEx()</CODE> and <CODE>VirtualFreeEx()</CODE> are only implemented on Windows NT 4.0 or higher. To emulate these functions in NT 3.51, we can use the undocumented NTDLL functions <CODE>NtAllocateVirtualMemory()</CODE> and <CODE>NtFreeVirtualMemory()</CODE>:</P><PRE>LPVOID VirtualAllocExNT3(HANDLE hProcess,
+                         LPVOID lpAddress,
+                         DWORD dwSize,
+                         DWORD flAllocationType,
+                         DWORD flProtect)
+{
+    NTSTATUS Status = NtAllocateVirtualMemory(hProcess,          <span class='cpp-comment'>// Process handle</span>
+                                              &amp;lpAddress,        <span class='cpp-comment'>// Memory address</span>
+                                              <span class='cpp-literal'>0</span>,                 <span class='cpp-comment'>// Zero bits</span>
+                                              &amp;dwSize,           <span class='cpp-comment'>// Region size</span>
+                                              flAllocationType,  <span class='cpp-comment'>// Allocation type</span>
+                                              flProtect);        <span class='cpp-comment'>// Protection attr.</span>
+
+    <span class='cpp-keyword'>if</span> (!NT_SUCCESS(Status))
+    {
+        SetLastError(RtlNtStatusToDosError(Status));
+        <span class='cpp-keyword'>return</span> NULL;
+    }
+
+    <span class='cpp-keyword'>return</span> lpAddress;
+}</PRE><PRE>BOOL VirtualFreeExNT3(HANDLE hProcess,
+                      LPVOID lpAddress,
+                      DWORD dwSize,
+                      DWORD dwFreeType)
+{
+    <span class='cpp-comment'>// Param 'dwSize' must be zero for MEM_RELEASE</span>
+    <span class='cpp-keyword'>if</span> ((dwFreeType &amp; MEM_RELEASE) &amp;&amp; (dwSize != <span class='cpp-literal'>0</span>))
+    {
+        SetLastError(ERROR_INVALID_PARAMETER);
+        <span class='cpp-keyword'>return</span> FALSE;
+    }
+
+    NTSTATUS Status = NtFreeVirtualMemory(hProcess,      <span class='cpp-comment'>// Process handle</span>
+                                          &amp;lpAddress,    <span class='cpp-comment'>// Base address</span>
+                                          &amp;dwSize,       <span class='cpp-comment'>// Region size</span>
+                                          dwFreeType);   <span class='cpp-comment'>// Free type</span>
+
+    <span class='cpp-keyword'>if</span> (!NT_SUCCESS(Status))
+    {
+        SetLastError(RtlNtStatusToDosError(Status));
+        <span class='cpp-keyword'>return</span> FALSE;
+    }
+
+    <span class='cpp-keyword'>return</span> TRUE;
+}</PRE>
+<P>In Windows 9x, the trick is to use <CODE>VirtualAlloc()</CODE> to allocate memory in the shared area (between address 0x80000000 and 0xC0000000). Unlike Windows NT, in Win9x, the virtual memory area between 2GB and 3GB is always mapped into every process without the need to do explicit mapping. This means that if one process allocates memory within this region, other processes can access it directly using the pointer address. To allocate shared memory in Win9x using <CODE>VirtualAlloc()</CODE>, the undocumented flag <CODE>VA_SHARED</CODE> must be ORed with the <CODE>flAllocationType</CODE> parameter (<A href="#1">[1]</A> Chapter 5). <CODE>VirtualFree()</CODE> can be used to release the shared memory.</P>
+<P>The undocumented flag <CODE>VA_SHARED</CODE> is defined as:</P><PRE><span class='cpp-preprocessor'>#define VA_SHARED 0x8000000</span></PRE><PRE>LPVOID VirtualAllocEx9x(HANDLE hProcess,
+                        LPVOID lpAddress,
+                        DWORD dwSize,
+                        DWORD flAllocationType,
+                        DWORD flProtect)
+{
+<span class='cpp-preprocessor'>    #define VA_SHARED 0x8000000              // Undoc. shared memory flag</span>
+
+    <span class='cpp-keyword'>return</span> VirtualAlloc(lpAddress,            <span class='cpp-comment'>// Addr. of memory block</span>
+                        dwSize,               <span class='cpp-comment'>// Size of memory block</span>
+                        flAllocationType |    <span class='cpp-comment'>// Allocation type OR</span>
+                        VA_SHARED,            <span class='cpp-comment'>// Shared memory flag</span>
+                        flProtect)            <span class='cpp-comment'>// Access protection</span>
+}</PRE><PRE>BOOL VirtualFreeEx9x(HANDLE hProcess,
+                     LPVOID lpAddress,
+                     DWORD dwSize,
+                     DWORD dwFreeType)
+{
+    <span class='cpp-keyword'>return</span> VirtualFree(lpAddress,               <span class='cpp-comment'>// Address of memory block</span>
+                       dwSize,                  <span class='cpp-comment'>// Size of memory block</span>
+                       dwFreeType);             <span class='cpp-comment'>// Type of free operation</span>
+}</PRE>
+<H2>OpenThread</H2>
+<P><CODE>OpenThread()</CODE> returns a handle to a thread object from its thread identifier (<CODE>TID</CODE>). It's a convenient way of converting a <CODE>TID</CODE> to a thread handle. The Kernel32 function <CODE>OpenThread()</CODE> is only implemented on Win 2000 or higher and Win ME. On Windows NT, the undocumented NTDLL function <CODE>NtOpenThread()</CODE> can be used to emulate <CODE>OpenThread()</CODE>:</P><PRE>HANDLE OpenThreadNT(DWORD dwDesiredAccess,
+                    BOOL  bInheritHandle,
+                    DWORD dwThreadId)
+{
+    OBJECT_ATTRIBUTES   ObjectAttributes;
+    CLIENT_ID           ClientId;
+    HANDLE              hThread;
+    NTSTATUS            Status;
+
+    InitializeObjectAttributes(&amp;ObjectAttributes, NULL, <span class='cpp-literal'>0</span>, NULL, NULL);
+
+    <span class='cpp-keyword'>if</span> (bInheritHandle)
+        ObjectAttributes.Attributes = OBJ_INHERIT;
+
+    ClientId.UniqueProcess = NULL;
+    ClientId.UniqueThread = (HANDLE)dwThreadId;
+
+    Status = NtOpenThread(&amp;hThread,             <span class='cpp-comment'>// Thread handle</span>
+                          dwDesiredAccess,      <span class='cpp-comment'>// Access to thread object</span>
+                          &amp;ObjectAttributes,    <span class='cpp-comment'>// Object attributes</span>
+                          &amp;ClientId);           <span class='cpp-comment'>// Client Id</span>
+
+    <span class='cpp-keyword'>if</span> (!NT_SUCCESS(Status))
+    {
+        SetLastError(RtlNtStatusToDosError(Status));
+        <span class='cpp-keyword'>return</span> NULL;
+    }
+
+    <span class='cpp-keyword'>return</span> hThread;
+}</PRE>
+<P>In Win9x, Kernel32 <CODE>OpenProcess()</CODE> can also be used to open a thread: instead of passing it a <CODE>PID</CODE> (Process ID), a <CODE>TID</CODE> (Thread ID) is passed to it. Inside <CODE>OpenProcess()</CODE>, there's a check to verify if the passed <CODE>Id</CODE> corresponds to a <CODE>PID</CODE> and if not returns <CODE>ERROR_INVALID_PARAMETER</CODE>, therefore a method to bypass this check is necessary to be able to use <CODE>OpenProcess()</CODE> to open a thread object. There are two ways of doing this: skip the test inside <CODE>OpenProcess()</CODE> (ATM method by Enrico Del Fante), or change the thread object type to process (Each Kernel object -- process, thread, file, mutex, ... -- has a corresponding data structure that holds information about the object. These structures are undocumented, but you can find the description of some of these structures in <A href="#1">[1]</A>. The first field of each Kernel object <CODE><span class='cpp-keyword'>struct</span></CODE> is always the object type: <CODE>K32OBJ_PROCESS</CODE>, <CODE>K32OBJ_THREAD</CODE>, <CODE>K32OBJ_FILE</CODE>, <CODE>K32OBJ_MUTEX</CODE>, ...). After the initial checks, <CODE>OpenProcess()</CODE> just calls the Kernel32 internal function <CODE>OpenHandle()</CODE> that returns a handle to an object -- that's why we can use <CODE>OpenProcess()</CODE> to open both process/thread objects.</P>
+<H3>Method 1:</H3><PRE>HANDLE OpenThread9x(DWORD dwDesiredAccess,
+                    BOOL  bInheritHandle,
+                    DWORD dwThreadId)
+{
+    HANDLE  hThread;
+
+    <span class='cpp-comment'>// Get OpenProcess() address and length</span>
+    HANDLE hKernel32 = GetModuleHandle(<span class='cpp-string'>"Kernel32.dll"</span>);
+    DWORD OpenProcessOrdinal = NameToOrdinal(hKernel32, <span class='cpp-string'>"OpenProcess"</span>);
+    PVOID pOpenProcess = _GetProcAddress(hKernel32, OpenProcessOrdinal);
+    <span class='cpp-keyword'>int</span> OpenProcessLength = GetProcLength(hKernel32, OpenProcessOrdinal);
+
+    <span class='cpp-comment'>// Search for MOV ECX,0 (B9,00,00,00,00) inside OpenProcess() function</span>
+    INTERNALOPENTHREAD InternalOpenThread = MemSearch(pOpenProcess,
+                                                      OpenProcessLength,
+                                                      <span class='cpp-string'>"\xB9\x00\x00\x00\x00"</span>,
+                                                      <span class='cpp-literal'>5</span>);
+
+    <span class='cpp-comment'>// Thread Database pointer</span>
+    PTDB pTDB = dwThreadId ^ dwObsfucator;
+
+    <span class='cpp-comment'>// InternalOpenThread()</span>
+    __asm
+    {
+        mov   eax, pTDB
+        push  dwThreadId
+        push  bInheritHandle
+        push  dwDesiredAccess
+        call  InternalOpenThread
+        mov   hThread, eax
+    }
+
+    <span class='cpp-keyword'>return</span> hThread;
+}</PRE>
+<P>The internal Kernel32 <CODE>OpenThread()</CODE> function must be called from assembly language because it expects register <CODE lang=asm><span class='cpp-keyword'>EAX</span></CODE> to contain the <CODE>TDB</CODE> (Thread Database) address. For a detailed description of functions <CODE>NameToOrdinal()</CODE>, <CODE>_GetProcAddress()</CODE> and <CODE>GetProcLength()</CODE>, see the file "<I>GetProcAddress.c</I>".</P>
+<H3>Method 2:</H3><PRE>HANDLE OpenThread9x(DWORD dwDesiredAccess,
+                    BOOL  bInheritHandle,
+                    DWORD dwThreadId)
+{
+    <span class='cpp-comment'>// Thread Database pointer</span>
+    PTDB pTDB = dwThreadId ^ dwObsfucator;
+
+    pTDB-&gt;Type = K32OBJ_PROCESS;
+    HANDLE hThread = OpenProcess(dwDesiredAccess, bInheritHandle, dwThreadId);
+    pTDB-&gt;Type = K32OBJ_THREAD;
+
+    <span class='cpp-keyword'>return</span> hThread;
+}</PRE>
+<P>After obtaining a pointer to the thread object (<CODE>pTDB</CODE>) [for a detailed explanation of the thread object and how to obtain a pointer to it, see the <CODE>GetTDB()</CODE> function description below], its type is changed to process to bypass the check inside <CODE>OpenProcess()</CODE>. After the call to <CODE>OpenProcess()</CODE>, the object type is changed back to thread. In a multitasking OS like Windows, sometimes it's not a good idea to directly manipulate internal structures, so method 1 should be safer.</P>
+<H2>GetProcessId</H2>
+<P><CODE>GetProcessId()</CODE> returns the process identifier (<CODE>PID</CODE>) of the specified process. It's a convenient way of converting a process handle to the corresponding <CODE>PID</CODE>. The Kernel32 function <CODE>GetProcessId()</CODE> is only implemented on Win XP or higher. On Windows NT, the semi-documented NTDLL function <CODE>NtQueryInformationProcess()</CODE> can be used to emulate <CODE>GetProcessId()</CODE>:</P><PRE>DWORD WINAPI GetProcessIdNT(HANDLE hProcess)
+{
+    NTSTATUS                  Status;
+    PROCESS_BASIC_INFORMATION pbi;
+    HANDLE                    hDupHandle;
+    HANDLE                    hCurrentProcess;
+
+    hCurrentProcess = GetCurrentProcess();
+
+    <span class='cpp-comment'>// Use DuplicateHandle() to get PROCESS_QUERY_INFORMATION access right</span>
+    <span class='cpp-keyword'>if</span> (!DuplicateHandle(hCurrentProcess,
+                         hProcess,
+                         hCurrentProcess,
+                         &amp;hDupHandle,
+                         PROCESS_QUERY_INFORMATION,
+                         FALSE,
+                         <span class='cpp-literal'>0</span>))
+    {
+        SetLastError(ERROR_ACCESS_DENIED);
+        <span class='cpp-keyword'>return</span> <span class='cpp-literal'>0</span>;
+    }
+
+    Status = NtQueryInformationProcess(hDupHandle,
+                                       ProcessBasicInformation,
+                                       &amp;pbi,
+                                       <span class='cpp-keyword'>sizeof</span>(pbi),
+                                       NULL);
+
+    CloseHandle(hDupHandle);
+
+    <span class='cpp-keyword'>if</span> (!NT_SUCCESS(Status))
+    {
+        SetLastError(RtlNtStatusToDosError(Status));
+        <span class='cpp-keyword'>return</span> <span class='cpp-literal'>0</span>;
+    }
+
+    <span class='cpp-comment'>// Return PID</span>
+    <span class='cpp-keyword'>return</span> pbi.UniqueProcessId;
+}</PRE>
+<P>It's advisable to use the <CODE>DuplicateHandle()</CODE> function to obtain the <CODE>PROCESS_QUERY_INFORMATION</CODE> access right before calling <CODE>NtQueryInformationProcess()</CODE> (because the passed <CODE>hProcess</CODE> could not have this access right).</P>
+<P>In Win9x, a <CODE>PID</CODE> is in reality a pointer to a process object (<CODE>PDB</CODE>) (actually XORed with a <CODE>DWORD</CODE> called "<I>Obfuscator</I>") [for a detailed explanation of the process object and how to obtain a pointer to it, see the <CODE>GetPDB()</CODE> function description below; and for an explanation of the meaning of "<I>Obfuscator</I>", see the <CODE>GetObsfucator()</CODE> function below]. Using the process handle as an index to the handle table, we retrieve a pointer to the process object. This pointer XORed with the <I>Obfuscator</I> provides the <CODE>PID</CODE>.</P><PRE>DWORD GetProcessId9x(HANDLE hProcess)
+{
+    PPDB           pPDB, pObject;
+    PHANDLE_TABLE  pHandleTable;
+    <span class='cpp-keyword'>int</span>            index;
+
+    <span class='cpp-comment'>// Current PDB</span>
+    pPDB = GetPDB();
+
+    <span class='cpp-comment'>// Handle table index</span>
+    <span class='cpp-keyword'>if</span> (OSWin95)
+        index = hProcess;
+    <span class='cpp-keyword'>else</span> <span class='cpp-keyword'>if</span> (OSWin98)
+        index = hProcess / <span class='cpp-literal'>4</span>;
+
+    <span class='cpp-comment'>// Handle table pointer</span>
+    pHandleTable = pPDB-&gt;pHandleTable;
+
+    <span class='cpp-comment'>// Pointer to process database</span>
+    pObject = pHandleTable-&gt;array[index].pObject;
+
+    <span class='cpp-comment'>// Return PID</span>
+    <span class='cpp-keyword'>return</span> pObject ^ dwObsfucator;
+}</PRE>
+<P>An alternative method that works for all Windows versions is to call <CODE>GetCurrentProcessId()</CODE> in the context of the specified process:</P><PRE>DWORD _GetProcessId(HANDLE hProcess)
+{
+    HANDLE  hThread;
+    DWORD   Pid;
+
+    GetCurrentProcessId = GetProcAddress(GetModuleHandle(<span class='cpp-string'>"Kernel32.dll"</span>),
+                                         <span class='cpp-string'>"GetCurrentProcessId"</span>);
+
+    hThread = _CreateRemoteThread(hProcess,
+                                  NULL,
+                                  <span class='cpp-literal'>0</span>,
+                                  (LPTHREAD_START_ROUTINE)GetCurrentProcessId,
+                                  NULL,
+                                  <span class='cpp-literal'>0</span>,
+                                  NULL);
+    <span class='cpp-keyword'>if</span> (!hThread)
+        <span class='cpp-keyword'>return</span> <span class='cpp-literal'>0</span>;
+    <span class='cpp-keyword'>else</span>
+    {
+        WaitForSingleObject(hThread, INFINITE);
+        <span class='cpp-comment'>// Exit code of remote thread is the PID</span>
+        GetExitCodeThread(hThread, &amp;Pid);
+        CloseHandle(hThread);
+        <span class='cpp-keyword'>return</span> Pid;
+   }
+}</PRE>
+<H2>GetThreadId</H2>
+<P><CODE>GetThreadId()</CODE> returns the thread identifier (<CODE>TID</CODE>) of the specified thread. It's a convenient way of converting a thread handle to the corresponding <CODE>TID</CODE>. The Kernel32 function <CODE>GetThreadId()</CODE> is only implemented on Win XP or higher. On Windows NT, the semi-documented NTDLL function <CODE>NtQueryInformationThread()</CODE> can be used to emulate <CODE>GetThreadId()</CODE>:</P><PRE>DWORD WINAPI GetThreadIdNT(HANDLE hThread)
+{
+    NTSTATUS                 Status;
+    THREAD_BASIC_INFORMATION tbi;
+    HANDLE                   hDupHandle;
+    HANDLE                   hCurrentProcess;
+
+    hCurrentProcess = GetCurrentProcess();
+
+    <span class='cpp-comment'>// Use DuplicateHandle() to get THREAD_QUERY_INFORMATION access right</span>
+    <span class='cpp-keyword'>if</span> (!DuplicateHandle(hCurrentProcess,
+                         hThread,
+                         hCurrentProcess,
+                         &amp;hDupHandle,
+                         THREAD_QUERY_INFORMATION,
+                         FALSE,
+                         <span class='cpp-literal'>0</span>))
+    {
+        SetLastError(ERROR_ACCESS_DENIED);
+        <span class='cpp-keyword'>return</span> <span class='cpp-literal'>0</span>;
+    }
+
+    Status = NtQueryInformationThread(hDupHandle,
+                                      ThreadBasicInformation,
+                                      &amp;tbi,
+                                      <span class='cpp-keyword'>sizeof</span>(tbi),
+                                      NULL);
+
+    CloseHandle(hDupHandle);
+
+    <span class='cpp-keyword'>if</span> (!NT_SUCCESS(Status))
+    {
+        SetLastError(RtlNtStatusToDosError(Status));
+        <span class='cpp-keyword'>return</span> <span class='cpp-literal'>0</span>;
+    }
+
+    <span class='cpp-comment'>// Return TID</span>
+    <span class='cpp-keyword'>return</span> tbi.ClientId.UniqueThread;
+}</PRE>
+<P>It's advisable to use the <CODE>DuplicateHandle()</CODE> function to obtain the <CODE>THREAD_QUERY_INFORMATION</CODE> access right before calling <CODE>NtQueryInformationThread()</CODE> (because the passed <CODE>hThread</CODE> could not have this access right).</P>
+<P>In Win9x, similar to <CODE>GetProcessId()</CODE>, using the thread handle as an index to the handle table, we retrieve a pointer to the thread object. This pointer XORed with the <I>Obfuscator</I> provides the <CODE>TID</CODE>.</P><PRE>DWORD GetThreadId9x(HANDLE hThread)
+{
+    PPDB           pPDB;
+    PTDB           pObject;
+    PHANDLE_TABLE  pHandleTable;
+    <span class='cpp-keyword'>int</span>            index;
+
+    <span class='cpp-comment'>// Current PDB</span>
+    pPDB = GetPDB();
+
+    <span class='cpp-comment'>// Handle table index</span>
+    <span class='cpp-keyword'>if</span> (OSWin95)
+        index = hThread;
+    <span class='cpp-keyword'>else</span> <span class='cpp-keyword'>if</span> (OSWin98)
+        index = hThread / <span class='cpp-literal'>4</span>;
+
+    <span class='cpp-comment'>// Handle table pointer</span>
+    pHandleTable = pPDB-&gt;pHandleTable;
+
+    <span class='cpp-comment'>// Pointer to thread database</span>
+    pObject = pHandleTable-&gt;array[index].pObject;
+
+    <span class='cpp-comment'>// Return TID</span>
+    <span class='cpp-keyword'>return</span> pObject ^ dwObsfucator;
+}</PRE>
+<H2>CreateRemoteThread</H2>
+<P><CODE>CreateRemoteThread()</CODE> creates a thread that runs in the virtual address space of another process. The Kernel32 function <CODE>CreateRemoteThread()</CODE> is not implemented in the Win9x platform. There are two completely different ways of emulating the <CODE>CreateRemoteThread()</CODE> function in Win9x: locate the Kernel32 internal function that creates a remote thread (and that ultimately will call the VxD <CODE>VWIN32_CreateThread</CODE> -- <CODE>VxDCall <span class='cpp-literal'>0x002A</span>,<span class='cpp-literal'>0x0008</span></CODE>). This internal function is called by exported functions like <CODE>CreateThread()</CODE>, <CODE>CreateKernelThread()</CODE>, <CODE>CreateProcess()</CODE> and <CODE>DebugActiveProcess()</CODE> among others. The other method involves "hijacking" an existing remote thread and manipulating its context to run the new thread code.</P>
+<H3>1. InternalCreateRemoteThread()</H3>
+<P>Inside Kernel32, there's a function (which I am calling "<CODE>InternalCreateRemoteThread</CODE>") with the following declaration:</P><PRE>PTDB InternalCreateRemoteThread(PVOID pPDB,
+                                DWORD dwStackSize,
+                                LPTHREAD_START_ROUTINE lpStartAddress,
+                                LPVOID lpParameter,
+                                DWORD Flags);</PRE>
+<P><CODE>pPDB</CODE> is a pointer to the Process Database (<CODE>PDB</CODE>), <CODE>dwStackSize</CODE> is the initial stack size in bytes, <CODE>lpStartAddress</CODE> is the thread function address, <CODE>lpParameter</CODE> is a pointer to the data to be passed to the thread function, and <CODE>Flags</CODE> are internal flags for the function (they differ from <CODE>dwCreationFlags</CODE>!). The function returns a pointer to the newly created thread object (<CODE>TDB</CODE>). Because this function isn't exported, we must find a way of locating it inside Kernel32. Fortunately, this function is called by several exported functions, so by searching inside one of these exported functions, we will be able to locate it. Contrary to a popular belief, <CODE>CreateThread()</CODE> requires several search levels to locate the internal function and therefore it shouldn't be our primary choice. <CODE>DebugActiveProcess()</CODE> calls <CODE>InternalCreateRemoteThread()</CODE> directly with the following parameters: <CODE>pPDB</CODE> in EDI, <CODE>dwStackSize</CODE> = 0xFFFFF000, <CODE>lpStartAddress</CODE> = SomeInternalKernel32Routine, <CODE>lpParameter</CODE> in EDI, <CODE>Flags</CODE> = 8. With this information, it's easy to retrieve the address of the <CODE>InternalCreateRemoteThread()</CODE> as follows:</P><PRE><span class='cpp-comment'>// Get DebugActiveProcess() address and length</span>
+HANDLE hKernel32 = GetModuleHandle(<span class='cpp-string'>"Kernel32.dll"</span>);
+DWORD DebugActiveProcessOrdinal = NameToOrdinal(hKernel32, <span class='cpp-string'>"DebugActiveProcess"</span>);
+PVOID pDebugActiveProcess = _GetProcAddress(hKernel32, DebugActiveProcessOrdinal);
+<span class='cpp-keyword'>int</span> DebugActiveProcessLength = GetProcLength(hKernel32, DebugActiveProcessOrdinal);
+
+<span class='cpp-comment'>// Search for PUSH 0xFFFFF000 (68,00,F0,FF,FF) inside DebugActiveProcess() function</span>
+PBYTE p = MemSearch(pDebugActiveProcess, DebugActiveProcessLength,
+                    <span class='cpp-string'>"\x68\x00\xF0\xFF\xFF"</span>, <span class='cpp-literal'>5</span>);
+p += <span class='cpp-literal'>7</span>; <span class='cpp-comment'>// Point to CALL InternalCreateRemoteThread</span>
+<span class='cpp-comment'>// Address of InternalCreateRemoteThread() inside DebugActiveProc()</span>
+InternalCreateRemoteThread = (INTERNALCREATEREMOTETHREAD)(p + *(DWORD *)p + <span class='cpp-literal'>4</span>);</PRE>
+<P>The complete <CODE>CreateRemoteThread()</CODE> emulation in Win9x then translates to:</P><PRE>HANDLE CreateRemoteThread9x(HANDLE                 hProcess,
+                            LPSECURITY_ATTRIBUTES  lpThreadAttributes,
+                            DWORD                  dwStackSize,
+                            LPTHREAD_START_ROUTINE lpStartAddress,
+                            LPVOID                 lpParameter,
+                            DWORD                  dwCreationFlags,
+                            LPDWORD                lpThreadId)
+{
+<span class='cpp-preprocessor'>    #define INVALID_FLAGS (fTerminated | fTerminating | fNearlyTerminating)</span>
+
+    PPDB    pPDB, pPDBLocal;
+    PTDB    pTDB;
+    DWORD   dwThreadId, dwProcessId;
+    HANDLE  hThread;
+    BOOL    bInheritHandle = FALSE;
+    DWORD   fLocal;
+    DWORD   fFlags = <span class='cpp-literal'>8</span>; <span class='cpp-comment'>// Initial flag for InternalCreateRemoteThread()</span>
+    DWORD   StackSize;
+
+    SetLastError(ERROR_INVALID_PARAMETER);
+
+    <span class='cpp-keyword'>if</span> (lpThreadAttributes != NULL)
+    {
+        <span class='cpp-keyword'>if</span> (lpThreadAttributes-&gt;nLength != <span class='cpp-keyword'>sizeof</span>(SECURITY_ATTRIBUTES))
+            <span class='cpp-keyword'>return</span> NULL;
+
+        bInheritHandle = lpThreadAttributes-&gt;bInheritHandle;
+    }
+
+    <span class='cpp-keyword'>if</span> (!lpStartAddress)
+        <span class='cpp-keyword'>return</span> NULL;
+
+    <span class='cpp-comment'>// Get PID</span>
+    <span class='cpp-keyword'>if</span> (!(dwProcessId = _GetProcessId(hProcess)))
+        <span class='cpp-keyword'>return</span> NULL;
+
+    <span class='cpp-comment'>//Get PDB</span>
+    <span class='cpp-keyword'>if</span> (!(pPDB = GetPDB(dwProcessId)))
+        <span class='cpp-keyword'>return</span> NULL;
+
+    <span class='cpp-comment'>// Check process flags</span>
+    <span class='cpp-keyword'>if</span> (((PPDB95)pPDB)-&gt;Flags &amp; INVALID_FLAGS)
+    {
+        SetLastError(ERROR_INVALID_PARAMETER);
+        <span class='cpp-keyword'>return</span> NULL;
+    }
+
+    <span class='cpp-comment'>// Get local PDB</span>
+    <span class='cpp-keyword'>if</span> (!(pPDBLocal = GetPDB(-<span class='cpp-literal'>1</span>)))
+        <span class='cpp-keyword'>return</span> NULL;
+
+    <span class='cpp-comment'>// Is the process local or remote ?</span>
+    fLocal = pPDB == pPDBLocal;
+
+    <span class='cpp-comment'>// Remote process</span>
+    <span class='cpp-comment'>// (negate stack size)</span>
+    <span class='cpp-keyword'>if</span> (!fLocal)
+    {
+        <span class='cpp-keyword'>if</span> (dwStackSize == <span class='cpp-literal'>0</span>)
+            StackSize = -(<span class='cpp-keyword'>int</span>)<span class='cpp-literal'>0x3000</span>;   <span class='cpp-comment'>// Default stack size</span>
+        <span class='cpp-keyword'>else</span>
+            StackSize = -(<span class='cpp-keyword'>int</span>)dwStackSize;
+    }
+    <span class='cpp-comment'>// Current process</span>
+    <span class='cpp-keyword'>else</span>
+        StackSize = dwStackSize;
+
+    <span class='cpp-comment'>// Always create thread suspended</span>
+    fFlags |= <span class='cpp-literal'>0x40</span>;
+
+    <span class='cpp-comment'>// If process not initialized</span>
+    <span class='cpp-comment'>// suppress DLL_THREAD_ATTACH notification</span>
+    <span class='cpp-keyword'>if</span> (dwCreationFlags &amp; CREATE_SILENT)
+        fFlags |= <span class='cpp-literal'>0x10</span>;
+
+    <span class='cpp-comment'>// Set correct system level</span>
+    EnterSysLevel(Win16Mutex);
+    <span class='cpp-keyword'>if</span> (Krn32Mutex)
+        EnterSysLevel(Krn32Mutex);
+
+    <span class='cpp-comment'>// This function creates a new THREAD object and returns a pointer to it</span>
+    <span class='cpp-comment'>// (run thread)</span>
+    pTDB = InternalCreateRemoteThread(pPDB,             <span class='cpp-comment'>// PDB</span>
+                                      StackSize,        <span class='cpp-comment'>// Stack size</span>
+                                      lpStartAddress,   <span class='cpp-comment'>// Thread address</span>
+                                      lpParameter,      <span class='cpp-comment'>// Parameter passed to thread</span>
+                                      fFlags);          <span class='cpp-comment'>// Flags</span>
+    <span class='cpp-comment'>// Leave system level</span>
+    <span class='cpp-keyword'>if</span> (Krn32Mutex)
+        LeaveSysLevel(Krn32Mutex);
+    LeaveSysLevel(Win16Mutex);
+
+    dwThreadId = (DWORD)pTDB ^ dwObsfucator;
+
+    <span class='cpp-keyword'>if</span> (lpThreadId != NULL)
+        *lpThreadId = dwThreadId;
+
+    <span class='cpp-comment'>// Get thread handle</span>
+    hThread = OpenThread9x(THREAD_ALL_ACCESS, bInheritHandle, dwThreadId);
+
+    <span class='cpp-comment'>// If thread created not suspended let it run</span>
+    <span class='cpp-keyword'>if</span> (!(dwCreationFlags &amp; CREATE_SUSPENDED))
+        ResumeThread(hThread);
+
+    <span class='cpp-keyword'>return</span> hThread;
+}</PRE>
+<H3>2. SetThreadContext()</H3>
+<P>This method involves the following steps:</P>
+<OL>
+<LI>Get a thread ID from the remote process using one of the available enumeration methods (see <A href="#6">[6]</A>). 
+<LI>Allocate memory within the remote process and copy code and data to it. 
+<LI>Save the suspend count of the thread to be restored later. <CODE>SuspendThread()</CODE> returns this value. On Win9x, this value can be retrieved directly from the <CODE>TDB</CODE>/<CODE>TDBX ApiSuspendCount</CODE> field. 
+<LI>Suspend the thread using <CODE>SuspendThread()</CODE>. 
+<LI>Save the thread context (using <CODE>GetThreadContext()</CODE>) to be restored later. 
+<LI>Set the <CODE lang=asm>Eip</CODE> (Instruction Pointer) field of the thread context data structure to point to our code. To ease the detection of the thread termination, the <CODE>Eip</CODE> is not set to the thread function directly, but instead it points to a stub code that will call the remote thread function. This code is defined as: <PRE lang=asm>    <span class='cpp-keyword'>push</span> pParams
+    <span class='cpp-keyword'>call</span> ThreadFunction
+    <span class='cpp-keyword'>jmp</span>  $</PRE>
+<P>After pushing the needed parameters and calling the thread function, the code enters an infinite loop.</P>
+<LI>Resume (i.e. run) the thread by using <CODE>ResumeThread()</CODE>. 
+<LI>Compare the current instruction pointer (<CODE lang=asm>Eip</CODE>) with the address of the <CODE lang=asm><span class='cpp-keyword'>jmp</span> $</CODE> instruction. If it matches, we know that the thread function has terminated. The thread exit code is returned in the <CODE lang=asm>Eax</CODE> register. 
+<LI>Restore the saved context and suspend count. 
+<LI>Release the allocated memory. </LI></OL>
+<P>With this method, in reality it's not possible to fully emulate the <CODE>CreateRemoteThread()</CODE> function, so I presented instead a clone of the <CODE>RemoteExec()</CODE> function (that uses <CODE>CreateRemoteProcess()</CODE> and is described below) called <CODE>ContextRemoteExecute()</CODE>. Note that suspending a running thread belonging to another process can lead to deadlock, turning this method very unsafe.</P>
+<H2>Other functions</H2>
+<P>The following functions do not exist in Windows and are only implemented to ease the manipulation of the undocumented internal structures and remote code injection.</P>
+<H3>GetTIB</H3>
+<P>This function returns a pointer to the Thread Information Block (<CODE>TIB</CODE>). The return value should be cast depending on the Windows version. The format of this data structure is defined in the file "<I>struct.h</I>". This structure is documented for Window NT (defined in <I>winnt.h</I>). It contains stack and exception information used for SEH - Structured Exception Handling (used in C/C++ <CODE><span class='cpp-keyword'>try</span></CODE>/<CODE><span class='cpp-keyword'>catch</span></CODE>) - among other fields. <CODE>DWORD</CODE> at offset 0x18 contains the linear address of the <CODE>TIB</CODE> structure, therefore to retrieve a pointer to the <CODE>TIB</CODE>, use the following code:</P><PRE lang=asm>    __asm <span class='cpp-keyword'>mov</span> <span class='cpp-keyword'>eax</span>, fs:[<span class='cpp-literal'>0x18</span>]
+    __asm <span class='cpp-keyword'>mov</span> pTIB, <span class='cpp-keyword'>eax</span></PRE>
+<P>It's necessary to use assembly because this data structure is pointed by the <CODE lang=asm>FS</CODE> segment register (data references normally use the <CODE lang=asm><span class='cpp-keyword'>DS</span></CODE> segment register). Note that in Windows NT because the <CODE>TIB</CODE> structure is contained by the <CODE>TEB</CODE> (Thread Environment Block), <CODE>pTIB</CODE> is also a pointer to the <CODE>TEB</CODE>. In Windows 9x, the <CODE>TIB</CODE> is part of the <CODE>TDB</CODE> (Thread Database) -- see the description of the <CODE>TDB</CODE> below. For a detailed explanation of the <CODE>TIB</CODE> internals, see <A href="#2">[2]</A>.</P>
+<H3>GetTDB</H3>
+<P>This function returns a pointer to the Thread Database (<CODE>TDB</CODE>) for the specified thread ID (<CODE>TID</CODE>). The return value should be cast depending on the Windows version. Because the <CODE>TDB</CODE> exists only on the Windows 9x platform, the function returns <CODE>NULL</CODE> for Windows NT or higher. The format of this data structure is defined in the file "<I>struct.h</I>". The <CODE>TDB</CODE> is a system data structure that represents a thread object and contains information such as: <CODE>PDB</CODE> pointer, <CODE>TIB</CODE>, <CODE>TLS</CODE> array pointer, thread exit code, etc. To obtain a pointer to the <CODE>TDB</CODE>, just XOR the <CODE>TID</CODE> with the <I>Obfuscator</I> value:</P><PRE>    pTDB = TID ^ dwObsfucator;</PRE>
+<P>This means that the <CODE>TID</CODE> is just an encrypted pointer to the <CODE>TDB</CODE>. For the current thread, the <CODE>TDB</CODE> can be retrieved from the <CODE>TIB</CODE> by subtracting the offset of the <CODE>TIB</CODE> inside the <CODE>TDB</CODE> structure:</P><PRE lang=asm>    __asm <span class='cpp-keyword'>mov</span>  <span class='cpp-keyword'>eax</span>,fs:[<span class='cpp-literal'>0x18</span>]
+    __asm <span class='cpp-keyword'>mov</span>  pTDB,<span class='cpp-keyword'>eax</span>
+
+    if (OSWin95)
+       pTDB -= <span class='cpp-literal'>0x10</span><span class='cpp-comment'>;</span>
+    else if (OSWin98)
+       pTDB -= <span class='cpp-literal'>8</span><span class='cpp-comment'>;</span></PRE>
+<H3>GetPDB</H3>
+<P>This function returns a pointer to the Process Database (<CODE>PDB</CODE>) for the specified process ID (<CODE>PID</CODE>). The return value should be cast depending on the Windows version. Because the <CODE>PDB</CODE> exists only on the Windows 9x platform, the function returns <CODE>NULL</CODE> for Windows NT or higher. The format of this data structure is defined in the file "<I>struct.h</I>". The <CODE>PDB</CODE> is a system data structure that represents a process object and contains information about a process including: list of threads and modules, the handle table, the environment database, etc. To obtain a pointer to the <CODE>PDB</CODE>, just XOR the <CODE>PID</CODE> with the <I>Obfuscator</I> value:</P><PRE>    pPDB = PID ^ dwObsfucator;</PRE>
+<P>This means that the <CODE>PID</CODE> is just an encrypted pointer to the <CODE>PDB</CODE>. For the current process, the <CODE>PDB</CODE> can be retrieved from the <CODE>pProcess</CODE> field (offset 0x30) of the <CODE>TIB</CODE>:</P><PRE lang=asm>    __asm <span class='cpp-keyword'>mov</span> <span class='cpp-keyword'>eax</span>, fs:[<span class='cpp-literal'>0x30</span>]
+    __asm <span class='cpp-keyword'>mov</span> pPDB, <span class='cpp-keyword'>eax</span></PRE>
+<H3>GetObsfucator</H3>
+<P>In early versions of Windows 95, <CODE>GetCurrentProcessId()</CODE> and <CODE>GetCurrentThreadId()</CODE> returned direct pointers to the <CODE>PDB</CODE> and <CODE>TDB</CODE>. Later Microsoft changed this behaviour and encrypted the return value (XOR with a random value). In the debug build, this value is called "<CODE>Obsfucator</CODE>" ("<I>Obfuscator</I>" misspelled!). Because this is a random value (computed every time the system boots), it must be calculated at run time. From the properties of the XOR operator, we know that if A = B XOR C (<CODE>PID</CODE> = <CODE>PDB</CODE> XOR <CODE>Obsfucator</CODE>) then C = A XOR B (<CODE>Obsfucator</CODE> = <CODE>PID</CODE> XOR <CODE>PDB</CODE>). For the current process, we obtain the <CODE>PID</CODE> from <CODE>GetCurrentProcessId()</CODE> and the <CODE>PDB</CODE> from <CODE lang=asm>FS:[<span class='cpp-literal'>0x30</span>]</CODE>, and therefore the <CODE>Obsfucator</CODE> can be obtained using the following code:</P><PRE>DWORD GetObsfucator()
+{
+    DWORD PID, PDB;
+
+    PID = GetCurrentProcessId();
+
+    __asm mov eax,fs:[<span class='cpp-literal'>0x30</span>];  <span class='cpp-comment'>// PDB</span>
+    __asm mov PDB,eax
+
+    <span class='cpp-keyword'>return</span> PDB ^ PID;
+}</PRE>
+<P>Because the <CODE>TDB</CODE> pointer is also encrypted, it's possible to obtain the <CODE>Obsfuscator</CODE> from <CODE>TDB</CODE> XOR <CODE>TID</CODE>. For the current thread, the <CODE>TID</CODE> is obtained from <CODE>GetCurrentThreadId()</CODE>, and the <CODE>TDB</CODE> pointer from <CODE>FS:[<span class='cpp-literal'>0x18</span>]</CODE> minus an offset value. (<CODE>FS:[<span class='cpp-literal'>0x18</span>]</CODE> is the linear address of the <CODE>TIB</CODE>. Each <CODE>TDB</CODE> contains a <CODE>TIB</CODE> structure, therefore by subtracting the offset of the starting <CODE>TIB</CODE> inside the <CODE>TDB</CODE>, we get the starting address of the <CODE>TDB</CODE>.)</P><PRE>DWORD GetObsfucator()
+{
+    DWORD TID, TDB;
+
+    TID = GetCurrentThreadId();
+
+    __asm mov  eax,fs:[<span class='cpp-literal'>0x18</span>];  <span class='cpp-comment'>// TIB</span>
+    __asm mov  TDB,eax
+
+    <span class='cpp-keyword'>if</span> (OSWin95)
+        TDB -= <span class='cpp-literal'>0x10</span>;
+    <span class='cpp-keyword'>else</span> <span class='cpp-keyword'>if</span> (OSWin98)
+        TDB -= <span class='cpp-literal'>8</span>;
+
+    <span class='cpp-keyword'>return</span> TDB ^ TID;
+}</PRE>
+<H3>RemoteExecute</H3>
+<P>The <CODE>RemoteExecute()</CODE> function is used to execute code in the context of a remote process. It has the following declaration:</P><PRE>    BOOL RemoteExecute(HANDLE hProcess,
+                       LPTHREAD_START_ROUTINE Function,
+                       PVOID pParams,
+                       DWORD Size);</PRE>
+<P><CODE>hProcess</CODE> is the handle of the remote process, <CODE>Function</CODE> is the address of the thread function, and <CODE>pParams</CODE> and <CODE>Size</CODE> are the pointer and size of the optional data structure to be passed to the thread function. The function uses <CODE>_VirtualAllocEx()</CODE>, <CODE>WriteProcessMemory()</CODE> and <CODE>_CreateRemoteThread()</CODE> to allocate memory and copy code and data to the remote process and execute the remote thread. It returns <CODE>TRUE</CODE> if everything went OK. To successfully run the thread within the remote process, the thread function must be coded following certain rules: it cannot use any absolute addressing (calls, jumps, data references, ...) at all! Why? Because these are hard encoded pointer addresses that reference data/code in the running process and become invalid when the code is moved to the remote process address space. This means that it's not possible to call any external functions (including Windows DLLs and standard library -- like <CODE>strlen()</CODE> or <CODE>printf()</CODE>) and reference any static data like strings or structures. If needed, any function reference or data must be passed in a structure pointed by the <CODE>pParams</CODE> parameter. Inside <CODE>RemoteExec()</CODE>, there's a function (<CODE>IsCodeSafe()</CODE>) that disassembles the thread function code and checks for absolute addressing, but this is not 100% secure, so as a final advise always check the generated code (using a disassembler or debugger) to catch any invalid references. If you are using Visual C++ (v 6.0) you can follow these tips:</P>
+<OL>
+<LI>Turn on file listing and check the generated code: Project\Settings\C/C++\Listing Files\Listing file type=Assembly, Machine Code, and Source. 
+<LI>Turn off stack probes. Check for <CODE>__chkstk()</CODE> references in the listing files. 
+<OL type=a>
+<LI>Use <CODE><span class='cpp-preprocessor'>#pragma check_stack(off)</span></CODE>. 
+<LI>Use less than 4K of local variables. 
+<LI>Augment the stack size: /Gs size (Project\Settings\C/C++\ProjectOptions). </LI></OL>
+<LI>Remove the /GZ switch in the debug build. Check for <CODE>__chkesp()</CODE> references in the listing files. 
+<OL type=a>
+<LI>Project\Settings\C/C++\Project Options </LI></OL>
+<LI>Disable incremental compilation (/Gi). 
+<OL type=a>
+<LI>Use <CODE><span class='cpp-preprocessor'>#pragma comment(linker, "/INCREMENTAL:NO")</span></CODE> 
+<LI>Remove the /Gi switch (Project\Settings\C/C++\Customize\Enable incremental compilation=Off) 
+<LI>Declare the functions as static. </LI></OL>
+<LI>Don't call any functions besides those in <I>KERNEL32.DLL</I>. Use <CODE>LoadLibrary()</CODE>/<CODE>GetProcAddress</CODE> if you need functions from other libraries. 
+<LI>Don't use any static strings. Pass them in a structure pointed by <CODE>pParams</CODE>. </LI></OL>
+<H3>StartRemoteSubclass/StopRemoteSubclass</H3>
+<P>These two functions are used to remote subclass the Windows procedure handler of a remote process. They are declared as:</P><PRE>   BOOL StartRemoteSubclass(PRDATA rd, USERWNDPROC WndProc);
+   BOOL StopRemoteSubclass(PRDATA rd);</PRE>
+<P><CODE>rd</CODE> is the address of a <CODE>RDATA</CODE> structure that contains important information to be passed to these functions:</P><PRE>   <span class='cpp-keyword'>struct</span> _RDATA {
+          <span class='cpp-keyword'>int</span>             Size;                 <span class='cpp-comment'>// Size of structure</span>
+          HANDLE          hProcess;             <span class='cpp-comment'>// Process handle</span>
+          HWND            hWnd;                 <span class='cpp-comment'>// Window handle</span>
+          <span class='cpp-keyword'>struct</span> RDATA    *pRDATA;              <span class='cpp-comment'>// Pointer to RDATA structure</span>
+          WNDPROC         pfnNewWndProc;        <span class='cpp-comment'>// Addr. of new window handler</span>
+          WNDPROC         pfnOldWndProc;        <span class='cpp-comment'>// Addr. of old window handler</span>
+          USERWNDPROC     pfnUserWndProc;       <span class='cpp-comment'>// Addr. of user's proc. handler</span>
+          LRESULT         Result;               <span class='cpp-comment'>// Result from user's proc. handler</span>
+          SETWINDOWLONG   pfnSetWindowLong;     <span class='cpp-comment'>// Address of SetWindowLong()</span>
+          CALLWINDOWPROC  pfnCallWindowProc;    <span class='cpp-comment'>// Address of CallWindowProc()</span>
+  } RDATA;</PRE>
+<P>If you need to pass extra data to the new window procedure handler, it must be appended to the existing <CODE>RDATA</CODE>. Before calling <CODE>StartRemoteSubclass()</CODE>, the following fields of the <CODE>RDATA</CODE> structure must be initialized: <CODE>Size</CODE> must contain the size of the <CODE>RDATA</CODE> structure plus any appended data, <CODE>hProcess</CODE> must contain the handle of the remote process, and <CODE>hWnd</CODE> must contain the handle of the window to be subclassed. The extra fields of the appended data should also be initialized at this point. All the remaining fields should be considered private and not used. <CODE>WndProc</CODE> is the address of the new window handler procedure and is declared as:</P><PRE>    LRESULT WINAPI WndProc(PRDATA pData,
+                           HWND   hWnd,
+                           UINT   Msg,
+                           WPARAM wParam,
+                           LPARAM lParam)</PRE>
+<P>Except for the first parameter (a pointer to the <CODE>RDATA</CODE> structure) the remaining parameters are the normal window handler, message type, and <CODE>wParam</CODE> and <CODE>lParam</CODE> found in any window procedure handler. The new window procedure handler will be called by Windows every time a message to the window must be processed, therefore the function should be coded as a "normal" window procedure handler (with the <CODE><span class='cpp-keyword'>switch</span>(Msg)</CODE> loop). Please note that because this function will be executed on a remote process, it must follow the same rules as any remote code execution (see description of the <CODE>RemoteExecute()</CODE> function above). Any unhandled message should be processed by the default window procedure handler. For this, the function must return <CODE>FALSE</CODE>. If you want to process some messages yourself, return the value in the <CODE>Result</CODE> field of the <CODE>RDATA</CODE> structure and return <CODE>TRUE</CODE> for the function.</P>
+<H3>Demo Code</H3>
+<P>Finally to glue everything together, I wrote an application that demonstrates how to use the functions exported by the Remote library. Here's a brief description of the code:</P>
+<OL>
+<LI>Display Windows version. 
+<LI>Launch "<I>Notepad.exe</I>" using <CODE>CreateProcess()</CODE>. 
+<LI>Allocate a 0x1000 bytes buffer using <CODE>_VirtualAllocEx()</CODE>. 
+<LI>Write to the allocated memory using <CODE>WriteProcessMemory</CODE> or <CODE>memset()</CODE> (Win9x only). 
+<LI>Free the allocated memory using <CODE>_VirtualFreeEx()</CODE>. 
+<LI>Convert the process handle to the PID by using <CODE>_GetProcessId()</CODE>. 
+<LI>Convert the thread handle to the TID by using <CODE>_GetThreadId()</CODE>. 
+<LI>Use <CODE>_CreateRemoteThread()</CODE> to run a thread in the current process. The thread just sleeps for 3 seconds and returns the <CODE>lpParameter</CODE> value. 
+<LI>Use <CODE>_OpenThread()</CODE> to return a new handle to the created thread. This handle is used by <CODE>WaitForSingleObject()</CODE> and <CODE>GetExitCodeThread()</CODE>. 
+<LI>Call <CODE>ContextRemoteExecute()</CODE> to run a thread in the remote process. The thread just copies a message string to the "Notepad" edit window. 
+<LI>Call <CODE>RemoteExecute()</CODE> to run a thread in the remote process. The thread just copies a message string to the "Notepad" edit window. 
+<LI>Subclass the "Notepad" edit window using <CODE>StartRemoteSubclass()</CODE>. If you press the key sequence "remote" in the "Notepad" edit window, a message box is displayed. 
+<LI>After 30 seconds, restore the original "Notepad" window handler by using <CODE>StopRemoteSubclass()</CODE>. 
+<LI>Wait for the "Notepad" process to finish. </LI></OL>
+<H3>Note</H3>
+<P>This library was tested with the following Windows versions:</P>
+<UL>
+<LI>Windows 95 (4.00.1111B) 
+<LI>Windows 98 (4.10.1998/4.10.2222A) 
+<LI>Windows ME (4.90.3000) 
+<LI>Windows NT 4.0 (4.0.1381 SP1/SP3/SP6) 
+<LI>Windows 2000 (5.0.2195 SP2/SP4) 
+<LI>Windows XP (5.1.2600) </LI></UL>
+<P>Because the code relies heavily on undocumented functions and structures, it can malfunction (or even crash) if run in an untested version. In this case, you should modify the code to include the idiosyncrasies of the new versions.</P>
+<P>N.B. Windows 2000 SP3 is known for having several bugs. Because of this, some of the presented code doesn't work correctly on this version (in particular, the function <CODE>ContextRemoteExecute()</CODE>).</P>
+<H2>References</H2>
+<OL>
+<LI><A name=#1></A>"<A href="http://www.wheaty.net/" target=_blank>Windows 95 System Programming Secrets</A>" by Matt Pietrek 
+<LI><A name=#2></A><A href="http://www.microsoft.com/msj/archive/S2CE.aspx" target=_blank>MSJ May 1996 - Under the Hood</A> by Matt Pietrek 
+<LI><A name=#3></A>"<A href="http://scifi.pages.at/yoda9k/Articles/ForceLibrary.htm" target=_blank>DLL Injection on Win32 platforms</A>" by Yoda 
+<LI><A name=#4></A>"<A href="http://www.codeproject.com/threads/winspy.asp">Three ways to inject your code into another process</A>" by Robert Kuster 
+<LI><A name=#5></A><A href="http://undocumented.ntinternals.net/" target=_blank>The Undocumented Functions</A> by NTinternals 
+<LI><A name=#6></A>"<A href="http://www.alexfedotov.com/articles/enumproc.asp" target=_blank>Enumerating Windows Processes</A>" by Alex Fedotov </LI></OL>
+
+<!-- Article Ends -->
+
+
+
+</div>
+</span>
+
+<script type="text/javascript" src="/script/togglePre.js"></script>
+
+<h2>Antnio Feijo</h2>
+<div style="overflow:hidden"><table border=0><tr valign=top><td nowrap class=smallText ><br></td><td class=smallText><p class=smallText>Click <a href='/script/profile/whos_who.asp?vt=arts&id=214034'>here</a> to view Antnio Feijo's online profile.</p></td></tr></table></div><br>
+<table cellpadding=4 width='100%' border=0><tr valign=top>
+<td width='100%'><h2>Other popular Win32 / SDK articles:</h2><ul><li><a href="/win32/callback_adapter.asp">Use member functions for C-style callbacks and threads - a general solution</a><div class="smallText">The article shows a general solution to redirect any C-style callback into a member function using adapter objects</div></li><li><a href="/win32/AntonioWinLock.asp">Lock Windows Desktop</a><div class="smallText">Restricting Windows access by hiding desktop windows and disabling special keys.</div></li><li><a href="/win32/framework.asp">Win32++: A simple alternative to MFC</a><div class="smallText">A simple Windows framework that beginners and intermediate programmers can use as an alternative to MFC. It makes learning to program for Windows easier.</div></li><li><a href="/win32/msgcrackwizard.asp">Message Cracker Wizard for Win32 SDK Developers</a><div class="smallText">A ClassWizard-like helper tool for using WINDOWSX.H message crackers.</div></li></ul></td>
+<td width=360>
+<script language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=2781&way=ban\" target=_blank><img src=\"/script/ann/ServeImg.aspx?File=%2Fscript%2Fadmentor%2Fimages%2FMainsoft%5FGHQ3%5F300x250v2%2Egif&C=False&id=2781&cb=4745304\" alt=\"Code .NET / Build Java / Run Linux\" border=0 width=300 height=250></a>");</script>
+</td>
+</tr></table>
+
+		<form action="/script/rating/code/app/insert_vote.asp" method="post">
+		<input type="hidden" name="vote_name" value="Remote/win325/4/2005">
+		<input type="hidden" name="goal" value="/win32/Remote.asp">
+
+<table bgColor=#ff9900 border=0 cellPadding=1 cellSpacing=0 width="100%">
+<tr><td width="100%">
+<table bgColor=#FBEDBB border=0 cellPadding=4 cellSpacing=0 width="100%"><tr>
+<td valign=middle class=smalltext>[<a href="#__top">Top</a>]</td>
+<td align=right valign=middle nowrap >
+<i><b>Rate this Article for us!</b></i>&nbsp;&nbsp;&nbsp;&nbsp; <i>Poor</i><input type=radio value='1'  name=rate><input type=radio value='2'  name=rate><input type=radio value='3'  name=rate><input type=radio value='4'  name=rate><input type=radio value='5'  name=rate><i>Excellent</i>&nbsp;&nbsp;<input type=submit value=Vote class=FormButton >
+</td></tr>
+</table></td></tr></table>
+</form>
+<center>
+<table cellspacing="0" cellpadding="0" border="0"><tr>
+<td width="120" height=60 style="background-color:#eee;padding:2;"><div align="center">
+<script language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=2768&way=ban\" target=_blank><img src=\"/script/ann/ServeImg.aspx?File=%2Fscript%2Fadmentor%2Fimages%2FXoreax%5F120x60v2%2Egif&C=False&id=2768&cb=4745354\" alt=\"Xoreax cuts VS build times by up to 90%\" border=0 width=120 height=60></a>");</script>
+</div></td>
+<td width=100>&nbsp;</td>
+<td height=60 width="468"><span id=AdBanner5><script language=javascript>document.write("<a href=\"/script/admentor/admentorredir.asp?id=2565&way=ban\" target=_blank><img src=\"/script/ann/ServeImg.aspx?File=%2Fscript%2Fadmentor%2Fimages%2FCodejock%5FJan07%5F468x60%2Egif&C=False&id=2565&cb=4745171\" alt=\"\" border=0 width=468 height=60></a>");</script></span></td>
+</tr></table></center>
+
+<a name='__comments'></a>
+
+<script language="JavaScript">
+
+function MsgVoteForm(MemberID, MsgID)
+{
+	document.write("<span id=\"MVF" + MsgID + "\">");
+	document.write("Rate this message: ");
+	for (var i=1; i<=5;i++)
+	{
+		document.write("<a href='#xx" + MsgID.toString() + "xx' title='give this message a vote of " + i.toString());
+		document.write("' onclick='return RateMsg(" + MemberID.toString() + ", " + MsgID.toString() + ", ");
+		document.write(i.toString() + ")'><b>" + i.toString() + "</b></a> ");
+	}
+	document.write(" (out of 5)");
+	document.writeln("</span>");
+	
+	document.write("<br />Report as <a href='#xx" + MsgID.toString() + "xx' title='Mark as Spam' onclick='return ReportMsg(" + MemberID.toString());
+	document.writeln(", " + MsgID.toString() + ",-1)'>Spam</a> or ");
+	document.write("<a href='#xx" + MsgID.toString() + "xx' title='Mark as Abuse' onclick='return ReportMsg(" + MemberID.toString());
+	document.writeln(", " + MsgID.toString() + ",-2)'>Abuse</a>");
+}
+
+function RetypeForm(MemberID, MsgID)
+{
+	var types = [
+				 {pic:'news_general.gif',  id: 1},
+	             {pic:'news_info.gif',     id: 2},
+	             {pic:'news_question.gif', id: 4},
+	             {pic:'news_answer.gif',   id: 8},
+	             {pic:'news_game.gif',     id: 16},
+	             {pic:'news_spam.gif',     id: 32}
+	            ];
+	
+	document.write("<span id=\"RTF" + MsgID + "\">");
+	for (var i=0;i<types.length;i++)
+	{
+		document.write("<a href='/script/comments/retype?msg=" + MsgID.toString());
+		document.write("&mid=" + MemberID.toString() + "&type=" + types[i].id + "'>");
+		document.write("<img border=0 src='/script/images/" + types[i].pic + "'></a><br />");
+	}
+	document.writeln("</span>");
+}
+
+function ReportMsg(userid, msgid, score)
+{
+	if (confirm("Are you sure you want to report this message?") == true)
+		return RateMsg(userid, msgid, score);
+	else return false;
+}
+
+
+function RateMsg(userid, msgid, score)
+{
+
+   var req = new ActiveXObject("Msxml2.XMLHTTP"); 
+
+   req.onreadystatechange = function()
+   {
+      if ( req.readyState == 4 )
+      {
+         if ( req.status == 200 )
+         {
+         	var respText = req.responseText;
+         	var re = new RegExp("\<div\>([^\<]*)\</div\>", "g");
+         	var match = re.exec(respText);
+         	status.innerHTML = "<b>" + (match)?match[1]:"An error occured" + "</b>";
+         }
+         else
+         {
+            status.innerHTML = "<b style='color:red'>Failed!" + req.statusText + "</b>";
+         }
+      }
+   }
+   
+   var status = document.getElementById("MVF" + msgid);
+   if (!status) return;  // should never happen...   
+   status.innerHTML = "<b style='color:green'>Voting...</b>";
+   
+   var strAction = "/script/comments/vote.asp?js=1&user="+userid+"&msg="+msgid+"&score="+score;
+   req.open("GET", strAction, true);
+   req.send(null);
+   return false;
+}
+
+</script>
+
+
+<script language="JavaScript">
+var Selected = "";
+
+var AdTime = new Date();
+
+
+// Ensures the expanded message appears reasonably close to where 
+// it should appear: on screen, and if possible, under the mouse cursor.
+function SwitchMessage(e)
+{
+   if ( !e ) e = window.event;
+   var target = e.target ? e.target : e.srcElement;
+
+   // is it a post?
+   while ( target && target.id != 'DynMessLink' )
+      target = target.parentNode;
+   if ( !target || target.id != 'DynMessLink' )
+      return;
+
+   if (Selected)
+   {
+      var body = document.getElementById(Selected + "_h1");
+      if (body)
+         body.style.display = 'none';
+      var head = document.getElementById(Selected + "_h0");
+      if (head)
+         head.bgColor = '#FEF9E7';
+   }
+
+   if (Selected == target.name) // just collapse
+      Selected="";
+   else
+   {
+      Selected = target.name;
+      var body = document.getElementById(Selected + "_h1");
+      if (body)
+      {
+         if (body.style.display=='none')
+            body.style.display='';
+         else
+            body.style.display = 'none';
+      }
+      var head = document.getElementById(Selected + "_h0");
+      if (head)
+         head.bgColor = '#99CCFF';
+
+      if ( body && head && body.style.display != 'none' )
+      {
+         // the bit that keeps the post on-screen and under the cursor
+         //var dif = (getRealPos(head, "Top") + head.offsetHeight/2) - (document.body.scrollTop+e.clientY);
+         //document.body.scrollTop += dif;
+         document.body.scrollTop = getRealPos(head, "Top") - document.body.clientHeight/10;
+         EnsureMessageVisible(target.name, true);
+      }
+   }
+
+   if ( e.preventDefault )
+      e.preventDefault();
+   else
+      e.returnValue = false;
+   return false;
+}
+
+// does its best to make a message visible on-screen (vs. scrolled off somewhere).
+function EnsureMessageVisible(msgID, bShowTop) {
+   var msgHeader = document.getElementById(msgID + "_h0");
+   var msgBody = document.getElementById(msgID + "_h1");
+
+   // determine scroll position of top and bottom
+   var scrollContainer = document.body;
+   var top = getRealPos(msgHeader, 'Top');
+   var bottom = getRealPos(msgBody, 'Top') + msgBody.offsetHeight;
+
+   // if not already visible, scroll to make it so
+   if ( scrollContainer.scrollTop > top && !bShowTop)
+      scrollContainer.scrollTop = top - document.body.clientHeight/10;
+   if ( scrollContainer.scrollTop+scrollContainer.clientHeight < bottom )
+      scrollContainer.scrollTop = bottom-scrollContainer.clientHeight;
+   if ( scrollContainer.scrollTop > top && bShowTop)
+      scrollContainer.scrollTop = top - document.body.clientHeight/10;
+}
+
+// utility
+function getRealPos(i,which)
+{
+   iPos = 0
+   while (i!=null)
+   {
+      iPos += i["offset" + which];
+      i = i.offsetParent;
+   }
+   return iPos
+}
+
+
+</script>
+<div id="_MessageBoard" onclick="SwitchMessage(event)"><table border=0 bgcolor='#ff9900' width=100% cellpadding=0 cellspacing=0><tr><td width='100%'><table border=0 id=ForumTable bgcolor='#ff9900' width=100% cellpadding=0 cellspacing=1><form action='/script/comments/app/do_filtermessages.asp?main=/win32/Remote.asp&df=100&forumid=177931' method=post><tr><td><table width=100% bgcolor=white border=0 cellspacing=0 cellpadding=3><tr bgcolor=#FBEDBB><td nowrap class=smalltext><a href='/script/comments/faq.asp'><img src='/script/images/forum_faq.GIF' border=0 width=16 height=16 align=absmiddle> <b>FAQ</b></a>&nbsp;</td><td nowrap valign=top align=right class=smalltext>Message score threshold <select size=1 name=noise class=smalltext><option value="1">1.0 </option>
+<option value="2">2.0</option>
+<option selected value="3">3.0</option>
+<option value="4">4.0</option>
+<option value="5">5.0</option>
+</select>&nbsp;&nbsp;</td><td class=smalltext nowrap align=right valign=middle colspan=2><a href='/script/comments/search_comments.asp?forumid=177931'><img src="/script/images/forum_search.gif" width=16 height=15 border=0> Search comments</a> &nbsp;</td><td valign=top align=right><input type=submit value='Set Options' name=submit class=FormButton></td></tr><tr bgcolor='#ff9900'><td width='100%'>&nbsp;</td><td nowrap align=right valign=top class=smalltext>View <select size=1 name=expand class=smalltext><option value="0">Normal (slow)</option>
+<option value="2">Preview (slow)</option>
+<option selected value="5">Message View</option>
+<option value="6">Topic View</option>
+<option value="1">Thread View</option>
+<option value="3">Expanded (Supporters only)</option>
+</select>&nbsp;&nbsp;</td><td nowrap valign=top class=smalltext>Per page <select size=1 name=perpage class=smalltext><option value="10">10</option>
+<option selected value="25">25</option>
+<option value="50">50</option>
+</select></td><td colspan=2>&nbsp;</td></tr></table>
+</td></tr></form><tr bgcolor=#FBEDBB><td><a name=xx0xx></a><table border=0 cellpadding=2 width=100% bgcolor=#FBEDBB><tr><td class=messagetitle><img src='/script/images/forum_newmsg.gif' width=16 height=16 border=0 align=top><a href='/script/comments/user_new.asp?main=/win32/Remote.asp&df=100&forumid=177931'  class=HoverLink  target=_top name=HoverNL title='Add a new message to the discussions'><b>New Message</b></a></td><td class=messagetitle>Msgs 1 to 16 of 16 (Total: 16) (<a href='/win32/Remote.asp?df=100&forumid=177931'>Refresh</a>)</td><td align=right nowrap><font class=messagetitle><span class=HoverLink >First</span> <span class=HoverLink >Prev</span> <span class=HoverLink >Next</span> <span class=HoverLink >&nbsp;&nbsp;&nbsp;&nbsp;</span> </font></td></tr></table>
+</td></tr><tr bgcolor=white><td><table border=0 cellspacing=0 cellpadding=0 width='100%' border=0><tr><td width='100%'><table bgcolor=#FBEDBB border=0 cellspacing=0 cellpadding=2><tr><td width='100%' class=messagetitle>Subject&nbsp;</td><td width=140 nowrap class=messagetitle>Author&nbsp;</td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle>Date&nbsp;</font></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr bgcolor='#FEF9E7' id=1150183_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1150183xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1150183 href='/win32/Remote.asp?df=100&forumid=177931&select=1150183#xx1150183xx'><b>Calling functions</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=2081046'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>AbsoluteMonkey</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>22:23 29 Jun '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1150183_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Forgive me if I just don't get it (my knowledge of what happens with code after it's compiled is limited). But how can I call a function in the remote exe using this model? I.E. the remote exe that is running has a function called RAD_MP3, and I want to call it and pass a var to it, let the function do it's magic, and get the return back to the non-remote program (or even write the return to a file). <br><br>-AbsoluteMonkey<br><br>...Crowded elevators smell different to midgets. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1150183' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1150183'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1150183&forumid=177931&select=1150183#xx1150183xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1150183#xx1150183xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(2081046,1150183);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1142522_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1142522xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1142522 href='/win32/Remote.asp?df=100&forumid=177931&select=1142522#xx1142522xx'><b>outstanding</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=2049259'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>zgsbid</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>0:48 22 Jun '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1142522_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>It really hits the spot. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1142522' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1142522'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1142522&forumid=177931&select=1142522#xx1142522xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1142522#xx1142522xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(2049259,1142522);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1108336_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1108336xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1108336 href='/win32/Remote.asp?df=100&forumid=177931&select=1108336#xx1108336xx'><b>I'm getting error..</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1252488'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>brunildo.st</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>11:45 16 May '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1108336_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Hello!<br>I was trying to port CreateRemoteThread to Pascal but I'm getting error when I call InternalCreateRemoteThread...<br><br><br><br>begin<br>    fFlags := 8;<br><br>    // Get PDB of the remote process<br>    pPDB := Pointer( dwProcessId xor GetObsfucator );<br><br>    // Default stack size<br>    StackSize := -$3000  <br><br>    @InternalCreateRemoteThread := GetICRTPointer;<br><br>    pTDB := InternalCreateRemoteThread( pPDB, StackSize, lpStartAddress, lpParameter, fFlags );<br>end;<br><br><br><br>Ps.: Obsfucator is OK, InternalCreateRemoteThread is pointing to the right place too. In my case, the dwStackSize will be always "0".<br><br>What can be wrong there? My program sioply crashes when I call InternalCreateRemoteThread.<br><br>THank you!!! Great article<br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1108336' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1108336'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1108336&forumid=177931&select=1108336#xx1108336xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1108336#xx1108336xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1252488,1108336);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1108390_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1108390xx'></a><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle style='color:#AA0000;' ><a class=messagetitle style='color:#AA0000;'  id=DynMessLink name=1108390 href='/win32/Remote.asp?df=100&forumid=177931&select=1108390#xx1108390xx'>Re: I'm getting error..</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=214034'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle style='color:#AA0000;'  >António Feijão&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle style='color:#AA0000;'  >12:37 16 May '05&nbsp;</font></td></tr></table></td></tr>
+<tr id=1108390_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>The code seems to be ok. The problem can be in one of the parameters or in the calling convention. My advice is to use a system level debugger to trace through InternalCreateRemoteThread() and check were it crashes. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1108390' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1108390'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1108336&forumid=177931&select=1108390#xx1108390xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1108390#xx1108390xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 5.0 (1 vote).  <script language=Javascript>MsgVoteForm(214034,1108390);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1108411_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1108411xx'></a><img height=1 width=36 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1108411 href='/win32/Remote.asp?df=100&forumid=177931&select=1108411#xx1108411xx'>Re: I'm getting error..</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1252488'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >brunildo.st&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >12:55 16 May '05&nbsp;</font></td></tr></table></td></tr>
+<tr id=1108411_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=36 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Hehe, I'm so stupid! The problem was the calling convension! LoL<br><br>Thank you!<br>By the way, very very very very very great article!<br><br>May I know how did you found the internal function wich is similar to CreateRemoteThread? <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1108411' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1108411'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1108336&forumid=177931&select=1108411#xx1108411xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1108411#xx1108411xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1252488,1108411);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1114745_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1114745xx'></a><img height=1 width=54 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1114745 href='/win32/Remote.asp?df=100&forumid=177931&select=1114745#xx1114745xx'>Re: I'm getting error..</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=214034'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >António Feijão&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >12:56 23 May '05&nbsp;</font></td></tr></table></td></tr>
+<tr id=1114745_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=54 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>From disassembly of Kernel functions CreateThread() and DebugActiveProcess().<br>If you think of it Windows 9x must have a way of creating remote threads, therefore you just have to find out where he does it ...<br>As stated in the article you can of course use the VxD VWIN32_CreateThread, but before calling this function you need to create and setup several structures. All this work is done by InternalCreateRemoteThread() and that's the reason I opted for this method. <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1114745' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1114745'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1108336&forumid=177931&select=1114745#xx1114745xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1114745#xx1114745xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(214034,1114745);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1100799_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1100799xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1100799 href='/win32/Remote.asp?df=100&forumid=177931&select=1100799#xx1100799xx'><b>Deeper and more stable work</b></a></td><td valign=bottom nowrap><img src='/script/images/usersuss.gif' alt='Unconfirmed/Anonymous posting' width=15 height=13></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>R. Picha</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>4:08 6 May '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1100799_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent><a href="http://www.anticracking.sk/EliCZ/export/CPRPICHA.zip" rel="nofollow">http://www.anticracking.sk/EliCZ/export/CPRPICHA.zip</a>[<a href="http://www.anticracking.sk/EliCZ/export/CPRPICHA.zip" target="_blank" rel="nofollow" title="New Window">^</a>]<br><br>It was even posted here on Codeproject on March 31. Some fast-brain AVs unfortunatelly<br> still detect one binary within the archive as trojan, so the article was deleted.<br> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100799' title='Reply to this current thread'>Reply</a> | <a href='/win32/Remote.asp?df=100&tid=1100799&forumid=177931&select=1100799#xx1100799xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1100799#xx1100799xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>[<a href='/script/comments/owner_modify_pw.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100799'>Modify</a> | <a href='/script/comments/owner_delete_pw.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100799'>Delete</a>]<br /> <script language=Javascript>MsgVoteForm(0,1100799);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1100823_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1100823xx'></a><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1100823 href='/win32/Remote.asp?df=100&forumid=177931&select=1100823#xx1100823xx'>Re: Deeper and more stable work</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=214034'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >António Feijão&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >5:08 6 May '05&nbsp;</font></td></tr></table></td></tr>
+<tr id=1100823_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>I gave a quick look at your code and it seems very nice (although in assembly only ...). But why do you say your code is more stable ? <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100823' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100823'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1100799&forumid=177931&select=1100823#xx1100823xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1100823#xx1100823xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(214034,1100823);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1102586_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1102586xx'></a><img height=1 width=36 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle style='color:#AA0000;' ><a class=messagetitle style='color:#AA0000;'  id=DynMessLink name=1102586 href='/win32/Remote.asp?df=100&forumid=177931&select=1102586#xx1102586xx'>Re: Deeper and more stable work</a></td><td valign=bottom nowrap><img src='/script/images/usersuss.gif' alt='Unconfirmed/Anonymous posting' width=15 height=13></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle style='color:#AA0000;'  >R. Picha&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle style='color:#AA0000;'  >3:33 9 May '05&nbsp;</font></td></tr></table></td></tr>
+<tr id=1102586_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=36 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>1. Internal 9x functions must be called by thread that owns certain system mutexes (~ runs on system level).<br>2. NtAlocateVirtualMemory should be called inside __try/__except frame (Nt's VirtualAllocEx is implemented that way).<br>3. Did you test your code under Win95 and 9x debug builds? (No).<br>4. What about Win95 OS 2.1+?<br>5. What about 9x remote thread into 16bit process?<br>6. What about 9x remote thread into not-yet-initialized process? (DllMains get called with THREAD_ATTACH before PROCESS_ATTACH).<br>When DebuActiveProcess or OpenProcess in 9x are hooked via IAT+GPA or EAT pointer replacement,<br>your solution will not work.<br>Your work seems to be rather compilation than research.<br>That's all. Bye.<br> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1102586' title='Reply to this current thread'>Reply</a> | <a href='/win32/Remote.asp?df=100&tid=1100799&forumid=177931&select=1102586#xx1102586xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1102586#xx1102586xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>[<a href='/script/comments/owner_modify_pw.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1102586'>Modify</a> | <a href='/script/comments/owner_delete_pw.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1102586'>Delete</a>]<br />Score: 5.0 (1 vote).  <script language=Javascript>MsgVoteForm(0,1102586);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1109450_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1109450xx'></a><img height=1 width=54 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1109450 href='/win32/Remote.asp?df=100&forumid=177931&select=1109450#xx1109450xx'>Re: Deeper and more stable work</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=1252488'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >brunildo.st&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >11:16 17 May '05&nbsp;</font></td></tr></table></td></tr>
+<tr id=1109450_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=54 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>To fiz item 3, you need to check if the first byte of DebugActiveProcess is 0x68. If not, we are at the real DebugActiveProcess API. If it's 0x68, then the real DebugActiveProcess will be located at the 2nd byte. For example: 68 XX XX XX XX, so "XX XX XX XX" will be where the DebugActiveProcess is located. SOrry for bady english.<br><br>RPicha, what do you sugest for fix your quote: "When DebuActiveProcess or OpenProcess in 9x are hooked via IAT+GPA or EAT pointer replacement,<br>your solution will not work" ? <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1109450' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1109450'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1100799&forumid=177931&select=1109450#xx1109450xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1109450#xx1109450xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(1252488,1109450);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1100580_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1100580xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1100580 href='/win32/Remote.asp?df=100&forumid=177931&select=1100580#xx1100580xx'><b>Corrupted file</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=313379'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>Dariusz M. Mikulski</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>19:58 5 May '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1100580_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Source code file is corrupted <img src="/script/images/smiley_frown.gif" align=absmiddle> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100580' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100580'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1100580&forumid=177931&select=1100580#xx1100580xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1100580#xx1100580xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(313379,1100580);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1100594_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1100594xx'></a><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1100594 href='/win32/Remote.asp?df=100&forumid=177931&select=1100594#xx1100594xx'>Re: Corrupted file</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=52977'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >eslea&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >21:12 5 May '05&nbsp;</font></td></tr></table></td></tr>
+<tr id=1100594_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>yeah, the souce code can not be decompressed........<img src="/script/images/smiley_confused.gif" align=absmiddle> <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100594' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100594'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1100580&forumid=177931&select=1100594#xx1100594xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1100594#xx1100594xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(52977,1100594);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1100909_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1100909xx'></a><img height=1 width=36 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1100909 href='/win32/Remote.asp?df=100&forumid=177931&select=1100909#xx1100909xx'>Re: Corrupted file</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=214034'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle >António Feijão&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle >7:14 6 May '05&nbsp;</font></td></tr></table></td></tr>
+<tr id=1100909_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=36 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>It should be ok now ! <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100909' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100909'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1100580&forumid=177931&select=1100909#xx1100909xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1100909#xx1100909xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(214034,1100909);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1100385_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1100385xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle><a class=messagetitle id=DynMessLink name=1100385 href='/win32/Remote.asp?df=100&forumid=177931&select=1100385#xx1100385xx'><b>Thank You</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=286545'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle ><b>dl4gbe</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle ><b>14:53 5 May '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1100385_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>Very Nice article.<br><br>Sincerely<br><br>Chris <img src="/script/images/smiley_smile.gif" align=absmiddle><br><br>Vietiane (Laos) <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100385' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100385'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1100385&forumid=177931&select=1100385#xx1100385xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1100385#xx1100385xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle> <script language=Javascript>MsgVoteForm(286545,1100385);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr><tr height=1><td colspan=1 bgcolor='#ff9900'><img src='/script/images/t.gif' width=1 height=1></td></tr><tr bgcolor='#FEF9E7' id=1099443_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1099443xx'></a><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle style='color:#AA0000;' ><a class=messagetitle style='color:#AA0000;'  id=DynMessLink name=1099443 href='/win32/Remote.asp?df=100&forumid=177931&select=1099443#xx1099443xx'><b>Good article but the title?</b></a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=16894'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle style='color:#AA0000;'  ><b>Robert Buldoc</b>&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle style='color:#AA0000;'  ><b>15:25 4 May '05</b>&nbsp;</font></td></tr></table></td></tr>
+<tr id=1099443_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>It is a good article but perhaps you could find a more descriptive title for the article than just Remote...maybe it was a mistake or something when you entered submitted the article? <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1099443' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1099443'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1099443&forumid=177931&select=1099443#xx1099443xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1099443#xx1099443xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 5.0 (1 vote).  <script language=Javascript>MsgVoteForm(16894,1099443);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=6></td></tr><tr bgcolor='#FEF9E7' id=1100285_h0><td width='100%' colspan=1><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td bgcolor=white><a name='xx1100285xx'></a><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_general.gif'>&nbsp;</td>
+<td width='100%' class=messagetitle style='color:#AA0000;' ><a class=messagetitle style='color:#AA0000;'  id=DynMessLink name=1100285 href='/win32/Remote.asp?df=100&forumid=177931&select=1100285#xx1100285xx'>Re: Good article but the title?</a></td><td valign=bottom nowrap><a href='/script/profile/whos_who.asp?id=214034'><img src='/script/images/userinfo.gif' title='Click for User Profile' border=0 width=14 height=15></a>&nbsp;</td><td width='140' nowrap><font class=messagetitle style='color:#AA0000;'  >António Feijão&nbsp;</font></td><td nowrap align=right width='120' style='width:9em'><font class=messagetitle style='color:#AA0000;'  >12:27 5 May '05&nbsp;</font></td></tr></table></td></tr>
+<tr id=1100285_h1 style='display:none' ><td colspan=1 width='100%'><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td><img height=1 width=18 src='/script/images/ind.gif'><img align=absmiddle src='/script/images/news_blank.gif'>&nbsp;</td><td bgcolor='#D5EAFF' width='100%'><table border=0 cellspacing=5 cellpadding=0 width='100%'><tr><td><table border=0 cellspacing=0 cellpadding=0 width='100%'><tr><td colspan=2><font class=messagecontent>The article title should have been "Remote Library" ... <br>&nbsp;</font></td></tr><tr valign=top><td class=messagetitle>[<a href='/script/comments/user_reply.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100285' title='Reply to this current thread'>Reply</a> | <a href='/script/comments/user_mail.asp?main=/win32/Remote.asp&df=100&forumid=177931&select=1100285'  title='Email a reply to the author of this message'>Email</a> | <a href='/win32/Remote.asp?df=100&tid=1099443&forumid=177931&select=1100285#xx1100285xx' title='View only messages within this thread'>View Thread</a> | <a href='/win32/Remote.asp?msg=1100285#xx1100285xx' title='Get the URL for this message'>Get Link</a>]</td><td align=right class=messagetitle>Score: 5.0 (1 vote).  <script language=Javascript>MsgVoteForm(214034,1100285);</script></td></tr></table></td></tr></table></td></tr></table></td></tr>
+<tr><td colspan=1><img src='/script/images/t.gif' border=0 width=1 height=5></td></tr></table></td></tr><tr bgcolor=#FBEDBB><td><table width='100%' cellpadding=2><tr><td class=messagetitle>Last Visit: 12:07 Sunday 14th January, 2007</td><td align=right nowrap><font class=messagetitle><span class=HoverLink >First</span> <span class=HoverLink >Prev</span> <span class=HoverLink >Next</span> <span class=HoverLink >&nbsp;&nbsp;&nbsp;&nbsp;</span> </font></td></tr></table></td></tr></table></td></tr></table>
+</div><p class=smallText><img align=absmiddle src='/script/images/news_general.gif'> General comment &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_info.gif'> News / Info &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_question.gif'> Question &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_answer.gif'> Answer &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_game.gif'> Joke / Game &nbsp;&nbsp; <img align=absmiddle src='/script/images/news_sticky.gif'> Admin message</p>
+<br>
+
+
+<table width=100% cellspacing=5>
+<tr valign="top"><td class="smallText">
+
+Updated: 30 Sep 2005
+</td><td align="right" class="SmallText">
+Article content copyright Antnio Feijo, 2005<br>
+everything else Copyright © <A href='mailto:webmaster@codeproject.com'>CodeProject</A>, 1999-2006</a>.
+
+<br>
+Web19 |
+<a href='/info/MediaKit'>Advertise on The Code Project</a> | <a href="/info/privacy.asp">Privacy</a>
+
+</td></tr>
+</table>
+
+</td></tr></table>
+
+
+<script type="text/javascript" src="http://codeproject.us.intellitxt.com/intellitxt/front.asp?ipid=5102"></script>
+<br>
+<center>
+<table border="0" cellspacing="0" cellpadding="0" width="95%">
+<tr><td height=1 bgcolor=#ff9900><img src='/images/space.gif' height=1></td></tr>
+<tr>
+<td align=center><font size=1>
+
+<a href="http://www.theultimatetoolbox.com">The Ultimate Toolbox</a> •
+<a href="http://www.ASPAlliance.com/">ASP Alliance</a> •
+<a href="http://www.developerfusion.co.uk/">Developer Fusion</a> •
+<a href="http://www.developersdex.com/">Developersdex</a> •
+<a href="http://www.devguru.com/">DevGuru</a> •
+<a href="http://www.programmersheaven.com/">Programmers Heaven</a> •
+<A href="http://www.planet-source-code.com/">Planet Source Code</a> •
+<a href="http://www.tek-tips.com/">Tek-Tips Forums</a> •
+
+</font>	
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>

@@ -1,0 +1,51 @@
+HKCR
+{
+	FDMUploadBtnForIe.FDMUploadBtnForIe.1 = s 'FDMUploadBtnForIe Class'
+	{
+		CLSID = s '{FD4E2FF8-973C-4A19-89BD-8E86B3CFCFE1}'
+	}
+	FDMUploadBtnForIe.FDMUploadBtnForIe = s 'FDMUploadBtnForIe Class'
+	{
+		CLSID = s '{FD4E2FF8-973C-4A19-89BD-8E86B3CFCFE1}'
+		CurVer = s 'FDMUploadBtnForIe.FDMUploadBtnForIe.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {FD4E2FF8-973C-4A19-89BD-8E86B3CFCFE1} = s 'FDMUploadBtnForIe Class'
+		{
+			ProgID = s 'FDMUploadBtnForIe.FDMUploadBtnForIe.1'
+			VersionIndependentProgID = s 'FDMUploadBtnForIe.FDMUploadBtnForIe'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{2821CA5A-FD0A-4501-B56C-E8A979D6043D}'
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove Software
+	{
+		NoRemove Microsoft
+		{
+			NoRemove 'Internet Explorer'
+			{
+				NoRemove Extensions
+				{
+					ForceRemove {FD4E2FF8-973C-4A19-89BD-8E86B3CFCFE1}
+					{
+						val CLSID = s '{1FBA04EE-3024-11d2-8F1F-0000F87ABD16}'
+						val 'Default Visible' = s 'yes'
+						val ClsidExtension = s '{FD4E2FF8-973C-4A19-89BD-8E86B3CFCFE1}'
+						val ButtonText = s 'Upload'
+						val Icon = s '%MODULE%,201'
+						val HotIcon = s '%MODULE%,201'
+					}
+				}
+			}
+		}
+	}
+}

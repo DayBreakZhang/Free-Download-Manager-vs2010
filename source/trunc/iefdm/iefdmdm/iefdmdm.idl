@@ -1,0 +1,29 @@
+// iefdmdm.idl : IDL source for iefdmdm.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (iefdmdm.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "downloadmgr.idl";
+
+[
+	uuid(752D3C5E-1EF8-4FA9-AC6E-B5E095A4D4AF),
+	version(1.0),
+	helpstring("iefdmdm 1.0 Type Library")
+]
+library IEFDMDMLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(57BDEE5A-1E29-4CFD-AEE7-EF32118EB6D6),
+		helpstring("IEWGDM Class")
+	]
+	coclass IEWGDM
+	{
+		[default] interface IDownloadManager;
+	};
+};

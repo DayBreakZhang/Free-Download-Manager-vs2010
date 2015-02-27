@@ -1,0 +1,49 @@
+HKCR
+{
+	IeFdm.WgBHO.1 = s 'WgBHO Class'
+	{
+		CLSID = s '{67E9834D-B226-49E6-B6F6-85AA64E14BA3}'
+	}
+	IeFdm.WgBHO = s 'WgBHO Class'
+	{
+		CLSID = s '{67E9834D-B226-49E6-B6F6-85AA64E14BA3}'
+		CurVer = s 'IeFdm.WgBHO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {67E9834D-B226-49E6-B6F6-85AA64E14BA3} = s 'WgBHO Class'
+		{
+			ProgID = s 'IeFdm.WgBHO.1'
+			VersionIndependentProgID = s 'IeFdm.WgBHO'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{591915B9-6A9B-415A-B38F-D23F6AF0B497}'
+		}
+	}
+}
+
+HKLM
+{
+	NoRemove Software
+	{
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove Explorer
+					{
+						NoRemove 'Browser Helper Objects'
+						{
+							ForceRemove {67E9834D-B226-49E6-B6F6-85AA64E14BA3}
+						}
+					}
+				}
+			}
+		}
+	}
+}
