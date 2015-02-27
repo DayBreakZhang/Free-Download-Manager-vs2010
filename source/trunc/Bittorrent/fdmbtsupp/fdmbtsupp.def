@@ -1,0 +1,7 @@
+LIBRARY fdmbtsupp
+EXPORTS
+	vmsBt_getSession
+	vmsBt_Shutdown
+	vmsBt_CreateTorrentFileObject
+	vms_CreateUTorrentDownloadsDbObject
+	vmsBt_getMinimumFdmBuildRequired

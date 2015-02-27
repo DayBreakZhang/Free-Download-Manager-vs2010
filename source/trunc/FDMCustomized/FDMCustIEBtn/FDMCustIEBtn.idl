@@ -1,0 +1,38 @@
+// FDMCustIEBtn.idl : IDL source for FDMCustIEBtn.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (FDMCustIEBtn.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(EAC5AE32-9C01-4F1D-9E01-5F0F4D310014),
+	
+		helpstring("IFDMCustButton Interface"),
+		pointer_default(unique)
+	]
+	interface IFDMCustButton : IUnknown
+	{
+	};
+
+[
+	uuid(6084F04D-2F03-4A6E-8EB1-828D8171ACF7),
+	version(1.0),
+	helpstring("FDMCustIEBtn 1.0 Type Library")
+]
+library FDMCUSTIEBTNLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(DAC360AF-9FD0-432D-B2F2-ED3220F4CAD9),
+		helpstring("FDMCustButton Class")
+	]
+	coclass FDMCustButton
+	{
+		[default] interface IFDMCustButton;
+	};
+};

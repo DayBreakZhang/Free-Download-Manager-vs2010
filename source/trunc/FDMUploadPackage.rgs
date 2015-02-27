@@ -1,0 +1,24 @@
+HKCR
+{
+	FDMUploadPackage.FDMUploadPackage.1 = s 'FDMUploadPackage Class'
+	{
+		CLSID = s '{56101D38-6A8B-49D6-8C9D-939595AB2D19}'
+	}
+	FDMUploadPackage.FDMUploadPackage = s 'FDMUploadPackage Class'
+	{
+		CLSID = s '{56101D38-6A8B-49D6-8C9D-939595AB2D19}'
+		CurVer = s 'FDMUploadPackage.FDMUploadPackage.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {56101D38-6A8B-49D6-8C9D-939595AB2D19} = s 'FDMUploadPackage Class'
+		{
+			ProgID = s 'FDMUploadPackage.FDMUploadPackage.1'
+			VersionIndependentProgID = s 'FDMUploadPackage.FDMUploadPackage'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{B56675FE-F704-4451-BD93-5314116B0DA7}'
+			'TypeLib' = s '{DA122254-5927-44C6-8E37-459473384004}'
+		}
+	}
+}

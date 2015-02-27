@@ -1,0 +1,24 @@
+HKCR
+{
+	FdmTorrentFilesRcvr.FdmTorrentFilesRcvr.1 = s 'FdmTorrentFilesRcvr Class'
+	{
+		CLSID = s '{19CAD08F-0413-47F8-B1D9-5D66826E1E39}'
+	}
+	FdmTorrentFilesRcvr.FdmTorrentFilesRcvr = s 'FdmTorrentFilesRcvr Class'
+	{
+		CLSID = s '{19CAD08F-0413-47F8-B1D9-5D66826E1E39}'
+		CurVer = s 'FdmTorrentFilesRcvr.FdmTorrentFilesRcvr.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {19CAD08F-0413-47F8-B1D9-5D66826E1E39} = s 'FdmTorrentFilesRcvr Class'
+		{
+			ProgID = s 'FdmTorrentFilesRcvr.FdmTorrentFilesRcvr.1'
+			VersionIndependentProgID = s 'FdmTorrentFilesRcvr.FdmTorrentFilesRcvr'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{B56675FE-F704-4451-BD93-5314116B0DA7}'
+			'TypeLib' = s '{DA122254-5927-44C6-8E37-459473384004}'
+		}
+	}
+}

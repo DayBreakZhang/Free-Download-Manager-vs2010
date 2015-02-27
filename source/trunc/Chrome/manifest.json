@@ -1,0 +1,9 @@
+{
+  "name": "com.vms.fdm",
+  "description": "FDM",
+  "path": "fdm_nativehost.exe",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://ahmpjcflkgiildlgicmcieglgoilbfdp/"
+  ]
+}

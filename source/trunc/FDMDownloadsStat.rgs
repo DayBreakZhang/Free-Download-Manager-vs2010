@@ -1,0 +1,24 @@
+HKCR
+{
+	FDMDownloadsStat.FDMDownloadsStat.1 = s 'FDMDownloadsStat Class'
+	{
+		CLSID = s '{F01F76EC-3376-4E62-B201-8074C8239376}'
+	}
+	FDMDownloadsStat.FDMDownloadsStat = s 'FDMDownloadsStat Class'
+	{
+		CLSID = s '{F01F76EC-3376-4E62-B201-8074C8239376}'
+		CurVer = s 'FDMDownloadsStat.FDMDownloadsStat.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {F01F76EC-3376-4E62-B201-8074C8239376} = s 'FDMDownloadsStat Class'
+		{
+			ProgID = s 'FDMDownloadsStat.FDMDownloadsStat.1'
+			VersionIndependentProgID = s 'FDMDownloadsStat.FDMDownloadsStat'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{B56675FE-F704-4451-BD93-5314116B0DA7}'
+			'TypeLib' = s '{DA122254-5927-44C6-8E37-459473384004}'
+		}
+	}
+}

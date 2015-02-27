@@ -1,0 +1,24 @@
+HKCR
+{
+	FDMDownload.FDMDownload.1 = s 'FDMDownload Class'
+	{
+		CLSID = s '{DEBBD32E-1D08-4F6A-8A26-E1B3D768A1E5}'
+	}
+	FDMDownload.FDMDownload = s 'FDMDownload Class'
+	{
+		CLSID = s '{DEBBD32E-1D08-4F6A-8A26-E1B3D768A1E5}'
+		CurVer = s 'FDMDownload.FDMDownload.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {DEBBD32E-1D08-4F6A-8A26-E1B3D768A1E5} = s 'FDMDownload Class'
+		{
+			ProgID = s 'FDMDownload.FDMDownload.1'
+			VersionIndependentProgID = s 'FDMDownload.FDMDownload'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{B56675FE-F704-4451-BD93-5314116B0DA7}'
+			'TypeLib' = s '{DA122254-5927-44C6-8E37-459473384004}'
+		}
+	}
+}

@@ -1,0 +1,47 @@
+HKCR
+{
+	FDMCustIEBtn.FDMCustButton.1 = s 'FDMCustButton Class'
+	{
+		CLSID = s '{DAC360AF-9FD0-432D-B2F2-ED3220F4CAD9}'
+	}
+	FDMCustIEBtn.FDMCustButton = s 'FDMCustButton Class'
+	{
+		CLSID = s '{DAC360AF-9FD0-432D-B2F2-ED3220F4CAD9}'
+		CurVer = s 'FDMCustIEBtn.FDMCustButton.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {DAC360AF-9FD0-432D-B2F2-ED3220F4CAD9} = s 'FDMCustButton Class'
+		{
+			ProgID = s 'FDMCustIEBtn.FDMCustButton.1'
+			VersionIndependentProgID = s 'FDMCustIEBtn.FDMCustButton'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			'TypeLib' = s '{6084F04D-2F03-4A6E-8EB1-828D8171ACF7}'
+		}
+	}
+}
+
+HKCU
+{
+	NoRemove Software
+	{
+		NoRemove Microsoft
+		{
+			NoRemove 'Internet Explorer'
+			{
+				NoRemove Extensions
+				{
+					ForceRemove {DAC360AF-9FD0-432D-B2F2-ED3220F4CAD9}
+					{
+						val CLSID = s '{1FBA04EE-3024-11d2-8F1F-0000F87ABD16}'
+						val 'Default Visible' = s 'Yes'
+						val ClsidExtension = s '{DAC360AF-9FD0-432D-B2F2-ED3220F4CAD9}'
+					}
+				}
+			}
+		}
+	}
+}

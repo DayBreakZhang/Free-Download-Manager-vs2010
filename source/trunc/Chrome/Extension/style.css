@@ -1,0 +1,60 @@
+@font-face {
+    font-family: OpenSansRegular;
+    src: url(chrome-extension://ahmpjcflkgiildlgicmcieglgoilbfdp/fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: OpenSansSemiBold;
+    src: url(chrome-extension://ahmpjcflkgiildlgicmcieglgoilbfdp/fonts/OpenSans-Semibold.ttf);
+}
+
+body{
+    margin: 0;
+    font-family: "OpenSansRegular", "Arial", "sans-serif";
+}
+
+.wrapper{
+    width: 600px;
+    height: 420px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -300px;
+    margin-top: -210px;
+    padding:90px 40px 95px 58px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+h1{
+    font-size: 23px;
+    font-weight: normal;
+    color: #004266;
+    margin-top: -5px;
+    margin-bottom: 15px;
+}
+
+p{
+    font-size: 16px;
+}
+
+img{
+    float: left;
+    margin-right: 28px;
+}
+
+.wrapper_text{
+    overflow: hidden;
+}
+
+a{
+    position: absolute;
+    bottom: 76px;
+    left: 175px;
+    color: #fff;
+    text-decoration: none;
+    background-color: #00cae5;
+    padding: 15px 96px;
+    border-radius: 4px;
+    font: 20px "OpenSansSemiBold", "Arial", "sans-serif";
+}

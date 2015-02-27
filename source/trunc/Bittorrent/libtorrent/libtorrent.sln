@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtorrent", "libtorrent.vcxproj", "{24190CA9-490E-4D8F-93D7-55DFC80E2688}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Release-MT|Win32 = Release-MT|Win32
+		Release-MT-dbg|Win32 = Release-MT-dbg|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24190CA9-490E-4D8F-93D7-55DFC80E2688}.Debug|Win32.ActiveCfg = Debug|Win32
+		{24190CA9-490E-4D8F-93D7-55DFC80E2688}.Debug|Win32.Build.0 = Debug|Win32
+		{24190CA9-490E-4D8F-93D7-55DFC80E2688}.Release|Win32.ActiveCfg = Release|Win32
+		{24190CA9-490E-4D8F-93D7-55DFC80E2688}.Release|Win32.Build.0 = Release|Win32
+		{24190CA9-490E-4D8F-93D7-55DFC80E2688}.Release-MT|Win32.ActiveCfg = Release-MT|Win32
+		{24190CA9-490E-4D8F-93D7-55DFC80E2688}.Release-MT|Win32.Build.0 = Release-MT|Win32
+		{24190CA9-490E-4D8F-93D7-55DFC80E2688}.Release-MT-dbg|Win32.ActiveCfg = Release-MT-dbg|Win32
+		{24190CA9-490E-4D8F-93D7-55DFC80E2688}.Release-MT-dbg|Win32.Build.0 = Release-MT-dbg|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

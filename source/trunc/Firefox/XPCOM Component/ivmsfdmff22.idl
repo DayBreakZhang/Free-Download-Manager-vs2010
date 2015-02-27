@@ -1,0 +1,73 @@
+#include "nsISupports.idl"
+
+[scriptable, uuid(7E3EFFB1-64C0-412b-8515-542029434669)]
+interface IFDMUrl : nsISupports
+{
+  attribute wstring Url;
+  attribute wstring Referer;
+  attribute wstring Comment;
+  attribute wstring Cookies;
+  attribute wstring PostData;
+  attribute wstring UserAgent;
+  attribute wstring OriginalUrl;
+};
+
+[scriptable, uuid(F89DB1AD-64DD-4e7d-ACC9-B3795B74833B)]
+interface IFDMUrlListReceiver : nsISupports
+{
+  void AddUrl (in IFDMUrl url);
+  void ShowAddUrlListDialog ();
+};
+
+[scriptable, uuid(1951E03A-2B97-4692-AA0B-1F0E316383AB)]
+interface IFDMUrlReceiver : nsISupports
+{
+  void SetUrl (in IFDMUrl url);
+  void ShowAddDownloadDialog ();
+};
+
+[scriptable, uuid(A2DEDBB7-DD3A-4ff3-A1CC-75736FC557FA)]
+interface IFDMForFirefox : nsISupports
+{
+  wstring GetLngString (in string strIDString);
+  boolean IsContextMenuItemShouldBeHidden (in string strMenuItemID);
+
+  // monitoring
+  boolean IsALTShouldBePressed ();
+  boolean IsLinkShouldBeSkipped (in IFDMUrl url, in wstring wstrSuggFileName);
+  boolean CatchLink (in IFDMUrl url, in wstring wstrSuggFileName);
+  boolean IsDomainSupportedForVideoDownloads (in wstring wstrDomain);
+  boolean ProcessVideoDocument (in wstring wstrDomain, in wstring wstrReferer, in wstring wstrHTML);
+  boolean CreateVideoDownloadFromUrl (in wstring wstrUrl);
+
+  // proxy settings
+  void SetProxyType (in long nType);
+  void SetProxy (in string strProtocol, in string strAddr, in long nPort);
+
+  // monitoring
+  boolean CreateVideoDownloadFromUrl2 (in wstring wstrUrl, in wstring wstrSwfUrl, in wstring wstrFlashVars);
+  boolean CreateVideoDownloadFromUrl3 (in wstring wstrUrl, in wstring wstrFrameUrl, in wstring wstrSwfUrl, in wstring wstrFlashVars, in wstring wstrOtherSwfUrls, in wstring wstrOtherFlashVars);
+  boolean IsVideoFlash (in wstring wstrUrl, in wstring wstrFrameUrl, in wstring wstrSwfUrl, in wstring wstrFlashVars, in wstring wstrOtherSwfUrls, in wstring wstrOtherFlashVars);
+  void OnNewHttpRequest (in wstring wstrUrl, in wstring wstrSourceTabUrl);
+  void OnHttpRedirect (in wstring wstrUrl, in wstring wstrOriginalUrl);
+
+  void DownloadComplete (in wstring wstrUrl);
+  void DownloadBegin (in wstring wstrUrl);
+  // must be called by extension when the browser is sending some requests / getting responses from a server
+  void onHttpActivity (in wstring wstrUrl);
+};
+
+[scriptable, uuid(EBFEC047-F68D-491e-8D7D-268B9C762CB7)]
+interface IFDMFfCacheMonitor : nsISupports
+{
+  uint32_t OnNewHttpDialog (in string strUrl, in string strRequestHdrs, in string strResponseHdrs);
+  void OnDataReceived (in uint32_t nUID, in uint32_t count, [array, size_is(count)] in uint8_t bytes);
+  void OnDialogClosed (in uint32_t nUID);
+};
+
+[scriptable, uuid(28BC56F7-1409-40c7-A9BB-10F113EB2D70)]
+interface IFDMFirefoxExtension : nsISupports
+{
+  attribute nsISupports LastPost;
+  void MakeSureFlvSniffDllLoaded ();
+};

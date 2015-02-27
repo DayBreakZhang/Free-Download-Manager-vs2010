@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "minimum_chrome_version": "32",
+  "default_locale": "en",
+  "name": "__MSG_appName__",
+  "short_name": "__MSG_appShortName__",
+  "description": "__MSG_appDesc__",
+  "version": "1.0.8",
+  "homepage_url": "http://freedownloadmanager.org",
+  "icons": { 
+    "16": "fdm16.png",
+    "48": "fdm48.png",
+    "128": "fdm128.png"
+  },
+  "permissions": [
+    "cookies", "webRequest", "webRequestBlocking", "*://*/*", "downloads", "nativeMessaging", "contextMenus", "activeTab"
+  ],
+  "background": {
+    "scripts": [ "eventPage.js" ]
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

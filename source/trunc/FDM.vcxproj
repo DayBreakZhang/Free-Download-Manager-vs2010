@@ -1,0 +1,2262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_v90|Win32">
+      <Configuration>Release_v90</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <Keyword>AtlProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfAtl>Static</UseOfAtl>
+    <PlatformToolset>v90</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\bin\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;.\DirectX.SDK\8.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;.\DirectX.SDK\8.0\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">
+    <OutDir>.\bin\$(Configuration)\</OutDir>
+    <IntDir>.\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;.\DirectX.SDK\8.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;.\DirectX.SDK\8.0\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\bin\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;.\DirectX.SDK\8.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSdkDir)lib;$(FrameworkSDKDir)\lib;.\DirectX.SDK\8.0\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>include.add;include.add\dshow;E:\Informer Technologies\FDM 3.9\Bittorrent\boost_1_44;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;CURL_STATICLIB;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);NOCRYPT;NOUNCRYPT</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\FDM.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+      <AdditionalOptions>
+      </AdditionalOptions>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <ExceptionHandling>Async</ExceptionHandling>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>./uploader/fum/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\bin\Release\fdm.tlb</TypeLibraryName>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\FDM.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>Lib.add;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PartMediaPreview/Release/PartMediaPreview.lib;FDMCustomized/FDMCustomized_lib/Release/FDMCustomized_lib.lib;InetFile/Release/inetfile.lib;Mswsock.lib;Hash\Release\hash.lib;inetfile/curl_lib/release/curl_lib.lib;dxguid.lib;wininet.lib;rasapi32.lib;Ws2_32.lib;htmlhelp.lib;winmm.lib;strmiids.lib;Version.lib;Iphlpapi.lib;libeay32.lib;ssleay32.lib;Msimg32.lib;%(AdditionalDependencies);zlib\$(Configuration)\zlib.lib;dbghelp.lib</AdditionalDependencies>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalOptions>/MAPINFO:EXPORTS </AdditionalOptions>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <TypeLibraryFile>.\bin\Release\fdm.tlb</TypeLibraryFile>
+      <AdditionalManifestDependencies>type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df' language='*';%(AdditionalManifestDependencies)</AdditionalManifestDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>include.add;include.add\dshow;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_WINDOWS;CURL_STATICLIB;USE_SSLEAY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions);NOCRYPT;NOUNCRYPT</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <AdditionalOptions>
+      </AdditionalOptions>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>./uploader/fum/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\bin\$(Configuration)\fdm.tlb</TypeLibraryName>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>Lib.add;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PartMediaPreview/$(Configuration)/PartMediaPreview.lib;FDMCustomized/FDMCustomized_lib/$(Configuration)/FDMCustomized_lib.lib;InetFile/$(Configuration)/inetfile.lib;alsfolderbrowser.lib;Mswsock.lib;Hash\$(Configuration)\hash.lib;inetfile/curl_lib/$(Configuration)/curl_lib.lib;dxguid.lib;wininet.lib;rasapi32.lib;Ws2_32.lib;htmlhelp.lib;winmm.lib;strmiids.lib;Version.lib;Iphlpapi.lib;libeay32.lib;ssleay32.lib;Msimg32.lib;%(AdditionalDependencies);zlib.lib;dbghelp.lib</AdditionalDependencies>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalOptions>/MAPINFO:EXPORTS </AdditionalOptions>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <AdditionalManifestDependencies>type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df' language='*';%(AdditionalManifestDependencies)</AdditionalManifestDependencies>
+      <TypeLibraryFile>.\bin\$(Configuration)\fdm.tlb</TypeLibraryFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level4</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>include.add;include.add\dshow;E:\Informer Technologies\FDM 3.9\Bittorrent\boost_1_44;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_WINDOWS;CURL_STATICLIB;USE_SSLEAY;%(PreprocessorDefinitions);NOCRYPT;NOUNCRYPT</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Debug\FDM.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalIncludeDirectories>./uploader/fum/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\bin\Debug\fdm.tlb</TypeLibraryName>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0419</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\FDM.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>Lib.add;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PartMediaPreview\Debug\PartMediaPreview.lib;FDMCustomized/FDMCustomized_lib/Debug/FDMCustomized_lib.lib;InetFile\Debug\inetfile.lib;Hash\Debug\hash.lib;InetFile\curl_lib\debug\curl_lib.lib;dxguid.lib;wininet.lib;rasapi32.lib;Ws2_32.lib;htmlhelp.lib;winmm.lib;strmiids.lib;Version.lib;Iphlpapi.lib;libeay32d.lib;ssleay32d.lib;Msimg32.lib;%(AdditionalDependencies);zlib\$(Configuration)\zlib.lib;dbghelp.lib</AdditionalDependencies>
+      <TypeLibraryFile>.\bin\Release\fdm.tlb</TypeLibraryFile>
+      <AdditionalManifestDependencies>type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df' language='*';%(AdditionalManifestDependencies)</AdditionalManifestDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AERDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="AlsFolderBrowser.cpp" />
+    <ClCompile Include="AppStatusBar.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="BtDld_Files.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="BtDld_General.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="BtDld_Misc.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="BtDld_Seeding.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="BtDldSheet.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="CBD_SeeResultsDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="CFDM.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ChildView.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ClientAreaWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="CmdHistorySaver.cpp" />
+    <ClCompile Include="ColumnTreeCtrl.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ComboBox_Ex.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ComboBoxTreeCtrl.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="CreateBatchDownload.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="CreateDownloadDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="CreateDownloadFromTorrentFileDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="CreateDownloadListDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="CreateDownloadsDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="CreateTPDownloadDlg.cpp" />
+    <ClCompile Include="CsvParser.cpp" />
+    <ClCompile Include="DDRDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DialDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgConnectionSpeedInfo.cpp" />
+    <ClCompile Include="DlgSpecifyNetworkSpeedValue.cpp" />
+    <ClCompile Include="DlgTumSettingsPerDirection.cpp" />
+    <ClCompile Include="DlgUnhExc2.cpp" />
+    <ClCompile Include="Dlg_CheckFileIntegrity.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_CheckFileIntegrity_Progress.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_CheckFileIntegrity_Result.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_ChooseGroup.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Convert.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_CreateFVDownload.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_CreateNewTorrent.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Download.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Download_OnHide.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_MakePortableVer.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Opinions.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Downloads.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Downloads_Bittorrent.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Downloads_Flv.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Downloads_Mirrors.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Downloads_Monitoring.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Downloads_Network.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Downloads_NewDld.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Downloads_TimeLimit.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_General.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_General_History.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_General_Misc.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_General_Misc_Advanced.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Notifications.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_Page.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Options_SiteMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_SavePassword.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_SetBatchNumbers.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_ShutdownType.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_SpreadHelp.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_SpreadHelp2.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_SpreadHelp2_wb_Events.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_SpreadHelp2_wb_UIHandler.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_SpreadHelp_LinkCode.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_TUMChanged.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Unpack_AskOverwrite.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_Unpack_InstAddPack.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_UnpackProgress.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_UnpackSettings.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_WPD_IgnoreList.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Dlg_WPD_IL_Add.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgCreateFlvDownloads.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgCreateFlvDownloadsByWebPageUrl.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgCustomizeIEMenu.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgDeletedProperties.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgDL.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgDownloadsHistory.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgElevateRequired.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgExportDownloads.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgExportHistory.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgExtensionsFilter.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgFind.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgFindAdvanced.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgPI2.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgPI2_IfRemind.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgPI2_SureToCancel.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgPI2_WbCustomization.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgProgramOptions.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgSounds.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgT1ToT2.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgVidMan.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DlgVidSeek.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadAlrExistsDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloaderProperties_BtPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloaderProperties_CommunityPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloaderProperties_ListPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloaderProperties_MirrorsPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloaderProperties_MonitorPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloaderProperties_MonitorPage_SkipList.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloaderProperties_NewDownloadPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloaderProperties_NotificationsPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloaderPropertiesSheet.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadProperties.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadProperties_ConnectionPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadProperties_GeneralPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadProperties_IntegrityPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadProperties_MirrorsPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadProperties_MiscPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadProperties_ProtocolPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadProperties_ProxyPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadPropertiesSheet.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Bittorrent.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Bittorrent_Files.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Bittorrent_General.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Bittorrent_Peers.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Deleted.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Downloads.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Groups.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_History.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Info.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_InfoFrame.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Log.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Opinions.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Opinions_WBEvents.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Progress.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_Tasks.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Downloads_VideoPreview.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadsGroupsComboBox.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="DownloadsWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="EnterKeyDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FDCButton.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FdmApp.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FdmBalloon.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FdmBalloon_Content.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FdmBalloon_OnDownloadDone.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FdmBalloonContent.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FDMDownload.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FDMDownloadsStat.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FDMFlashVideoDownloads.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FdmFlvDownload.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FdmTorrentFilesRcvr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FdmUiWindow.cpp" />
+    <ClCompile Include="FDMUploader.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FDMUploadPackage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FlashVideoDownloadsWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FloatingInfo_ListCtrlWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FloatingInfoWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FloatingWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FloatingWndDropTarget.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FloatingWndsThread.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="FolderBrowser.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsAppSettings.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsArchiveFileStream.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsArchiveInternetStream.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsArchiveRebuilder.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsArchiveRebuilderStream.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsAutorunMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsClipboardCatchMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsClipboardMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsCmdHistoryMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsCommandLineParser.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsContextHelpMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsDialogsMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsDirectXVersion.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsDldFilter.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsDownload.cpp" />
+    <ClCompile Include="fsDownloadMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsDownloadRegSaver.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsDownloads_GroupsMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsDownloadsHistoryMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsDownloadsMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsEventsMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsFDMCmdLineParser.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsFindDownloadMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsHistoriesMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsIECatchMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsIEContextMenuMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsIEUserAgent.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsInternetDownloader.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsInternetFileListMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsLangMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsMFCLangMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsMirrorURLsMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsMutex.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsODMenu.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsOpNetIntegrationMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsPluginMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsRASMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsScheduleMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsShellBrowsersEvents.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsShellWindowsEvents.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsSitePingMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsSitesMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsSoundsMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsSpeedMeter.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsTicksMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsTrayIconMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsUpdateMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsUrlsToDownloadRegKeyMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsWebPageDownloader.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsWebPageDownloadsMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsZipArchiveFastRebuilder.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="fsZipArchiveRebuilder.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ImportManager.cpp" />
+    <ClCompile Include="ImportWizardPropertySheet.cpp" />
+    <ClCompile Include="IwManagersPropertyPage.cpp" />
+    <ClCompile Include="IwProgressPropertyPage.cpp" />
+    <ClCompile Include="IwResultPropertyPage.cpp" />
+    <ClCompile Include="Lib.Add\ioapi.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lib.Add\unzip.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Lib.Add\zip.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MemHandleGuard.cpp" />
+    <ClCompile Include="OrbitSupplier.cpp" />
+    <ClCompile Include="orbit_download.cpp" />
+    <ClCompile Include="sqlite\sqlite3.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StateInfo.cpp" />
+    <ClCompile Include="TorrentMoveErrorDlg.cpp" />
+    <ClCompile Include="TpDldSheet.cpp" />
+    <ClCompile Include="TpDld_General.cpp" />
+    <ClCompile Include="vmsAppGlobalObjects.cpp" />
+    <ClCompile Include="vmsChromeExtensionInstaller.cpp" />
+    <ClCompile Include="vmsCrashReporter.cpp" />
+    <ClCompile Include="vmsElevatedFdm.cpp" />
+    <ClCompile Include="vmsFdmCrashReporter.cpp" />
+    <ClCompile Include="vmsFdmFilesDeleter.cpp" />
+    <ClCompile Include="vmsFdmOpNetIntegrationMgr.cpp" />
+    <ClCompile Include="vmsFdmUiDetails.cpp" />
+    <ClCompile Include="vmsFirefoxExtensionUpdateMgr.cpp" />
+    <ClCompile Include="vmsLogger.cpp" />
+    <ClCompile Include="vmsMagnetExtension.cpp" />
+    <ClCompile Include="vmsTpDownloadMgr.cpp" />
+    <ClCompile Include="Uploader\FUM\fuminterfaces_i.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">
+      </PrecompiledHeader>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="FVDownloads_Tasks.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="GroupDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="grutil.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="HFE_Address.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="HFE_FileList.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="HFE_ListLog.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="HFE_Log.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="HFE_ProtocolPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="HFESheet.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="HFEWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="iefdm\iefdmdm\iefdmdm_i.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">
+      </PrecompiledHeader>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="inetutil.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ListCtrlEx.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="LoginDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="mfchelp.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="misc.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="MyBalloon.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="MyBalloon_Content.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="MyMessageBox.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="NOWDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="PlugFrame2Tabs.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="PluginFrame2.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Prg_Data.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Prg_GeneralPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Prg_GeneralPage_FWDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Prg_HistoryPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Prg_MiscPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Prg_SkinsPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Prg_UpdatePage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="PrgSheet.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Schedule_AdvancedPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Schedule_HTSPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Schedule_WTSPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Scheduler_Log.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ScheduleSheet.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SCRDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Sheduler_Tasks.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ShedulerWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="shockwaveflash.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SiteManager_GeneralPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SiteManager_PasswordsPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SiteManagerSheet.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Sites_AdvancedPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Sites_GeneralPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SitesSheet.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SitesWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SmallTipWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SpiderAddPageDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SpiderTasks.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SpiderTaskTree.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="SpiderWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="system.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ToolBarEx.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Torrents_Tasks.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="TorrentsWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="TrayIconPosition.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="TreeCtrlEx.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="UEDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="UIThread.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="UpdateDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="UploadsWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="UrlWithLoginDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="UrlWnd.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="UtorrentSupplier.cpp" />
+    <ClCompile Include="VideoWindow.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vms7zipArchive.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vms7zipArchiveExtractCallback.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vms7zipFormatDLL.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsAnimatedGIF.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsAppSettingsStore.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsAppTipsMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsAppUtil.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsArchive.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsArchiveCallback.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsArchiveMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsArchiveRAR.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsBatchList.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsBtDownloadManager.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsBtSupport.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsComDLL.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsCommandLine.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsDataFile.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsDialogHelper.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsDLL.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsDocHostUIHandler.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsDownloadMgrEx.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsDownloadsGroupsMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsDownloadsListHelper.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsDrawHelper.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFdmApiDownloadImpl.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFdmApiDownloadsMgrImpl.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFdmApiImpl.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFdmAppMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFile.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFileExtensionInOs.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFileRecentList.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFilesToDelete.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFileUtil.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFirefoxExtensionInstaller.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFirefoxMonitoring.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFirefoxUtil.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsFlvSniffInjector.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsIeHelper.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsImage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsImage_CtxFree.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsInternetSession.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsIpHelper.cpp" />
+    <ClCompile Include="vmsMaliciousDownloadChecker.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsMaximumSpeedMeter.cpp" />
+    <ClCompile Include="vmsMediaConverter.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsMediaConvertMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsMetalinkFile.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsMozillaPrefs.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsNotEverywhereSupportedFunctions.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsPersistableListOfDownloads.cpp" />
+    <ClCompile Include="vmsPersistObject.cpp" />
+    <ClCompile Include="vmsPluginSupport.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsProcessesInjector.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsProcessList.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsRegisteredApp.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsRenderer.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsSecurity.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsSimpleFileDownloader.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsSingleLineTooltip.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsSkinMgr.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsSpeedTracker.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsStringList.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsStringParser.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsStringRecentList.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsSystem.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsTheme.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsTickCount.cpp" />
+    <ClCompile Include="vmsTorrentExtension.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsTrafficUsageModeMgr.cpp" />
+    <ClCompile Include="vmsTreeCtrlHelper.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsUiFonts.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsUiLinkWindow.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsUiStaticTextWindow.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsUiWindow.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsUiWindowsHoster.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsUnRARDLL.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsUploaderDllPersist.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsUploadsDllCaller.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsUploadsDllCallerSettings.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsVideoSiteHtmlCodeParser.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsWebBrowserEvents.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsWindowsStatusBar.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="vmsXmlHelper.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WaitDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WaitForConfirmationDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="webbrowser2.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WebBrowser2Customization.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WgUrlListReceiver.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WGUrlReceiver.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Wnd_Banner.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Wnd_DownloadProgress.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="Wnd_FDMGetCustVer_Btn.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WndDlDoneNotification.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WndLog.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WndSplitter.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WPDS_FilesPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WPDS_GeneralPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WPDS_ImagesPages.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WPDS_Sheet.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="WPDS_WebPagesPage.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="XInfoTip.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+    <ClCompile Include="ZipPreviewDlg.cpp">
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"> /EHa   /EHa </AdditionalOptions>
+      <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'"> /EHa   /EHa </AdditionalOptions>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="Fdm.idl">
+      <TargetEnvironment Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Win32</TargetEnvironment>
+      <TargetEnvironment Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">Win32</TargetEnvironment>
+      <TargetEnvironment Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Win32</TargetEnvironment>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="fdm.rc">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OUTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release_v90|Win32'">$(OUTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OUTDIR);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AERDlg.h" />
+    <ClInclude Include="AlsFolderBrowser.h" />
+    <ClInclude Include="AppStatusBar.h" />
+    <ClInclude Include="BtDld_Files.h" />
+    <ClInclude Include="BtDld_General.h" />
+    <ClInclude Include="BtDld_Misc.h" />
+    <ClInclude Include="BtDld_Seeding.h" />
+    <ClInclude Include="BtDldSheet.h" />
+    <ClInclude Include="CBD_SeeResultsDlg.h" />
+    <ClInclude Include="CFDM.h" />
+    <ClInclude Include="ChildView.h" />
+    <ClInclude Include="ClientAreaWnd.h" />
+    <ClInclude Include="CmdHistorySaver.h" />
+    <ClInclude Include="ColumnTreeCtrl.h" />
+    <ClInclude Include="ComboBox_Ex.h" />
+    <ClInclude Include="ComboBoxTreeCtrl.h" />
+    <ClInclude Include="common.h" />
+    <ClInclude Include="CreateBatchDownload.h" />
+    <ClInclude Include="CreateDownloadDlg.h" />
+    <ClInclude Include="CreateDownloadFromTorrentFileDlg.h" />
+    <ClInclude Include="CreateDownloadListDlg.h" />
+    <ClInclude Include="CreateDownloadsDlg.h" />
+    <ClInclude Include="CreateTPDownloadDlg.h" />
+    <ClInclude Include="CsvParser.h" />
+    <ClInclude Include="DDRDlg.h" />
+    <ClInclude Include="DialDlg.h" />
+    <ClInclude Include="dldscommon.h" />
+    <ClInclude Include="DlgConnectionSpeedInfo.h" />
+    <ClInclude Include="DlgSpecifyNetworkSpeedValue.h" />
+    <ClInclude Include="DlgTumSettingsPerDirection.h" />
+    <ClInclude Include="DlgUnhExc2.h" />
+    <ClInclude Include="Dlg_CheckFileIntegrity.h" />
+    <ClInclude Include="Dlg_CheckFileIntegrity_Progress.h" />
+    <ClInclude Include="Dlg_CheckFileIntegrity_Result.h" />
+    <ClInclude Include="Dlg_ChooseGroup.h" />
+    <ClInclude Include="Dlg_Convert.h" />
+    <ClInclude Include="Dlg_CreateFVDownload.h" />
+    <ClInclude Include="Dlg_CreateNewTorrent.h" />
+    <ClInclude Include="Dlg_Download.h" />
+    <ClInclude Include="Dlg_Download_OnHide.h" />
+    <ClInclude Include="Dlg_MakePortableVer.h" />
+    <ClInclude Include="Dlg_Opinions.h" />
+    <ClInclude Include="Dlg_Options.h" />
+    <ClInclude Include="Dlg_Options_Downloads.h" />
+    <ClInclude Include="Dlg_Options_Downloads_Bittorrent.h" />
+    <ClInclude Include="Dlg_Options_Downloads_Flv.h" />
+    <ClInclude Include="Dlg_Options_Downloads_Mirrors.h" />
+    <ClInclude Include="Dlg_Options_Downloads_Monitoring.h" />
+    <ClInclude Include="Dlg_Options_Downloads_Network.h" />
+    <ClInclude Include="Dlg_Options_Downloads_NewDld.h" />
+    <ClInclude Include="Dlg_Options_Downloads_TimeLimit.h" />
+    <ClInclude Include="Dlg_Options_General.h" />
+    <ClInclude Include="Dlg_Options_General_History.h" />
+    <ClInclude Include="Dlg_Options_General_Misc.h" />
+    <ClInclude Include="Dlg_Options_General_Misc_Advanced.h" />
+    <ClInclude Include="Dlg_Options_Notifications.h" />
+    <ClInclude Include="Dlg_Options_Page.h" />
+    <ClInclude Include="Dlg_Options_SiteMgr.h" />
+    <ClInclude Include="Dlg_SavePassword.h" />
+    <ClInclude Include="Dlg_SetBatchNumbers.h" />
+    <ClInclude Include="Dlg_ShutdownType.h" />
+    <ClInclude Include="Dlg_SpreadHelp.h" />
+    <ClInclude Include="Dlg_SpreadHelp2.h" />
+    <ClInclude Include="Dlg_SpreadHelp2_wb_Events.h" />
+    <ClInclude Include="Dlg_SpreadHelp2_wb_UIHandler.h" />
+    <ClInclude Include="Dlg_SpreadHelp_LinkCode.h" />
+    <ClInclude Include="Dlg_TUMChanged.h" />
+    <ClInclude Include="Dlg_Unpack_AskOverwrite.h" />
+    <ClInclude Include="Dlg_Unpack_InstAddPack.h" />
+    <ClInclude Include="Dlg_UnpackProgress.h" />
+    <ClInclude Include="Dlg_UnpackSettings.h" />
+    <ClInclude Include="Dlg_WPD_IgnoreList.h" />
+    <ClInclude Include="Dlg_WPD_IL_Add.h" />
+    <ClInclude Include="DlgCreateFlvDownloads.h" />
+    <ClInclude Include="DlgCreateFlvDownloadsByWebPageUrl.h" />
+    <ClInclude Include="DlgCustomizeIEMenu.h" />
+    <ClInclude Include="DlgDeletedProperties.h" />
+    <ClInclude Include="DlgDL.h" />
+    <ClInclude Include="DlgDownloadsHistory.h" />
+    <ClInclude Include="DlgElevateRequired.h" />
+    <ClInclude Include="DlgExportDownloads.h" />
+    <ClInclude Include="DlgExportHistory.h" />
+    <ClInclude Include="DlgExtensionsFilter.h" />
+    <ClInclude Include="DlgFind.h" />
+    <ClInclude Include="DlgFindAdvanced.h" />
+    <ClInclude Include="DlgPI2.h" />
+    <ClInclude Include="DlgPI2_IfRemind.h" />
+    <ClInclude Include="DlgPI2_SureToCancel.h" />
+    <ClInclude Include="DlgPI2_WbCustomization.h" />
+    <ClInclude Include="DlgProgramOptions.h" />
+    <ClInclude Include="DlgSounds.h" />
+    <ClInclude Include="DlgT1ToT2.h" />
+    <ClInclude Include="DlgVidMan.h" />
+    <ClInclude Include="DlgVidSeek.h" />
+    <ClInclude Include="DownloadAlrExistsDlg.h" />
+    <ClInclude Include="DownloaderProperties_BtPage.h" />
+    <ClInclude Include="DownloaderProperties_CommunityPage.h" />
+    <ClInclude Include="DownloaderProperties_ListPage.h" />
+    <ClInclude Include="DownloaderProperties_MirrorsPage.h" />
+    <ClInclude Include="DownloaderProperties_MonitorPage.h" />
+    <ClInclude Include="DownloaderProperties_MonitorPage_SkipList.h" />
+    <ClInclude Include="DownloaderProperties_NewDownloadPage.h" />
+    <ClInclude Include="DownloaderProperties_NotificationsPage.h" />
+    <ClInclude Include="DownloaderPropertiesSheet.h" />
+    <ClInclude Include="DownloadProperties.h" />
+    <ClInclude Include="DownloadProperties_ConnectionPage.h" />
+    <ClInclude Include="DownloadProperties_GeneralPage.h" />
+    <ClInclude Include="DownloadProperties_IntegrityPage.h" />
+    <ClInclude Include="DownloadProperties_MirrorsPage.h" />
+    <ClInclude Include="DownloadProperties_MiscPage.h" />
+    <ClInclude Include="DownloadProperties_ProtocolPage.h" />
+    <ClInclude Include="DownloadProperties_ProxyPage.h" />
+    <ClInclude Include="DownloadPropertiesSheet.h" />
+    <ClInclude Include="Downloads_Bittorrent.h" />
+    <ClInclude Include="Downloads_Bittorrent_Files.h" />
+    <ClInclude Include="Downloads_Bittorrent_General.h" />
+    <ClInclude Include="Downloads_Bittorrent_Peers.h" />
+    <ClInclude Include="Downloads_Deleted.h" />
+    <ClInclude Include="Downloads_Downloads.h" />
+    <ClInclude Include="Downloads_Groups.h" />
+    <ClInclude Include="Downloads_History.h" />
+    <ClInclude Include="Downloads_Info.h" />
+    <ClInclude Include="Downloads_InfoFrame.h" />
+    <ClInclude Include="Downloads_Log.h" />
+    <ClInclude Include="Downloads_Opinions.h" />
+    <ClInclude Include="Downloads_Opinions_WBEvents.h" />
+    <ClInclude Include="Downloads_Progress.h" />
+    <ClInclude Include="Downloads_Tasks.h" />
+    <ClInclude Include="Downloads_VideoPreview.h" />
+    <ClInclude Include="DownloadsGroupsComboBox.h" />
+    <ClInclude Include="DownloadsWnd.h" />
+    <ClInclude Include="EnterKeyDlg.h" />
+    <ClInclude Include="FDCButton.h" />
+    <ClInclude Include="FdmApp.h" />
+    <ClInclude Include="FdmBalloon.h" />
+    <ClInclude Include="FdmBalloon_Content.h" />
+    <ClInclude Include="FdmBalloon_OnDownloadDone.h" />
+    <ClInclude Include="FdmBalloonContent.h" />
+    <ClInclude Include="FDMDownload.h" />
+    <ClInclude Include="FDMDownloadsStat.h" />
+    <ClInclude Include="FDMFlashVideoDownloads.h" />
+    <ClInclude Include="FdmFlvDownload.h" />
+    <ClInclude Include="FdmTorrentFilesRcvr.h" />
+    <ClInclude Include="FdmUiWindow.h" />
+    <ClInclude Include="FDMUploader.h" />
+    <ClInclude Include="FDMUploadPackage.h" />
+    <ClInclude Include="FlashVideoDownloadsWnd.h" />
+    <ClInclude Include="FloatingInfo_ListCtrlWnd.h" />
+    <ClInclude Include="FloatingInfoWnd.h" />
+    <ClInclude Include="FloatingWnd.h" />
+    <ClInclude Include="FloatingWndDropTarget.h" />
+    <ClInclude Include="FloatingWndsThread.h" />
+    <ClInclude Include="FolderBrowser.h" />
+    <ClInclude Include="fsAppSettings.h" />
+    <ClInclude Include="fsArchiveFileStream.h" />
+    <ClInclude Include="fsArchiveInternetStream.h" />
+    <ClInclude Include="fsArchiveRebuilder.h" />
+    <ClInclude Include="fsArchiveRebuilderStream.h" />
+    <ClInclude Include="fsAutorunMgr.h" />
+    <ClInclude Include="fsClipboardCatchMgr.h" />
+    <ClInclude Include="fsClipboardMgr.h" />
+    <ClInclude Include="fsCmdHistoryMgr.h" />
+    <ClInclude Include="fsCommandLineParser.h" />
+    <ClInclude Include="fsContextHelpMgr.h" />
+    <ClInclude Include="fsDialogsMgr.h" />
+    <ClInclude Include="fsDirectXVersion.h" />
+    <ClInclude Include="fsDldFilter.h" />
+    <ClInclude Include="fsDownload.h" />
+    <ClInclude Include="fsDownloadMgr.h" />
+    <ClInclude Include="fsDownloadRegSaver.h" />
+    <ClInclude Include="fsDownloads_GroupsMgr.h" />
+    <ClInclude Include="fsDownloadsHistoryMgr.h" />
+    <ClInclude Include="fsDownloadsMgr.h" />
+    <ClInclude Include="fsEventsMgr.h" />
+    <ClInclude Include="fsFDMCmdLineParser.h" />
+    <ClInclude Include="fsFindDownloadMgr.h" />
+    <ClInclude Include="fsHistoriesMgr.h" />
+    <ClInclude Include="fsIECatchMgr.h" />
+    <ClInclude Include="fsIEContextMenuMgr.h" />
+    <ClInclude Include="fsIEUserAgent.h" />
+    <ClInclude Include="fsInternetDownloader.h" />
+    <ClInclude Include="fsInternetFileListMgr.h" />
+    <ClInclude Include="fsLangMgr.h" />
+    <ClInclude Include="fsMFCLangMgr.h" />
+    <ClInclude Include="fsMirrorURLsMgr.h" />
+    <ClInclude Include="fsMutex.h" />
+    <ClInclude Include="fsODMenu.h" />
+    <ClInclude Include="fsOpNetIntegrationMgr.h" />
+    <ClInclude Include="fsPluginMgr.h" />
+    <ClInclude Include="fsRASMgr.h" />
+    <ClInclude Include="fsScheduleMgr.h" />
+    <ClInclude Include="fsSitePingMgr.h" />
+    <ClInclude Include="fsSitesMgr.h" />
+    <ClInclude Include="fsSoundsMgr.h" />
+    <ClInclude Include="fsSpeedMeter.h" />
+    <ClInclude Include="fsTicksMgr.h" />
+    <ClInclude Include="fsTrayIconMgr.h" />
+    <ClInclude Include="fsUpdateMgr.h" />
+    <ClInclude Include="fsUrlsToDownloadRegKeyMgr.h" />
+    <ClInclude Include="fsWebPageDownloader.h" />
+    <ClInclude Include="fsWebPageDownloadsMgr.h" />
+    <ClInclude Include="fsZipArchiveFastRebuilder.h" />
+    <ClInclude Include="fsZipArchiveRebuilder.h" />
+    <ClInclude Include="FVDownloads_Tasks.h" />
+    <ClInclude Include="GroupDlg.h" />
+    <ClInclude Include="grutil.h" />
+    <ClInclude Include="HFE_Address.h" />
+    <ClInclude Include="HFE_FileList.h" />
+    <ClInclude Include="HFE_ListLog.h" />
+    <ClInclude Include="HFE_Log.h" />
+    <ClInclude Include="HFE_ProtocolPage.h" />
+    <ClInclude Include="HFESheet.h" />
+    <ClInclude Include="HFEWnd.h" />
+    <ClInclude Include="ImportManager.h" />
+    <ClInclude Include="ImportWizardPropertySheet.h" />
+    <ClInclude Include="inetutil.h" />
+    <ClInclude Include="IwManagersPropertyPage.h" />
+    <ClInclude Include="IwProgressPropertyPage.h" />
+    <ClInclude Include="IwResultPropertyPage.h" />
+    <ClInclude Include="ListCtrlEx.h" />
+    <ClInclude Include="LoginDlg.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MemHandleGuard.h" />
+    <ClInclude Include="mfchelp.h" />
+    <ClInclude Include="misc.h" />
+    <ClInclude Include="MyBalloon.h" />
+    <ClInclude Include="MyBalloon_Content.h" />
+    <ClInclude Include="MyMessageBox.h" />
+    <ClInclude Include="NOWDlg.h" />
+    <ClInclude Include="OrbitSupplier.h" />
+    <ClInclude Include="orbit_download.h" />
+    <ClInclude Include="PlugFrame2Tabs.h" />
+    <ClInclude Include="plugincmds.h" />
+    <ClInclude Include="PluginFrame2.h" />
+    <ClInclude Include="plugins.h" />
+    <ClInclude Include="Prg_Data.h" />
+    <ClInclude Include="Prg_GeneralPage.h" />
+    <ClInclude Include="Prg_GeneralPage_FWDlg.h" />
+    <ClInclude Include="Prg_HistoryPage.h" />
+    <ClInclude Include="Prg_MiscPage.h" />
+    <ClInclude Include="Prg_SkinsPage.h" />
+    <ClInclude Include="Prg_UpdatePage.h" />
+    <ClInclude Include="PrgSheet.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="StateInfo.h" />
+    <ClInclude Include="TorrentMoveErrorDlg.h" />
+    <ClInclude Include="TpDldSheet.h" />
+    <ClInclude Include="TpDld_General.h" />
+    <ClInclude Include="vmsAppFileUpdateInfo.h" />
+    <ClInclude Include="vmsAppGlobalObjects.h" />
+    <ClInclude Include="vmsBrowserPluginFileDeleter.h" />
+    <ClInclude Include="vmsChromeExtensionInstaller.h" />
+    <ClInclude Include="vmsCrashCatcher.h" />
+    <ClInclude Include="vmsCrashReporter.h" />
+    <ClInclude Include="vmsElevatedFdm.h" />
+    <ClInclude Include="vmsFdmCrashReporter.h" />
+    <ClInclude Include="vmsFdmFilesDeleter.h" />
+    <ClInclude Include="vmsFdmOpNetIntegrationMgr.h" />
+    <ClInclude Include="vmsFdmUiDetails.h" />
+    <ClInclude Include="vmsFdmUtils.h" />
+    <ClInclude Include="vmsFileDeleter.h" />
+    <ClInclude Include="vmsFirefoxExtensionInfo.h" />
+    <ClInclude Include="vmsFirefoxExtensionUpdateMgr.h" />
+    <ClInclude Include="vmsKnownBrowsers.h" />
+    <ClInclude Include="vmsMagnetExtension.h" />
+    <ClInclude Include="vmsLogger.h" />
+    <ClInclude Include="vmsTpDownloadMgr.h" />
+    <ClInclude Include="Schedule_AdvancedPage.h" />
+    <ClInclude Include="Schedule_HTSPage.h" />
+    <ClInclude Include="Schedule_WTSPage.h" />
+    <ClInclude Include="Scheduler_Log.h" />
+    <ClInclude Include="ScheduleSheet.h" />
+    <ClInclude Include="SCRDlg.h" />
+    <ClInclude Include="Sheduler_Tasks.h" />
+    <ClInclude Include="ShedulerWnd.h" />
+    <ClInclude Include="shockwaveflash.h" />
+    <ClInclude Include="SiteManager_GeneralPage.h" />
+    <ClInclude Include="SiteManager_PasswordsPage.h" />
+    <ClInclude Include="SiteManagerSheet.h" />
+    <ClInclude Include="Sites_AdvancedPage.h" />
+    <ClInclude Include="Sites_GeneralPage.h" />
+    <ClInclude Include="SitesSheet.h" />
+    <ClInclude Include="SitesWnd.h" />
+    <ClInclude Include="SmallTipWnd.h" />
+    <ClInclude Include="SpiderAddPageDlg.h" />
+    <ClInclude Include="SpiderTasks.h" />
+    <ClInclude Include="SpiderTaskTree.h" />
+    <ClInclude Include="SpiderWnd.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="supplier_interface.h" />
+    <ClInclude Include="system.h" />
+    <ClInclude Include="ToolBarEx.h" />
+    <ClInclude Include="Torrents_Tasks.h" />
+    <ClInclude Include="TorrentsWnd.h" />
+    <ClInclude Include="TreeCtrlEx.h" />
+    <ClInclude Include="UEDlg.h" />
+    <ClInclude Include="UIThread.h" />
+    <ClInclude Include="UpdateDlg.h" />
+    <ClInclude Include="UploadsWnd.h" />
+    <ClInclude Include="UrlWithLoginDlg.h" />
+    <ClInclude Include="UrlWnd.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="UtorrentSupplier.h" />
+    <ClInclude Include="VideoWindow.h" />
+    <ClInclude Include="vms7zipArchive.h" />
+    <ClInclude Include="vms7zipArchiveExtractCallback.h" />
+    <ClInclude Include="vms7zipFormatDLL.h" />
+    <ClInclude Include="vmsAnimatedGIF.h" />
+    <ClInclude Include="vmsAppSettingsStore.h" />
+    <ClInclude Include="vmsAppTipsMgr.h" />
+    <ClInclude Include="vmsAppUtil.h" />
+    <ClInclude Include="vmsArchive.h" />
+    <ClInclude Include="vmsArchiveCallback.h" />
+    <ClInclude Include="vmsArchiveMgr.h" />
+    <ClInclude Include="vmsArchiveRAR.h" />
+    <ClInclude Include="vmsBatchList.h" />
+    <ClInclude Include="vmsBtDownloadManager.h" />
+    <ClInclude Include="vmsBtSupport.h" />
+    <ClInclude Include="vmsComDLL.h" />
+    <ClInclude Include="vmsDataFile.h" />
+    <ClInclude Include="vmsDialogHelper.h" />
+    <ClInclude Include="vmsDLL.h" />
+    <ClInclude Include="vmsDocHostUIHandler.h" />
+    <ClInclude Include="vmsDownloadMgrEx.h" />
+    <ClInclude Include="vmsDownloadsGroupsMgr.h" />
+    <ClInclude Include="vmsDownloadsListHelper.h" />
+    <ClInclude Include="vmsDrawHelper.h" />
+    <ClInclude Include="vmsFdmApiDownloadImpl.h" />
+    <ClInclude Include="vmsFdmApiDownloadsMgrImpl.h" />
+    <ClInclude Include="vmsFdmApiImpl.h" />
+    <ClInclude Include="vmsFdmAppMgr.h" />
+    <ClInclude Include="vmsFile.h" />
+    <ClInclude Include="vmsFileExtensionInOs.h" />
+    <ClInclude Include="vmsFileRecentList.h" />
+    <ClInclude Include="vmsFilesToDelete.h" />
+    <ClInclude Include="vmsFileUtil.h" />
+    <ClInclude Include="vmsFirefoxExtensionInstaller.h" />
+    <ClInclude Include="vmsFirefoxMonitoring.h" />
+    <ClInclude Include="vmsFirefoxUtil.h" />
+    <ClInclude Include="vmsFlvSniffInjector.h" />
+    <ClInclude Include="vmsIeHelper.h" />
+    <ClInclude Include="vmsImage.h" />
+    <ClInclude Include="vmsImage_CtxFree.h" />
+    <ClInclude Include="vmsInternetSession.h" />
+    <ClInclude Include="vmsIpHelper.h" />
+    <ClInclude Include="vmsMaliciousDownloadChecker.h" />
+    <ClInclude Include="vmsMaximumSpeedMeter.h" />
+    <ClInclude Include="vmsMediaConverter.h" />
+    <ClInclude Include="vmsMediaConvertMgr.h" />
+    <ClInclude Include="vmsMetalinkFile.h" />
+    <ClInclude Include="vmsMozillaPrefs.h" />
+    <ClInclude Include="vmsNotEverywhereSupportedFunctions.h" />
+    <ClInclude Include="vmsPersistableListOfDownloads.h" />
+    <ClInclude Include="vmsPersistObject.h" />
+    <ClInclude Include="vmsPluginSupport.h" />
+    <ClInclude Include="vmsProcessesInjector.h" />
+    <ClInclude Include="vmsProcessList.h" />
+    <ClInclude Include="vmsRegisteredApp.h" />
+    <ClInclude Include="vmsRenderer.h" />
+    <ClInclude Include="vmsSecurity.h" />
+    <ClInclude Include="vmsSimpleFileDownloader.h" />
+    <ClInclude Include="vmsSingleLineTooltip.h" />
+    <ClInclude Include="vmsSkinMgr.h" />
+    <ClInclude Include="vmsSpeedTracker.h" />
+    <ClInclude Include="vmsStringList.h" />
+    <ClInclude Include="vmsStringParser.h" />
+    <ClInclude Include="vmsStringRecentList.h" />
+    <ClInclude Include="vmsSystem.h" />
+    <ClInclude Include="vmsTheme.h" />
+    <ClInclude Include="vmsTickCount.h" />
+    <ClInclude Include="vmsTorrentExtension.h" />
+    <ClInclude Include="vmsTrafficUsageModeMgr.h" />
+    <ClInclude Include="vmsTreeCtrlHelper.h" />
+    <ClInclude Include="vmsUiFonts.h" />
+    <ClInclude Include="vmsUiLinkWindow.h" />
+    <ClInclude Include="vmsUiStaticTextWindow.h" />
+    <ClInclude Include="vmsUiWindow.h" />
+    <ClInclude Include="vmsUiWindowsHoster.h" />
+    <ClInclude Include="vmsUnRARDLL.h" />
+    <ClInclude Include="vmsUploaderDllPersist.h" />
+    <ClInclude Include="vmsUploadsDllCaller.h" />
+    <ClInclude Include="vmsUploadsDllCallerSettings.h" />
+    <ClInclude Include="vmsValueLog.h" />
+    <ClInclude Include="vmsVideoSiteHtmlCodeParser.h" />
+    <ClInclude Include="vmsWebBrowserEvents.h" />
+    <ClInclude Include="vmsXmlHelper.h" />
+    <ClInclude Include="WaitDlg.h" />
+    <ClInclude Include="WaitForConfirmationDlg.h" />
+    <ClInclude Include="webbrowser2.h" />
+    <ClInclude Include="WebBrowser2Customization.h" />
+    <ClInclude Include="WgUrlListReceiver.h" />
+    <ClInclude Include="WGUrlReceiver.h" />
+    <ClInclude Include="Wnd_Banner.h" />
+    <ClInclude Include="Wnd_DownloadProgress.h" />
+    <ClInclude Include="Wnd_FDMGetCustVer_Btn.h" />
+    <ClInclude Include="WndDlDoneNotification.h" />
+    <ClInclude Include="WndLog.h" />
+    <ClInclude Include="WndSplitter.h" />
+    <ClInclude Include="WPDS_FilesPage.h" />
+    <ClInclude Include="WPDS_GeneralPage.h" />
+    <ClInclude Include="WPDS_ImagesPages.h" />
+    <ClInclude Include="WPDS_Sheet.h" />
+    <ClInclude Include="WPDS_WebPagesPage.h" />
+    <ClInclude Include="XInfoTip.h" />
+    <ClInclude Include="ZipPreviewDlg.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\back.bmp" />
+    <CustomBuild Include="res\back_d.bmp" />
+    <CustomBuild Include="res\checks.bmp" />
+    <CustomBuild Include="res\choosefolder.ico" />
+    <CustomBuild Include="res\close.bmp" />
+    <CustomBuild Include="res\closebtn.ico" />
+    <CustomBuild Include="res\creategr.ico" />
+    <CustomBuild Include="res\dldsinfo.bmp" />
+    <CustomBuild Include="res\dldsinfo_sel.bmp" />
+    <CustomBuild Include="res\dldtasks_sel.bmp" />
+    <CustomBuild Include="res\download.bmp" />
+    <CustomBuild Include="res\downloadstasks.bmp" />
+    <CustomBuild Include="res\dropbox.ico" />
+    <CustomBuild Include="res\eng_lngs.bin">
+      <FileType>Document</FileType>
+    </CustomBuild>
+    <CustomBuild Include="res\Fdm.ico" />
+    <CustomBuild Include="res\fdm.rc2">
+      <FileType>RC</FileType>
+    </CustomBuild>
+    <CustomBuild Include="FDM.rgs" />
+    <CustomBuild Include="res\fdm_getcver_btn.bmp" />
+    <CustomBuild Include="FdmApp.rgs" />
+    <CustomBuild Include="FDMDownload.rgs" />
+    <CustomBuild Include="FDMDownloadsStat.rgs" />
+    <CustomBuild Include="FDMFlashVideoDownloads.rgs" />
+    <CustomBuild Include="FdmFlvDownload.rgs" />
+    <CustomBuild Include="FdmTorrentFilesRcvr.rgs" />
+    <CustomBuild Include="FDMUploader.rgs" />
+    <CustomBuild Include="FDMUploadPackage.rgs" />
+    <CustomBuild Include="res\filelist.bmp" />
+    <CustomBuild Include="res\filelist_sel.bmp" />
+    <CustomBuild Include="res\go.bmp" />
+    <CustomBuild Include="res\groups.bmp" />
+    <CustomBuild Include="res\groupsmenu_d.bmp" />
+    <CustomBuild Include="res\grpmenu.bmp" />
+    <CustomBuild Include="res\hand.cur" />
+    <CustomBuild Include="res\login.ico" />
+    <CustomBuild Include="res\logo2.ico" />
+    <CustomBuild Include="res\logstat.bmp" />
+    <CustomBuild Include="res\mute.bmp" />
+    <CustomBuild Include="res\scheduler_sel.bmp" />
+    <CustomBuild Include="res\setfolderdef.ico" />
+    <CustomBuild Include="res\settime.ico" />
+    <CustomBuild Include="res\sheduler.bmp" />
+    <CustomBuild Include="res\sitelist.bmp" />
+    <CustomBuild Include="res\sitelist_sel.bmp" />
+    <CustomBuild Include="res\sortimages.bmp" />
+    <CustomBuild Include="res\test_ok.ico" />
+    <CustomBuild Include="res\tip.bmp" />
+    <CustomBuild Include="res\tool0.bmp" />
+    <CustomBuild Include="res\tool0_16.bmp" />
+    <CustomBuild Include="res\tool0_16_d.bmp" />
+    <CustomBuild Include="res\tool0_d.bmp" />
+    <CustomBuild Include="res\tool_bt.bmp" />
+    <CustomBuild Include="res\tool_bt_16.bmp" />
+    <CustomBuild Include="res\tool_bt_16_d.bmp" />
+    <CustomBuild Include="res\tool_bt_d.bmp" />
+    <CustomBuild Include="res\tool_dld.bmp" />
+    <CustomBuild Include="res\tool_dld_16.bmp" />
+    <CustomBuild Include="res\tool_dld_16_d.bmp" />
+    <CustomBuild Include="res\tool_hfe.bmp" />
+    <CustomBuild Include="res\tool_hfe_16.bmp" />
+    <CustomBuild Include="res\tool_hfe_16_d.bmp" />
+    <CustomBuild Include="res\tool_sch.bmp" />
+    <CustomBuild Include="res\tool_sch_16.bmp" />
+    <CustomBuild Include="res\tool_sch_16_d.bmp" />
+    <CustomBuild Include="res\tool_sites.bmp" />
+    <CustomBuild Include="res\tool_sites_16.bmp" />
+    <CustomBuild Include="res\tool_sites_16_d.bmp" />
+    <CustomBuild Include="res\tool_sites_d.bmp" />
+    <CustomBuild Include="res\tool_spider.bmp" />
+    <CustomBuild Include="res\tool_spider_16.bmp" />
+    <CustomBuild Include="res\tool_spider_16_d.bmp" />
+    <CustomBuild Include="res\tool_spider_d.bmp" />
+    <CustomBuild Include="res\tooldlds_d.bmp" />
+    <CustomBuild Include="res\toolhfe_d.bmp" />
+    <CustomBuild Include="res\toolschedule_d.bmp" />
+    <CustomBuild Include="res\tosel.ico" />
+    <CustomBuild Include="res\tounsel.ico" />
+    <CustomBuild Include="res\tray.ico" />
+    <CustomBuild Include="res\tray_dow.ico" />
+    <CustomBuild Include="res\tray_err.ico" />
+    <CustomBuild Include="res\tray_unk.ico" />
+    <CustomBuild Include="res\vidman.bmp" />
+    <CustomBuild Include="res\vidman_d.bmp" />
+    <CustomBuild Include="WgUrlListReceiver.rgs" />
+    <CustomBuild Include="WGUrlReceiver.rgs" />
+    <CustomBuild Include="Language\eng.lng">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FdmUiWindow.rgs" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="fdm.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,24 @@
+HKCR
+{
+	FDMFlashVideoDownloads.FDMFlashVideoDownloads.1 = s 'FDMFlashVideoDownloads Class'
+	{
+		CLSID = s '{D8E9E2ED-846D-4711-A9B8-A29312157DB4}'
+	}
+	FDMFlashVideoDownloads.FDMFlashVideoDownloads = s 'FDMFlashVideoDownloads Class'
+	{
+		CLSID = s '{D8E9E2ED-846D-4711-A9B8-A29312157DB4}'
+		CurVer = s 'FDMFlashVideoDownloads.FDMFlashVideoDownloads.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {D8E9E2ED-846D-4711-A9B8-A29312157DB4} = s 'FDMFlashVideoDownloads Class'
+		{
+			ProgID = s 'FDMFlashVideoDownloads.FDMFlashVideoDownloads.1'
+			VersionIndependentProgID = s 'FDMFlashVideoDownloads.FDMFlashVideoDownloads'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{B56675FE-F704-4451-BD93-5314116B0DA7}'
+			'TypeLib' = s '{DA122254-5927-44C6-8E37-459473384004}'
+		}
+	}
+}

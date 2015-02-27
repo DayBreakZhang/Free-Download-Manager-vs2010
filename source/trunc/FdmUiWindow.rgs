@@ -1,0 +1,27 @@
+HKCR
+{
+	FDM.FdmUiWindow.1 = s 'FdmUiWindow Class'
+	{
+		CLSID = s '{5A810830-B199-4a4c-89CB-928D960A5C04}'
+	}
+	FDM.FdmUiWindow = s 'FdmUiWindow Class'
+	{
+		CLSID = s '{5A810830-B199-4a4c-89CB-928D960A5C04}'
+		CurVer = s 'FDM.FdmUiWindow.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5A810830-B199-4a4c-89CB-928D960A5C04} = s 'FdmUiWindow Class'
+		{
+			ProgID = s 'FDM.FdmUiWindow.1'
+			VersionIndependentProgID = s 'FDM.FdmUiWindow'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Free'
+			}
+			val AppID = s '{B56675FE-F704-4451-BD93-5314116B0DA7}'
+			'TypeLib' = s '{DA122254-5927-44C6-8E37-459473384004}'
+		}
+	}
+}

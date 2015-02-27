@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{B56675FE-F704-4451-BD93-5314116B0DA7} = s 'Free Download Manager'
+		'fdm.EXE'
+		{
+			val AppID = s {B56675FE-F704-4451-BD93-5314116B0DA7}
+		}
+	}
+}

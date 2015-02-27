@@ -1,0 +1,24 @@
+HKCR
+{
+	FDM.FdmFlvDownload.1 = s 'FdmFlvDownload Class'
+	{
+		CLSID = s '{42130E6A-0045-4208-A252-71CA12C8FE99}'
+	}
+	FDM.FdmFlvDownload = s 'FdmFlvDownload Class'
+	{
+		CLSID = s '{42130E6A-0045-4208-A252-71CA12C8FE99}'
+		CurVer = s 'FDM.FdmFlvDownload.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {42130E6A-0045-4208-A252-71CA12C8FE99} = s 'FdmFlvDownload Class'
+		{
+			ProgID = s 'FDM.FdmFlvDownload.1'
+			VersionIndependentProgID = s 'FDM.FdmFlvDownload'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{B56675FE-F704-4451-BD93-5314116B0DA7}'
+			'TypeLib' = s '{DA122254-5927-44C6-8E37-459473384004}'
+		}
+	}
+}

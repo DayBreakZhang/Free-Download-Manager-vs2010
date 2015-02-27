@@ -1,0 +1,44 @@
+{
+  "appName": {
+    "message": "Free Download Manager Chrome extension",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appShortName": {
+    "message": "FDM",
+    "description": "Short name of the application, displayed in appropriate contexts."
+  },
+  "appDesc": {
+    "message": "Free Download Manager integration with Google Chrome browser", 
+    "description" : "The description of the application, displayed in the web store."
+  },
+  "menuThis": {
+    "message": "Download with Free Download Manager",
+    "description": "Context menu item for links and images"
+  },
+  "menuAll": {
+    "message": "Download all with Free Download Manager",
+    "description": "Context menu item for pages"
+  },
+  "menuSelected": {
+    "message": "Download selected with Free Download Manager",
+    "description": "Context menu item for selection"
+  },
+  "menuSite": {
+    "message": "Download web site with Free Download Manager",
+    "description": "Context menu item for site"
+  },
+  "installCorrupted": {
+    "message": "Free Download Manager installation corrupted. Please reinstall it.",
+    "description": "Message on corrupted FDM installation."
+  },
+  "installMissing": {
+    "message": "Free Download Manager installation not found. Please install it.",
+    "description": "Message on missing FDM installation."
+  },
+  "installUnknownError": {
+    "message": "Unknown error. Please reinstall Free Download Manager.",
+    "description": "Message on unknown error with FDM installation."
+  }
+  
+  
+}

@@ -1,0 +1,15 @@
+content xbl-marquee jar:toolkit.jar!/content/xbl-marquee/
+skin global classic/1.0 jar:toolkit.jar!/skin/classic/global/ os!=WINNT
+content global jar:toolkit.jar!/content/global/ contentaccessible=yes
+content global-region jar:toolkit.jar!/content/global-region/
+skin global classic/1.0 jar:toolkit.jar!/skin/classic/aero/global/ os=WINNT osversion>=6
+skin mozapps classic/1.0 jar:toolkit.jar!/skin/classic/mozapps/ os=WINNT osversion<6
+content mozapps jar:toolkit.jar!/content/mozapps/
+skin mozapps classic/1.0 jar:toolkit.jar!/skin/classic/mozapps/ os!=WINNT
+skin mozapps classic/1.0 jar:toolkit.jar!/skin/classic/aero/mozapps/ os=WINNT osversion>=6
+content cookie jar:toolkit.jar!/content/cookie/
+content passwordmgr jar:toolkit.jar!/content/passwordmgr/
+override chrome://global/content/nsTransferable.js chrome://global/content/nsDragAndDrop.js
+content global-platform jar:toolkit.jar!/content/global-platform/ platform
+content satchel jar:toolkit.jar!/content/satchel/
+skin global classic/1.0 jar:toolkit.jar!/skin/classic/global/ os=WINNT osversion<6

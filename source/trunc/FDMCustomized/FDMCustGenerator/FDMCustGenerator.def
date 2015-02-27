@@ -1,0 +1,21 @@
+LIBRARY	"fdmdll.dll"
+
+EXPORTS
+	fdmcsCreateSession			@1
+	fdmcsCloseSession			@2
+	fdmcsSet_PrimaryID			@3
+	fdmcsSet_SiteURL			@4
+	fdmcsSet_SiteTitle			@5
+	fdmcsSet_SiteIcon			@6
+	fdmcsSet_Button				@7
+	fdmcsSet_SetHomePage		@8
+	fdmcsSet_AddLinkToFavorites	@9
+	fdmcsSet_AddLinkToStartMenu	@10
+	fdmcsSet_IEButton			@11
+	fdmcsSet_GetCustVerBtn		@12
+	fdmcsSet_ShowBanners		@13
+	fdmcsAdd_Banner				@14
+	fdmcsClearBannerList		@15
+	fdmcsSet_UseListOfDownloads	@16
+	fdmcsAdd_Download			@17
+	fdmcsGenerateDistrib		@18
