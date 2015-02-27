@@ -1,0 +1,16 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+#include "domstubs.idl"
+interface nsIContentFrameMessageManager;
+
+[uuid( 60146bc6-31d8-450b-a9eb-4000b6403d5c)]
+interface nsITabChild : nsISupports
+{
+  readonly attribute nsIContentFrameMessageManager messageManager;
+
+  [notxpcom] void sendRequestFocus(in boolean canFocus);
+};
+
