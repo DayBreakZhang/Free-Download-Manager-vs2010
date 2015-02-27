@@ -1,0 +1,9 @@
+EXPORTS
+onGetItBtnClicked			@1
+onGetItBtnClicked2			@2
+onGetItBtnClicked3			@3
+isVideoFlash				@4
+onNewHttpDialog				@5
+onHttpDialogDataReceived	@6
+onHttpDialogClosed			@7
+onNewHttpRequest			@8
